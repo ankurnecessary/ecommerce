@@ -1,3 +1,5 @@
+# Ecommerce
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
@@ -34,3 +36,47 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Commands
+
+```bash
+npm run dev
+```
+
+This will run the project in development mode.
+
+```bash
+npm run build
+```
+
+This command will prepare a build of the project.
+
+```bash
+npm run start
+```
+
+This will run the project from the most recent build in .next folder.
+
+```bash
+npm run lint
+```
+
+This command will lint the code of whole project.
+
+```bash
+npm run lint:fix
+```
+
+This command will fix all the lint bugs which are auto-fixable.
+
+```bash
+npm run lint:strict
+```
+
+This command will strictly run the lint only on the files that we are actullay coding.
+
+```bash
+npm run prettier
+```
+
+This command will format the code.
