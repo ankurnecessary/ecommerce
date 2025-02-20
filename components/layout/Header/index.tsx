@@ -2,8 +2,8 @@ import React from 'react';
 
 const Header = () => {
   return (
-    <header className="flex items-center justify-between bg-green-300 p-4">
-      <h1>Image</h1>
+    <header className="flex items-center justify-between p-4">
+      <h1 className={`${charm.className} p-1 text-3xl`}>Celebrations</h1>
       <search>
         <input type="search" placeholder="Search" />
         <button>GO</button>
