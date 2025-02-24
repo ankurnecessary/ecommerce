@@ -28,7 +28,7 @@ const Header = () => {
           id="header-search-button"
           type="button"
           aria-labelledby="search-button-label"
-          title="search"
+          title="Search button"
           className="bg-black pl-3 pr-2 text-white"
         >
           <FontAwesomeIcon icon={faSearch} />
