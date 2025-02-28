@@ -17,10 +17,10 @@ describe('Header', () => {
   });
 
   it('renders the component with search input', () => {
-    expect(screen.getByPlaceholderText('Search')).toBeInTheDocument();
+    expect(screen.getByPlaceholderText('Search...')).toBeInTheDocument();
   });
 
   it('renders the component with search button', () => {
-    expect(screen.getByTitle('Search button')).toBeInTheDocument();
+    expect(screen.getByRole('button', { name: /search/i })).toBeInTheDocument();
   });
 });
