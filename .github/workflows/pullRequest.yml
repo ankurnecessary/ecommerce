@@ -32,3 +32,6 @@ jobs:
 
       - name: Make bulid
         run: npm run build
+
+      - name: Run lighthouse
+        run: npm run lighthouse
