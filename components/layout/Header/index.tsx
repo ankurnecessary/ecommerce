@@ -24,7 +24,7 @@ const Header = () => {
       {/* [Moblie only]: For left side of the header  */}
       <div className="border-r border-black md:grow">
         {/* For hamburger menu button */}
-        <button className="hidden px-4 py-3">
+        <button className="hidden px-4 py-3" aria-label="Open navigation menu">
           <FontAwesomeIcon icon={faBars} />
         </button>
       </div>
@@ -41,21 +41,18 @@ const Header = () => {
           <button
             id="header-search-button"
             type="button"
-            aria-labelledby="search-button-label"
+            aria-label="search"
             className="bg-black px-3 py-1.5 text-white"
           >
             <FontAwesomeIcon icon={faSearch} />
           </button>
-          <span id="search-button-label" hidden>
-            Search
-          </span>
         </search>
       </div>
 
       {/* For the right side of the header */}
       <div className="border-l border-black md:grow">
         {/* [Moblie only]: Search button */}
-        <button className="px-4 py-3 md:hidden">
+        <button className="px-4 py-3 md:hidden" aria-label="Open search bar">
           <FontAwesomeIcon icon={faSearch} />
         </button>
       </div>
