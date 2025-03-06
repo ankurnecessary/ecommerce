@@ -13,7 +13,8 @@
     "prepare": "husky",
     "test": "vitest",
     "coverage": "vitest run --coverage",
-    "lighthouse": "lhci autorun"
+    "lighthouse": "lhci autorun",
+    "lighthouse:local": "sh ./shell-scripts/lighthouse.sh"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.7.2",
