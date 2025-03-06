@@ -21,6 +21,8 @@ describe('Header', () => {
   });
 
   it('renders the component with search button', () => {
-    expect(screen.getByRole('button', { name: /search/i })).toBeInTheDocument();
+    expect(
+      screen.getByRole('button', { name: /^search/i }),
+    ).toBeInTheDocument();
   });
 });
