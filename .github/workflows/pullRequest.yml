@@ -19,7 +19,7 @@ jobs:
           node-version: '22.6.0'
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
       - name: Setting up playwright browsers
         run: npx playwright install --with-deps
