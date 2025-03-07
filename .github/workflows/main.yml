@@ -53,6 +53,8 @@ jobs:
         run: |
           npm install -g @lhci/cli@latest
           npm run lighthouse
+        env:
+          LHCI_GITHUB_APP_TOKEN: ${{ secrets.LHCI_GITHUB_APP_TOKEN }}
 
   deploy:
     runs-on: ubuntu-latest
