@@ -14,7 +14,8 @@
     "test": "vitest",
     "coverage": "vitest run --coverage",
     "lighthouse": "lhci autorun",
-    "lighthouse:local": "sh ./shell-scripts/lighthouse.sh"
+    "lighthouse:local": "sh ./shell-scripts/lighthouse.sh",
+    "validate-html": "html-w3c-validator"
   },
   "dependencies": {
     "@fortawesome/fontawesome-svg-core": "^6.7.2",
@@ -43,6 +44,7 @@
     "eslint-config-next": "^15.1.7",
     "eslint-config-prettier": "^10.0.1",
     "eslint-plugin-prettier": "^5.2.3",
+    "html-w3c-validator": "^1.7.0",
     "husky": "^9.1.7",
     "jsdom": "^26.0.0",
     "lint-staged": "^15.4.3",
