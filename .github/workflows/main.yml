@@ -6,6 +6,27 @@ on:
       - main
 
 jobs:
+  validate-html:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Install Dependencies
+        run: npm ci
+
+      - name: Start Next.js Server
+        run: npm run dev &
+        env:
+          NODE_ENV: development
+
+      - name: Wait for Server to Start
+        run: npx wait-on http://localhost:3000
+
+      - name: Validate HTML
+        run: npm run validate-html
+  
   test:
     runs-on: ubuntu-latest
     container:
@@ -28,7 +49,9 @@ jobs:
 
   build:
     runs-on: ubuntu-latest
-    needs: test
+    needs: 
+      - test
+      - validate-html
 
     steps:
       
