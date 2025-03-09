@@ -32,7 +32,10 @@ const Header = () => {
       {/* For the center of the header */}
       <div className="md:grow">
         {/* [Mobile only]: Center space for logo */}
-        <search className="mx-auto my-1 hidden w-1/2 border border-black md:flex">
+        <div
+          role="search"
+          className="mx-auto my-1 hidden w-1/2 border border-black md:flex"
+        >
           <input
             type="search"
             placeholder="Search..."
@@ -46,7 +49,7 @@ const Header = () => {
           >
             <FontAwesomeIcon icon={faSearch} />
           </button>
-        </search>
+        </div>
       </div>
 
       {/* For the right side of the header */}
