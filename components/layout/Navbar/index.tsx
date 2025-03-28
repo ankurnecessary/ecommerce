@@ -10,7 +10,7 @@ import {
 const Navbar = () => {
   return (
     <>
-      <nav className="container mx-auto flex w-[calc(100%-4rem)] px-6 text-sm text-black">
+      <nav className="container mx-auto hidden w-[calc(100%-4rem)] px-6 text-sm text-black md:flex">
         {/* Category button */}
         <div className="whitespace-nowrap">
           <span className="group inline-block cursor-pointer px-2 py-2 hover:bg-gray-100">

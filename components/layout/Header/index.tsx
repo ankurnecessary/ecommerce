@@ -10,7 +10,7 @@ const mulish = Mulish({
 
 const Header = () => {
   return (
-    <header className="container relative mx-auto flex items-center justify-between py-5">
+    <header className="relative flex items-center justify-between md:container md:mx-auto md:py-5">
       {/* Logo container */}
       <div className="absolute left-1/2 -translate-x-1/2 md:left-28">
         <h1
