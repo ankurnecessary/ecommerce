@@ -2,6 +2,7 @@ import React from 'react';
 import { Mulish } from 'next/font/google';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faSearch } from '@fortawesome/free-solid-svg-icons';
+import Link from 'next/link';
 
 const mulish = Mulish({
   subsets: ['latin'],
@@ -9,15 +10,19 @@ const mulish = Mulish({
 
 const Header = () => {
   return (
-    <header className="relative flex items-center justify-between border-b border-black">
+    <header className="container relative mx-auto flex items-center justify-between py-5">
       {/* Logo container */}
       <div className="absolute left-1/2 -translate-x-1/2 md:left-28">
-        <h1 className={`${mulish.className} relative p-1 text-3xl font-bold`}>
-          Celebrations
-          <span className="absolute -right-1 -top-10 text-6xl text-fuchsia-400">
-            .
-          </span>
-          <span className="absolute -top-6 text-5xl text-green-500">.</span>
+        <h1
+          className={`${mulish.className} relative p-1 text-3xl font-bold uppercase`}
+        >
+          <Link href={'/'}>
+            Celeb
+            <span className="absolute -right-1 -top-10 text-6xl text-fuchsia-400">
+              .
+            </span>
+            <span className="absolute -top-6 text-5xl text-green-500">.</span>
+          </Link>
         </h1>
       </div>
 
@@ -39,7 +44,7 @@ const Header = () => {
           <input
             type="search"
             placeholder="Search..."
-            className="min-w-0 flex-grow border-r border-black px-2 placeholder-black outline-none"
+            className="min-w-0 flex-grow border-r border-black px-2 text-sm placeholder-black outline-none"
           />
           <button
             id="header-search-button"
