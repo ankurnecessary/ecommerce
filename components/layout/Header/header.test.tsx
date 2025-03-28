@@ -6,7 +6,7 @@ describe('Header', () => {
   render(<Header />);
 
   it('renders the component with text', () => {
-    expect(screen.getByText('Celebrations')).toBeInTheDocument();
+    expect(screen.getByText('Celeb')).toBeInTheDocument();
   });
 
   it('renders the component with search input', () => {
