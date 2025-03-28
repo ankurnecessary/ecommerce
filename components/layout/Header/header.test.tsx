@@ -1,13 +1,6 @@
-import { describe, expect, it, vi } from 'vitest';
+import { describe, expect, it } from 'vitest';
 import { render, screen } from '@testing-library/react';
 import Header from '.';
-
-vi.mock('next/font/google', () => ({
-  Mulish: () => ({
-    className: 'mock-mulish',
-    variable: '--mock-mulish',
-  }),
-}));
 
 describe('Header', () => {
   render(<Header />);

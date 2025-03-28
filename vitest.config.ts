@@ -18,6 +18,7 @@ export default defineConfig({
         'setupTests.ts',
         ...coverageConfigDefaults.exclude
       ]
-    }
+    },
+    setupFiles: ['./vitestSetup.tsx']
   },
 });
