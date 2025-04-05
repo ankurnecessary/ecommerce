@@ -4,7 +4,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faSearch } from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
 import { Navbar } from '@/components/layout';
-import NavbarMenuDesktop from '@/components/layout/Navbar/NavbarMenuDesktop';
+import NavbarMenuDesktop from '@/components/layout/Navbar/Desktop/NavbarMenuDesktop';
 
 const mulish = Mulish({
   subsets: ['latin'],

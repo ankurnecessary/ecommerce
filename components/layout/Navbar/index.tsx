@@ -1,6 +1,6 @@
 import React from 'react';
-import NavbarDesktop from './NavbarDesktop';
-// import NavbarMobile from './NavbarMobile';
+import NavbarDesktop from '@/components/layout/Navbar/Desktop/NavbarDesktop';
+// import NavbarMobile from '@/components/layout/Navbar/Desktop/NavbarMobile';
 
 const Navbar = () => {
   return (
