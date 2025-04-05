@@ -5,6 +5,7 @@ import { faBars, faSearch } from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
 import { Navbar } from '@/components/layout';
 import NavbarMenuDesktop from '@/components/layout/Navbar/Desktop/NavbarMenuDesktop';
+import { HeaderContextProvider } from './header.context';
 
 const mulish = Mulish({
   subsets: ['latin'],
@@ -12,7 +13,7 @@ const mulish = Mulish({
 
 const Header = () => {
   return (
-    <>
+    <HeaderContextProvider>
       <header className="relative z-[1] border-b border-black bg-white md:border-gray-300">
         <div className="relative flex items-center justify-between md:container md:mx-auto md:py-5">
           {/* Logo container */}
@@ -80,7 +81,7 @@ const Header = () => {
         <Navbar />
       </header>
       <NavbarMenuDesktop />
-    </>
+    </HeaderContextProvider>
   );
 };
 
