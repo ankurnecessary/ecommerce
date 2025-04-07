@@ -7,7 +7,9 @@ const NavbarLinks = ({
   mouseOutHandler,
 }: {
   translateValue: number;
-  mouseOverHandler: () => void;
+  mouseOverHandler: (
+    e: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
+  ) => void;
   mouseOutHandler: () => void;
 }) => {
   return (

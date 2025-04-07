@@ -14,8 +14,12 @@ const NavbarDesktop = () => {
     desktop: { toggleMenu },
   }: HeaderContext = useHeaderContext();
 
-  const mouseOverHandler = () => {
-    toggleMenu(true, '');
+  const mouseOverHandler = (
+    e: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
+  ) => {
+    // Fetching link text from the link
+    const link = e.target as HTMLAnchorElement;
+    toggleMenu(true, link.textContent || '');
   };
 
   // Can be done by FP
