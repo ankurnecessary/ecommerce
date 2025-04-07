@@ -10,7 +10,7 @@ const NavbarMenuDesktop = () => {
 
   const [isVisible, category] = isMenuVisible;
 
-  const styleClasses = `${!isVisible && '-translate-y-full'}`;
+  const styleClasses = !isVisible && '-translate-y-full';
 
   return (
     <div
