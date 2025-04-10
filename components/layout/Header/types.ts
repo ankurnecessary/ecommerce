@@ -33,3 +33,10 @@ export type HeaderContext = {
   };
   mobile: null;
 };
+
+export type CalculateOffset = (
+  directions: 'left' | 'right',
+) => (
+  navbarParent: HTMLDivElement | null,
+  navbarChild: HTMLDivElement | null,
+) => (offset: number) => number;

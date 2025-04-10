@@ -32,7 +32,7 @@ const NavbarLinks = ({
   return (
     <div className="overflow-x-hidden whitespace-nowrap" ref={parentNavbarRef}>
       <div
-        className="flex transition-transform duration-300"
+        className="inline-flex transition-transform duration-300"
         style={{ transform: `translateX(${translateValue || 0}px)` }}
         ref={childNavbarRef}
       >
