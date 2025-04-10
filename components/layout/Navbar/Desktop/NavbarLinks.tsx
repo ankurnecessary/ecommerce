@@ -1,5 +1,6 @@
 import Link from 'next/link';
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
+import { useHeaderContext } from '../../Header/header.context';
 
 const NavbarLinks = ({
   translateValue,
@@ -12,11 +13,28 @@ const NavbarLinks = ({
   ) => void;
   mouseOutHandler: () => void;
 }) => {
+  const parentNavbarRef = useRef<HTMLDivElement>(null);
+  const childNavbarRef = useRef<HTMLDivElement>(null);
+
+  const {
+    desktop: {
+      navbar: { setNavbarElements },
+    },
+  } = useHeaderContext();
+
+  useEffect(() => {
+    if (parentNavbarRef.current && childNavbarRef.current) {
+      setNavbarElements(parentNavbarRef.current, childNavbarRef.current);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
-    <div className="overflow-x-hidden whitespace-nowrap">
+    <div className="overflow-x-hidden whitespace-nowrap" ref={parentNavbarRef}>
       <div
         className="flex transition-transform duration-300"
         style={{ transform: `translateX(${translateValue || 0}px)` }}
+        ref={childNavbarRef}
       >
         <Link
           className="inline-block p-2 hover:bg-gray-100"
