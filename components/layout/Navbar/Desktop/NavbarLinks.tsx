@@ -3,11 +3,9 @@ import React, { useEffect, useRef } from 'react';
 import { useHeaderContext } from '../../Header/header.context';
 
 const NavbarLinks = ({
-  translateValue,
   mouseOverHandler,
   mouseOutHandler,
 }: {
-  translateValue: number;
   mouseOverHandler: (
     e: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
   ) => void;
@@ -18,13 +16,13 @@ const NavbarLinks = ({
 
   const {
     desktop: {
-      navbar: { setNavbarElements },
+      navbar: { setNavbarElementsDsktp, childOffset },
     },
   } = useHeaderContext();
 
   useEffect(() => {
     if (parentNavbarRef.current && childNavbarRef.current) {
-      setNavbarElements(parentNavbarRef.current, childNavbarRef.current);
+      setNavbarElementsDsktp(parentNavbarRef.current, childNavbarRef.current);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -33,7 +31,7 @@ const NavbarLinks = ({
     <div className="overflow-x-hidden whitespace-nowrap" ref={parentNavbarRef}>
       <div
         className="inline-flex transition-transform duration-300"
-        style={{ transform: `translateX(${translateValue || 0}px)` }}
+        style={{ transform: `translateX(${childOffset || 0}px)` }}
         ref={childNavbarRef}
       >
         <Link

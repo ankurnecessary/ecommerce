@@ -1,4 +1,4 @@
-import React, { Dispatch, SetStateAction } from 'react';
+import React from 'react';
 import {
   faChevronLeft,
   faChevronRight,
@@ -8,12 +8,8 @@ import { useHeaderContext } from '@/components/layout/Header/header.context';
 import { CalculateOffset } from '@/components/layout/Header/types';
 
 const calculateOffset: CalculateOffset =
-  (direction) => (navbarParent, navbarChild) => (offset) => {
+  (direction) => (parentWidth, childWidth) => (offset) => {
     let displacer = 0;
-    // <parent> - Need width of the <div> having overflow property set over it.
-    const parentWidth = navbarParent?.getBoundingClientRect().width ?? 0;
-    // <child> - Need width of the <div> wrapping all links inside <parent>.
-    const childWidth = navbarChild?.getBoundingClientRect().width ?? 0;
 
     // Setting displacer
     if (childWidth > parentWidth) {
@@ -32,46 +28,52 @@ const calculateOffset: CalculateOffset =
     const maxRightOffset = parentWidth - childWidth;
     return offset < maxRightOffset ? maxRightOffset : offset;
   };
-
-const NavbarScroller = ({
-  scrollLinks,
-}: {
-  scrollLinks: Dispatch<SetStateAction<number>>;
-}) => {
+// TODO: Check all components have their type definition as a separate type
+const NavbarScroller = () => {
   const {
     desktop: {
-      navbar: { child: navbarChild, parent: navbarParent },
+      navbar: {
+        child: navbarChild,
+        parent: navbarParent,
+        childOffset: navbarChildOffset,
+        setNavbarOffsetDsktp,
+      },
     },
   } = useHeaderContext();
 
-  const calculateLeftOffset = calculateOffset('left')(
-    navbarParent,
-    navbarChild,
-  );
+  // <parent> - Need width of the <div> having overflow property set over it.
+  const parentWidth = navbarParent?.getBoundingClientRect().width ?? 0;
+  // <child> - Need width of the <div> wrapping all links inside <parent>.
+  const childWidth = navbarChild?.getBoundingClientRect().width ?? 0;
+  const maxRightOffset = parentWidth - childWidth;
+
+  const calculateLeftOffset = calculateOffset('left')(parentWidth, childWidth);
   const calculateRightOffset = calculateOffset('right')(
-    navbarParent,
-    navbarChild,
+    parentWidth,
+    childWidth,
   );
 
   const linksLeftScroller = () => {
-    scrollLinks((x) => calculateLeftOffset(x));
+    setNavbarOffsetDsktp(calculateLeftOffset(navbarChildOffset));
   };
 
   const linksRightScroller = () => {
-    scrollLinks((x) => calculateRightOffset(x));
+    setNavbarOffsetDsktp(calculateRightOffset(navbarChildOffset));
   };
 
   return (
     <div className="shadow-left whitespace-nowrap">
       <button
-        className="inline-block cursor-pointer p-2 hover:bg-gray-100"
+        className="inline-block cursor-pointer p-2 hover:bg-gray-100 disabled:cursor-auto disabled:opacity-25"
         onClick={linksLeftScroller}
+        disabled={navbarChildOffset == 0}
       >
         <FontAwesomeIcon icon={faChevronLeft} className="text-xs" />
       </button>
       <button
-        className="inline-block cursor-pointer p-2 hover:bg-gray-100"
+        className="inline-block cursor-pointer p-2 hover:bg-gray-100 disabled:cursor-auto disabled:opacity-25"
         onClick={linksRightScroller}
+        disabled={navbarChildOffset === maxRightOffset}
       >
         <FontAwesomeIcon icon={faChevronRight} className="text-xs" />
       </button>

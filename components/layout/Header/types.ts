@@ -5,6 +5,7 @@ export type HeaderInitialState = {
   navbarParentDsktp: HTMLDivElement | null;
   navbarChildDsktp: HTMLDivElement | null;
   isMenuVisibleDsktp: MenuVisibility;
+  navbarChildOffsetDsktp: number;
 };
 
 export type SetNavbarElements = (
@@ -12,10 +13,15 @@ export type SetNavbarElements = (
   navbarChild: HTMLDivElement,
 ) => void;
 
+export type SetNavbarOffsetDsktp = (navbarChildOffsetDsktp: number) => void;
+
 export type HeaderReducer = (
   state: HeaderInitialState,
   action: {
-    type: 'UPDATE_NAVBAR_ELEMENTS_DSKTP' | 'TOGGLE_MENU_DSKTP';
+    type:
+      | 'UPDATE_NAVBAR_ELEMENTS_DSKTP'
+      | 'TOGGLE_MENU_DSKTP'
+      | 'UPDATE_NAVBAR_OFFSET_DSKTP';
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     [key: string]: any;
   },
@@ -28,7 +34,9 @@ export type HeaderContext = {
     navbar: {
       parent: HTMLDivElement | null;
       child: HTMLDivElement | null;
-      setNavbarElements: SetNavbarElements;
+      childOffset: number;
+      setNavbarElementsDsktp: SetNavbarElements;
+      setNavbarOffsetDsktp: SetNavbarOffsetDsktp;
     };
   };
   mobile: null;
@@ -36,7 +44,4 @@ export type HeaderContext = {
 
 export type CalculateOffset = (
   directions: 'left' | 'right',
-) => (
-  navbarParent: HTMLDivElement | null,
-  navbarChild: HTMLDivElement | null,
-) => (offset: number) => number;
+) => (navbarParent: number, navbarChild: number) => (offset: number) => number;

@@ -1,5 +1,5 @@
 'use client';
-import React, { useState } from 'react';
+import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { useHeaderContext } from '@/components/layout/Header/header.context';
@@ -8,8 +8,6 @@ import NavbarLinks from '@/components/layout/Navbar/Desktop/NavbarLinks';
 import NavbarScroller from '@/components/layout/Navbar/Desktop/NavbarScroller';
 
 const NavbarDesktop = () => {
-  const [translateValue, setTranslateValue] = useState<number>(0);
-
   const {
     desktop: { toggleMenu },
   }: HeaderContext = useHeaderContext();
@@ -46,13 +44,12 @@ const NavbarDesktop = () => {
 
       {/* horizontal links scroller */}
       <NavbarLinks
-        translateValue={translateValue}
         mouseOverHandler={mouseOverHandler}
         mouseOutHandler={mouseOutHandler}
       />
 
       {/* Buttons to scroll links horizontally */}
-      <NavbarScroller scrollLinks={setTranslateValue} />
+      <NavbarScroller />
     </nav>
   );
 };

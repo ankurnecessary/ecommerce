@@ -6,6 +6,7 @@ import {
   ToggleMenu,
   SetNavbarElements,
   HeaderReducer,
+  SetNavbarOffsetDsktp,
 } from '@/components/layout/Header/types';
 
 // Need to use in useReducer() hook
@@ -13,11 +14,17 @@ const headerInitialState: HeaderInitialState = {
   navbarParentDsktp: null,
   navbarChildDsktp: null,
   isMenuVisibleDsktp: [false, ''],
+  navbarChildOffsetDsktp: 0,
 };
 
 // Need to use in useReducer() hook
 const headerReducer: HeaderReducer = (state, action) => {
   switch (action.type) {
+    case 'UPDATE_NAVBAR_OFFSET_DSKTP':
+      return {
+        ...state,
+        navbarChildOffsetDsktp: action.navbarChildOffsetDsktp,
+      };
     case 'UPDATE_NAVBAR_ELEMENTS_DSKTP':
       return {
         ...state,
@@ -42,12 +49,14 @@ const headerContext = createContext<HeaderContext>({
     navbar: {
       parent: null,
       child: null,
-      setNavbarElements() {},
+      childOffset: 0,
+      setNavbarElementsDsktp() {},
+      setNavbarOffsetDsktp() {},
     },
   },
   mobile: null,
 });
-
+// TODO: Check if type is assigned to all the `useState()`
 export const HeaderContextProvider = ({
   children,
 }: {
@@ -58,6 +67,7 @@ export const HeaderContextProvider = ({
     headerInitialState,
   );
 
+  // To toggle navigation menu
   const toggleMenu: ToggleMenu = (isMenuVisible, menuCategory) => {
     dispatchHeaderActions({
       type: 'TOGGLE_MENU_DSKTP',
@@ -66,11 +76,11 @@ export const HeaderContextProvider = ({
     });
   };
 
-  const setNavbarElements: SetNavbarElements = (
+  // To set navbar elements
+  const setNavbarElementsDsktp: SetNavbarElements = (
     navbarParentDsktp,
     navbarChildDsktp,
   ) => {
-    // TODO: Check if type is assigned to all the `useState()`
     dispatchHeaderActions({
       type: 'UPDATE_NAVBAR_ELEMENTS_DSKTP',
       navbarParentDsktp,
@@ -78,18 +88,31 @@ export const HeaderContextProvider = ({
     });
   };
 
-  const contextValue = {
+  // To set navbar offset when scroll buttons are used
+  const setNavbarOffsetDsktp: SetNavbarOffsetDsktp = (
+    navbarChildOffsetDsktp,
+  ) => {
+    dispatchHeaderActions({
+      type: 'UPDATE_NAVBAR_OFFSET_DSKTP',
+      navbarChildOffsetDsktp,
+    });
+  };
+
+  const contextValue: HeaderContext = {
     desktop: {
       isMenuVisible: header.isMenuVisibleDsktp,
       toggleMenu,
       navbar: {
         parent: header.navbarParentDsktp,
         child: header.navbarChildDsktp,
-        setNavbarElements,
+        childOffset: header.navbarChildOffsetDsktp,
+        setNavbarElementsDsktp,
+        setNavbarOffsetDsktp,
       },
     },
     mobile: null,
   };
+
   return (
     <headerContext.Provider value={contextValue}>
       {children}
@@ -98,7 +121,7 @@ export const HeaderContextProvider = ({
 };
 
 export const useHeaderContext = () => {
-  const context = useContext(headerContext);
+  const context = useContext<HeaderContext>(headerContext);
   if (!context) {
     throw new Error(
       'useHeaderContext must be used within a HeaderContextProvider',
