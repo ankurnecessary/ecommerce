@@ -3,7 +3,10 @@ import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { useHeaderContext } from '@/components/layout/Header/header.context';
-import { HeaderContext } from '@/components/layout/Header/types';
+import {
+  HeaderContext,
+  NavbarMouseEvent,
+} from '@/components/layout/Header/types';
 import NavbarLinks from '@/components/layout/Navbar/Desktop/NavbarLinks';
 import NavbarScroller from '@/components/layout/Navbar/Desktop/NavbarScroller';
 
@@ -12,18 +15,14 @@ const NavbarDesktop = () => {
     desktop: { toggleMenu },
   }: HeaderContext = useHeaderContext();
 
-  const mouseOverHandler = (
-    e: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
-  ) => {
+  const mouseOverHandler: NavbarMouseEvent = (e) => {
     // Fetching link text from the link
     const link = e.target as HTMLAnchorElement;
     toggleMenu(true, link.textContent || '');
   };
 
   // Can be done by FP
-  const mouseOutHandler = (
-    e: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
-  ) => {
+  const mouseOutHandler: NavbarMouseEvent = (e) => {
     // Fetching link text from the link
     const link = e.target as HTMLAnchorElement;
     toggleMenu(false, link.textContent || '');

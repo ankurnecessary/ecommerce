@@ -45,3 +45,7 @@ export type HeaderContext = {
 export type CalculateOffset = (
   directions: 'left' | 'right',
 ) => (navbarParent: number, navbarChild: number) => (offset: number) => number;
+
+export type NavbarMouseEvent = (
+  e: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
+) => void;

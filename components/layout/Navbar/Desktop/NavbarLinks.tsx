@@ -1,16 +1,15 @@
 'use client';
 import Link from 'next/link';
 import React, { useEffect, useRef } from 'react';
-import { useHeaderContext } from '../../Header/header.context';
+import { useHeaderContext } from '@/components/layout/Header/header.context';
+import { NavbarMouseEvent } from '@/components/layout/Header/types';
 
 const NavbarLinks = ({
   mouseOverHandler,
   mouseOutHandler,
 }: {
-  mouseOverHandler: (
-    e: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
-  ) => void;
-  mouseOutHandler: (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void;
+  mouseOverHandler: NavbarMouseEvent;
+  mouseOutHandler: NavbarMouseEvent;
 }) => {
   const parentNavbarRef = useRef<HTMLDivElement>(null);
   const childNavbarRef = useRef<HTMLDivElement>(null);
