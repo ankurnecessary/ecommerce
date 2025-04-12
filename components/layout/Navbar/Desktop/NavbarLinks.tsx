@@ -1,3 +1,4 @@
+'use client';
 import Link from 'next/link';
 import React, { useEffect, useRef } from 'react';
 import { useHeaderContext } from '../../Header/header.context';
@@ -9,7 +10,7 @@ const NavbarLinks = ({
   mouseOverHandler: (
     e: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
   ) => void;
-  mouseOutHandler: () => void;
+  mouseOutHandler: (e: React.MouseEvent<HTMLAnchorElement, MouseEvent>) => void;
 }) => {
   const parentNavbarRef = useRef<HTMLDivElement>(null);
   const childNavbarRef = useRef<HTMLDivElement>(null);
@@ -34,6 +35,7 @@ const NavbarLinks = ({
         style={{ transform: `translateX(${childOffset || 0}px)` }}
         ref={childNavbarRef}
       >
+        {/* TODO: Try to use event delegation here */}
         <Link
           className="inline-block p-2 hover:bg-gray-100"
           href={'/newIn'}

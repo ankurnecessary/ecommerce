@@ -56,7 +56,7 @@ const headerContext = createContext<HeaderContext>({
   },
   mobile: null,
 });
-// TODO: Check if type is assigned to all the `useState()`
+
 export const HeaderContextProvider = ({
   children,
 }: {

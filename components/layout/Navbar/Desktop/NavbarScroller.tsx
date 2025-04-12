@@ -28,7 +28,7 @@ const calculateOffset: CalculateOffset =
     const maxRightOffset = parentWidth - childWidth;
     return offset < maxRightOffset ? maxRightOffset : offset;
   };
-// TODO: Check all components have their type definition as a separate type
+
 const NavbarScroller = () => {
   const {
     desktop: {
