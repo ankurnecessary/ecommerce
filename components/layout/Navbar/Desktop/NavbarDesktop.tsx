@@ -21,8 +21,12 @@ const NavbarDesktop = () => {
   };
 
   // Can be done by FP
-  const mouseOutHandler = () => {
-    toggleMenu(false, '');
+  const mouseOutHandler = (
+    e: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
+  ) => {
+    // Fetching link text from the link
+    const link = e.target as HTMLAnchorElement;
+    toggleMenu(false, link.textContent || '');
   };
 
   return (
