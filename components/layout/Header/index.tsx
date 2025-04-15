@@ -21,15 +21,7 @@ const Header = () => {
             <h1
               className={`${mulish.className} relative p-1 text-3xl font-bold uppercase`}
             >
-              <Link href={'/'}>
-                Celeb
-                <span className="absolute -right-1 -top-10 text-6xl text-fuchsia-400">
-                  .
-                </span>
-                <span className="absolute -top-6 text-5xl text-green-500">
-                  .
-                </span>
-              </Link>
+              <Link href={'/'}>Celeb</Link>
             </h1>
           </div>
 
