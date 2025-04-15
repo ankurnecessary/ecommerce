@@ -4,8 +4,8 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBars, faSearch } from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
 import { Navbar } from '@/components/layout';
-import NavbarMenuDesktop from '@/components/layout/Navbar/Desktop/NavbarMenuDesktop';
-import { HeaderContextProvider } from './header.context';
+import NavbarMenu from '@/components/layout/Navbar/Desktop/NavbarMenu';
+import { HeaderContextProvider } from './Header.context';
 
 const mulish = Mulish({
   subsets: ['latin'],
@@ -72,7 +72,7 @@ const Header = () => {
         </div>
         <Navbar />
       </header>
-      <NavbarMenuDesktop />
+      <NavbarMenu />
     </HeaderContextProvider>
   );
 };

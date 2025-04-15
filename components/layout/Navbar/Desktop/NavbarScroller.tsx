@@ -4,7 +4,7 @@ import {
   faChevronRight,
 } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { useHeaderContext } from '@/components/layout/Header/header.context';
+import { useHeaderContext } from '@/components/layout/Header/Header.context';
 import { CalculateOffset } from '@/components/layout/Header/types';
 
 const calculateOffset: CalculateOffset =

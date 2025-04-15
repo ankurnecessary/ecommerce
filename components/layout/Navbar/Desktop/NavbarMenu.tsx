@@ -1,9 +1,9 @@
 'use client';
 import React from 'react';
-import { useHeaderContext } from '@/components/layout/Header/header.context';
+import { useHeaderContext } from '@/components/layout/Header/Header.context';
 import { HeaderContext } from '../../Header/types';
 
-const NavbarMenuDesktop = () => {
+const NavbarMenu = () => {
   const {
     desktop: { isMenuVisible, toggleMenu },
   }: HeaderContext = useHeaderContext();
@@ -34,4 +34,4 @@ const NavbarMenuDesktop = () => {
   );
 };
 
-export default NavbarMenuDesktop;
+export default NavbarMenu;

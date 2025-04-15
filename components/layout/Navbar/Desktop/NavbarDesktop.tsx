@@ -2,7 +2,7 @@
 import React from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
-import { useHeaderContext } from '@/components/layout/Header/header.context';
+import { useHeaderContext } from '@/components/layout/Header/Header.context';
 import {
   HeaderContext,
   NavbarMouseEvent,

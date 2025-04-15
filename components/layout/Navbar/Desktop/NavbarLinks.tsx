@@ -1,7 +1,7 @@
 'use client';
 import Link from 'next/link';
 import React, { useEffect, useRef } from 'react';
-import { useHeaderContext } from '@/components/layout/Header/header.context';
+import { useHeaderContext } from '@/components/layout/Header/Header.context';
 import { NavbarMouseEvent } from '@/components/layout/Header/types';
 
 const NavbarLinks = ({
