@@ -21,10 +21,11 @@ const NavbarMenu = () => {
   };
 
   // To handle the visibility of the Navbar menu drawer
-  const styleClasses = !isVisible && '-translate-y-full';
+  const styleClasses = !isVisible ? '-translate-y-full' : '';
 
   return (
     <div
+      data-testid="navbar-menu"
       className={`absolute z-0 h-96 w-full ${styleClasses} bg-gray-200 transition-transform duration-300`}
       onMouseOver={mouseOverHandler}
       onMouseOut={mouseOutHandler}
