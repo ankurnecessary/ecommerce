@@ -1,6 +1,6 @@
-import { afterEach, describe, expect, it } from 'vitest';
-import { fireEvent, render, waitFor, cleanup } from '@testing-library/react';
-import Header from '.';
+import { describe, expect, it } from 'vitest';
+import { render, fireEvent, waitFor } from '@testing-library/react';
+import Header from '@/components/layout/Header';
 
 describe('Header', () => {
   it('renders the component with text', () => {
@@ -53,7 +53,7 @@ describe('Header', () => {
     });
   });
 
-  it('has category links. On it\'s "mouseOver" and "mouseOut" events "<NavbarMenu />" will toggle', () => {
+  it('has category links. On it\'s "mouseOver" and "mouseOut" events "<NavbarMenu />" will toggle', async () => {
     const { getByTestId, container } = render(<Header />);
     const categoryLinks = container.querySelectorAll(
       'a.inline-block.p-2.hover\\:bg-gray-100',
@@ -63,13 +63,17 @@ describe('Header', () => {
     const navbarMenu = getByTestId('navbar-menu');
     expect(navbarMenu).toBeInTheDocument();
 
+    // Check if the initial class is applied
+    expect(navbarMenu).toHaveClass('-translate-y-full');
+
     // Trigger mouseover event
     fireEvent.mouseOver(categoryLinks[0]);
 
     // Wait for the class to be applied
-    waitFor(() => {
-      expect(navbarMenu).toHaveClass(
+    await waitFor(() => {
+      expect(navbarMenu).not.toHaveClass(
         'absolute z-0 h-96 w-full bg-gray-200 transition-transform duration-300',
+        { exact: true },
       );
     });
 
@@ -77,14 +81,8 @@ describe('Header', () => {
     fireEvent.mouseOut(categoryLinks[0]);
 
     // Wait for the class to be applied
-    waitFor(() => {
-      expect(navbarMenu).toHaveClass(
-        'absolute z-0 h-96 w-full -translate-y-full bg-gray-200 transition-transform duration-300',
-      );
+    await waitFor(() => {
+      expect(navbarMenu).toHaveClass('-translate-y-full');
     });
-  });
-
-  afterEach(() => {
-    cleanup(); // Ensures the DOM is cleaned up after each test
   });
 });

@@ -3,15 +3,9 @@ import { render } from '@testing-library/react';
 import NavbarLinks from '@/components/layout/Navbar/Desktop/NavbarLinks';
 
 describe('NavbarLinks', () => {
-  const mockMouseOverHandler = vi.fn();
-  const mockMouseOutHandler = vi.fn();
-
   it('should have multiple category links', () => {
     const { getAllByRole } = render(
-      <NavbarLinks
-        mouseOverHandler={mockMouseOverHandler}
-        mouseOutHandler={mockMouseOutHandler}
-      />,
+      <NavbarLinks mouseOverHandler={vi.fn()} mouseOutHandler={vi.fn()} />,
     );
     const categoryLinks = getAllByRole('link');
     expect(categoryLinks.length).toBeGreaterThan(0);
