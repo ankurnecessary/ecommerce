@@ -5,7 +5,7 @@ import { faBars, faSearch } from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
 import { Navbar } from '@/components/layout';
 import NavbarMenu from '@/components/layout/Navbar/Desktop/NavbarMenu';
-import { HeaderContextProvider } from './Header.context';
+import { HeaderContextProvider } from '@/components/layout/Header/Header.context';
 
 const mulish = Mulish({
   subsets: ['latin'],

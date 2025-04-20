@@ -1,7 +1,7 @@
 'use client';
 import React from 'react';
 import { useHeaderContext } from '@/components/layout/Header/Header.context';
-import { HeaderContext } from '../../Header/types';
+import { HeaderContext } from '@/components/layout/Header/types';
 
 const NavbarMenu = () => {
   const {
