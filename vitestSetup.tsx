@@ -1,5 +1,6 @@
 import { vi } from 'vitest';
 import React from 'react';
+import { mockUseHeaderContext } from '@/components/layout/Header/Header.context.mock';
 
 vi.mock('next/font/google', () => ({
   Mulish: () => ({
@@ -16,3 +17,9 @@ vi.mock('next/link', () => {
     },
   };
 });
+
+vi.mock('@/components/layout/Header/Header.context', () => ({
+  __esModule: true,
+  useHeaderContext: vi.fn(() => mockUseHeaderContext({})),
+  HeaderContextProvider: ({ children }: { children: React.ReactNode }) => <>{children}</>,
+}));
