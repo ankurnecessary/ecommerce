@@ -67,6 +67,7 @@ const NavbarScroller = () => {
         className="inline-block cursor-pointer p-2 hover:bg-gray-100 disabled:cursor-auto disabled:opacity-25"
         onClick={linksLeftScroller}
         disabled={navbarChildOffset == 0}
+        aria-label="left scroller"
       >
         <FontAwesomeIcon icon={faChevronLeft} className="text-xs" />
       </button>
@@ -74,6 +75,7 @@ const NavbarScroller = () => {
         className="inline-block cursor-pointer p-2 hover:bg-gray-100 disabled:cursor-auto disabled:opacity-25"
         onClick={linksRightScroller}
         disabled={navbarChildOffset === maxRightOffset}
+        aria-label="right scroller"
       >
         <FontAwesomeIcon icon={faChevronRight} className="text-xs" />
       </button>
