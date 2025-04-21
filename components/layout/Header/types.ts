@@ -47,5 +47,5 @@ export type CalculateOffset = (
 ) => (navbarParent: number, navbarChild: number) => (offset: number) => number;
 
 export type NavbarMouseEvent = (
-  e: React.MouseEvent<HTMLAnchorElement, MouseEvent>,
+  e: React.MouseEvent<HTMLDivElement, MouseEvent>,
 ) => void;
