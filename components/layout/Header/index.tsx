@@ -41,8 +41,9 @@ const Header = () => {
             {/* [Mobile only]: Center space for logo */}
             <div
               role="search"
-              className="mx-auto my-1 hidden w-1/2 border border-black md:flex"
+              className="mx-auto my-1 hidden w-1/2 border border-black md:invisible md:flex"
             >
+              {/* md:invisible - Just remove this class from the <div> above to see the search text bar */}
               <input
                 type="search"
                 placeholder="Search..."
