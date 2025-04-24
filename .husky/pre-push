@@ -1,1 +1,17 @@
+echo -e "\033[44m\033[37m 🛑  Stopping server running on port 3000 🛑 \033[0m"
+npx kill-port 3000
+echo -e "\n"
+echo -e "\033[44m\033[37m 🧪  Running unit tests 🧪 \033[0m"
 vitest --run
+echo -e "\n"
+echo -e "\033[44m\033[37m 🏭  Preparing build 🏭 \033[0m"
+npm run build
+echo -e "\n"
+echo -e "\033[44m\033[37m 🚀  Running build 🚀 \033[0m"
+npm start & npx wait-on http://localhost:3000
+echo -e "\n"
+echo -e "\033[44m\033[37m 🚧  Validating HTML 🚧 \033[0m"
+npm run validate-html
+echo -e "\n"
+echo -e "\033[44m\033[37m 🏗️   Building lighthouse report 🏗️  \033[0m"
+npm run lighthouse
