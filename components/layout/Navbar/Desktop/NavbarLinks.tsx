@@ -36,118 +36,155 @@ const NavbarLinks = ({
         onMouseOver={mouseOverHandler}
         onMouseOut={mouseOutHandler}
       >
-        <Link className="inline-block p-2 hover:bg-gray-100" href={'/newIn'}>
+        <Link
+          prefetch={false}
+          className="inline-block p-2 hover:bg-gray-100"
+          href={'/newIn'}
+        >
           New In
         </Link>
-        <Link className="inline-block p-2 hover:bg-gray-100" href={'/sale'}>
+        <Link
+          prefetch={false}
+          className="inline-block p-2 hover:bg-gray-100"
+          href={'/sale'}
+        >
           Sale
         </Link>
         <Link
+          prefetch={false}
           className="inline-block p-2 hover:bg-gray-100"
           href={'/womenClothing'}
         >
           Women Clothing
         </Link>
-        <Link className="inline-block p-2 hover:bg-gray-100" href={'/curve'}>
+        <Link
+          prefetch={false}
+          className="inline-block p-2 hover:bg-gray-100"
+          href={'/curve'}
+        >
           Curve
         </Link>
         <Link
+          prefetch={false}
           className="inline-block p-2 hover:bg-gray-100"
           href={'/homeAndKitchen'}
         >
           Home &amp; Kitchen
         </Link>
         <Link
+          prefetch={false}
           className="inline-block p-2 hover:bg-gray-100"
           href={'/menClothing'}
         >
           Men Clothing
         </Link>
-        <Link className="inline-block p-2 hover:bg-gray-100" href={'/kids'}>
+        <Link
+          prefetch={false}
+          className="inline-block p-2 hover:bg-gray-100"
+          href={'/kids'}
+        >
           Kids
         </Link>
         <Link
+          prefetch={false}
           className="inline-block p-2 hover:bg-gray-100"
           href={'/jewelryAndAccessories'}
         >
           Jewelry &amp; Accessories
         </Link>
         <Link
+          prefetch={false}
           className="inline-block p-2 hover:bg-gray-100"
           href={'/underwearAndSleepwear'}
         >
           Underwear &amp; Sleepwear
         </Link>
         <Link
+          prefetch={false}
           className="inline-block p-2 hover:bg-gray-100"
           href={'/beautyAndHealth'}
         >
           Beauty &amp; Health
         </Link>
-        <Link className="inline-block p-2 hover:bg-gray-100" href={'/shoes'}>
+        <Link
+          prefetch={false}
+          className="inline-block p-2 hover:bg-gray-100"
+          href={'/shoes'}
+        >
           Shoes
         </Link>
         <Link
+          prefetch={false}
           className="inline-block p-2 hover:bg-gray-100"
           href={'/bagsAndLuggage'}
         >
           Bags &amp; Luggage
         </Link>
         <Link
+          prefetch={false}
           className="inline-block p-2 hover:bg-gray-100"
           href={'/homeTextiles'}
         >
           Home Textiles
         </Link>
         <Link
+          prefetch={false}
           className="inline-block p-2 hover:bg-gray-100"
           href={'/sportsAndOutdoors'}
         >
           Sports &amp; Outdoors
         </Link>
         <Link
+          prefetch={false}
           className="inline-block p-2 hover:bg-gray-100"
           href={'/toysAndGames'}
         >
           Toys &amp; Games
         </Link>
         <Link
+          prefetch={false}
           className="inline-block p-2 hover:bg-gray-100"
           href={'/babyAndMaternity'}
         >
           Baby &amp; Maternity
         </Link>
         <Link
+          prefetch={false}
           className="inline-block p-2 hover:bg-gray-100"
           href={'/electronics'}
         >
           Electronics
         </Link>
         <Link
+          prefetch={false}
           className="inline-block p-2 hover:bg-gray-100"
           href={'/toolsAndHomeImprovement'}
         >
           Tools &amp; Home Improvement
         </Link>
         <Link
+          prefetch={false}
           className="inline-block p-2 hover:bg-gray-100"
           href={'/officeAndSchoolSupplies'}
         >
           Office &amp; School Supplies
         </Link>
         <Link
+          prefetch={false}
           className="inline-block p-2 hover:bg-gray-100"
           href={'/appliances'}
         >
           Appliances
         </Link>
         <Link
+          prefetch={false}
           className="inline-block p-2 hover:bg-gray-100"
           href={'/petSupplies'}
         >
           Pet Supplies
         </Link>
         <Link
+          prefetch={false}
           className="inline-block p-2 hover:bg-gray-100"
           href={'/automotive'}
         >
