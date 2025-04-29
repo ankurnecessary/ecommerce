@@ -17,7 +17,12 @@ const headerInitialState: HeaderInitialState = {
   navbarChildOffsetDsktp: 0,
 };
 
-// Need to use in useReducer() hook
+/**
+ * A reducer function for managing the header state.
+ * @param state - The current state of the header.
+ * @param action - The action to be performed on the state.
+ * @returns The updated state of the header.
+ */
 const headerReducer: HeaderReducer = (state, action) => {
   switch (action.type) {
     case 'UPDATE_NAVBAR_OFFSET_DSKTP':
@@ -43,6 +48,7 @@ const headerReducer: HeaderReducer = (state, action) => {
 
 // Created header context
 const headerContext = createContext<HeaderContext>({
+  navLinks: [],
   desktop: {
     isMenuVisible: [false, ''],
     toggleMenu() {},
@@ -57,6 +63,12 @@ const headerContext = createContext<HeaderContext>({
   mobile: null,
 });
 
+/**
+ * Provides the HeaderContext to its children.
+ * This context manages the state and behavior of the header, including the navbar and menu visibility.
+ *
+ * @param children - The child components that will consume the context.
+ */
 export const HeaderContextProvider = ({
   children,
 }: {
@@ -67,7 +79,12 @@ export const HeaderContextProvider = ({
     headerInitialState,
   );
 
-  // To toggle navigation menu
+  /**
+   * Toggles the visibility of the desktop menu.
+   *
+   * @param isMenuVisible - Whether the menu should be visible.
+   * @param menuCategory - The category of the menu being toggled.
+   */
   const toggleMenu: ToggleMenu = (isMenuVisible, menuCategory) => {
     dispatchHeaderActions({
       type: 'TOGGLE_MENU_DSKTP',
@@ -76,7 +93,12 @@ export const HeaderContextProvider = ({
     });
   };
 
-  // To set navbar elements
+  /**
+   * Sets the parent and child elements of the navbar.
+   *
+   * @param navbarParentDsktp - The parent element of the navbar.
+   * @param navbarChildDsktp - The child element of the navbar.
+   */
   const setNavbarElementsDsktp: SetNavbarElements = (
     navbarParentDsktp,
     navbarChildDsktp,
@@ -88,7 +110,11 @@ export const HeaderContextProvider = ({
     });
   };
 
-  // To set navbar offset when scroll buttons are used
+  /**
+   * To set navbar offset when scroll buttons are used.
+   *
+   * @param navbarChildOffsetDsktp - The offset of the child element.
+   */
   const setNavbarOffsetDsktp: SetNavbarOffsetDsktp = (
     navbarChildOffsetDsktp,
   ) => {
@@ -99,6 +125,7 @@ export const HeaderContextProvider = ({
   };
 
   const contextValue: HeaderContext = {
+    navLinks: [],
     desktop: {
       isMenuVisible: header.isMenuVisibleDsktp,
       toggleMenu,
