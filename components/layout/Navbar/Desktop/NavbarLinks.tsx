@@ -3,18 +3,22 @@ import Link from 'next/link';
 import React, { useEffect, useRef } from 'react';
 import { useHeaderContext } from '@/components/layout/Header/Header.context';
 import { NavbarMouseEvent } from '@/components/layout/Header/types';
+import { links } from '../XnavbarLinkObj';
 
+type NavbarLinksProps = {
+  mouseOverHandler: NavbarMouseEvent;
+  mouseOutHandler: NavbarMouseEvent;
+};
 const NavbarLinks = ({
   mouseOverHandler,
   mouseOutHandler,
-}: {
-  mouseOverHandler: NavbarMouseEvent;
-  mouseOutHandler: NavbarMouseEvent;
-}) => {
+}: NavbarLinksProps) => {
   const parentNavbarRef = useRef<HTMLDivElement>(null);
   const childNavbarRef = useRef<HTMLDivElement>(null);
 
   const {
+    navLinks,
+    setNavLinks,
     desktop: {
       navbar: { setNavbarElementsDsktp, childOffset },
     },
@@ -24,6 +28,8 @@ const NavbarLinks = ({
     if (parentNavbarRef.current && childNavbarRef.current) {
       setNavbarElementsDsktp(parentNavbarRef.current, childNavbarRef.current);
     }
+    // TODO: Replace "setNavLinks(links)" call with an API call to fetch the links
+    setNavLinks(links);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -36,160 +42,16 @@ const NavbarLinks = ({
         onMouseOver={mouseOverHandler}
         onMouseOut={mouseOutHandler}
       >
-        <Link
-          prefetch={false}
-          className="inline-block p-2 hover:bg-gray-100"
-          href={'/newIn'}
-        >
-          New In
-        </Link>
-        <Link
-          prefetch={false}
-          className="inline-block p-2 hover:bg-gray-100"
-          href={'/sale'}
-        >
-          Sale
-        </Link>
-        <Link
-          prefetch={false}
-          className="inline-block p-2 hover:bg-gray-100"
-          href={'/womenClothing'}
-        >
-          Women Clothing
-        </Link>
-        <Link
-          prefetch={false}
-          className="inline-block p-2 hover:bg-gray-100"
-          href={'/curve'}
-        >
-          Curve
-        </Link>
-        <Link
-          prefetch={false}
-          className="inline-block p-2 hover:bg-gray-100"
-          href={'/homeAndKitchen'}
-        >
-          Home &amp; Kitchen
-        </Link>
-        <Link
-          prefetch={false}
-          className="inline-block p-2 hover:bg-gray-100"
-          href={'/menClothing'}
-        >
-          Men Clothing
-        </Link>
-        <Link
-          prefetch={false}
-          className="inline-block p-2 hover:bg-gray-100"
-          href={'/kids'}
-        >
-          Kids
-        </Link>
-        <Link
-          prefetch={false}
-          className="inline-block p-2 hover:bg-gray-100"
-          href={'/jewelryAndAccessories'}
-        >
-          Jewelry &amp; Accessories
-        </Link>
-        <Link
-          prefetch={false}
-          className="inline-block p-2 hover:bg-gray-100"
-          href={'/underwearAndSleepwear'}
-        >
-          Underwear &amp; Sleepwear
-        </Link>
-        <Link
-          prefetch={false}
-          className="inline-block p-2 hover:bg-gray-100"
-          href={'/beautyAndHealth'}
-        >
-          Beauty &amp; Health
-        </Link>
-        <Link
-          prefetch={false}
-          className="inline-block p-2 hover:bg-gray-100"
-          href={'/shoes'}
-        >
-          Shoes
-        </Link>
-        <Link
-          prefetch={false}
-          className="inline-block p-2 hover:bg-gray-100"
-          href={'/bagsAndLuggage'}
-        >
-          Bags &amp; Luggage
-        </Link>
-        <Link
-          prefetch={false}
-          className="inline-block p-2 hover:bg-gray-100"
-          href={'/homeTextiles'}
-        >
-          Home Textiles
-        </Link>
-        <Link
-          prefetch={false}
-          className="inline-block p-2 hover:bg-gray-100"
-          href={'/sportsAndOutdoors'}
-        >
-          Sports &amp; Outdoors
-        </Link>
-        <Link
-          prefetch={false}
-          className="inline-block p-2 hover:bg-gray-100"
-          href={'/toysAndGames'}
-        >
-          Toys &amp; Games
-        </Link>
-        <Link
-          prefetch={false}
-          className="inline-block p-2 hover:bg-gray-100"
-          href={'/babyAndMaternity'}
-        >
-          Baby &amp; Maternity
-        </Link>
-        <Link
-          prefetch={false}
-          className="inline-block p-2 hover:bg-gray-100"
-          href={'/electronics'}
-        >
-          Electronics
-        </Link>
-        <Link
-          prefetch={false}
-          className="inline-block p-2 hover:bg-gray-100"
-          href={'/toolsAndHomeImprovement'}
-        >
-          Tools &amp; Home Improvement
-        </Link>
-        <Link
-          prefetch={false}
-          className="inline-block p-2 hover:bg-gray-100"
-          href={'/officeAndSchoolSupplies'}
-        >
-          Office &amp; School Supplies
-        </Link>
-        <Link
-          prefetch={false}
-          className="inline-block p-2 hover:bg-gray-100"
-          href={'/appliances'}
-        >
-          Appliances
-        </Link>
-        <Link
-          prefetch={false}
-          className="inline-block p-2 hover:bg-gray-100"
-          href={'/petSupplies'}
-        >
-          Pet Supplies
-        </Link>
-        <Link
-          prefetch={false}
-          className="inline-block p-2 hover:bg-gray-100"
-          href={'/automotive'}
-        >
-          Automotive
-        </Link>
+        {navLinks.map((link) => (
+          <Link
+            key={link.href}
+            prefetch={false}
+            className="inline-block p-2 hover:bg-gray-100"
+            href={link.href}
+          >
+            {link.label}
+          </Link>
+        ))}
       </div>
     </div>
   );

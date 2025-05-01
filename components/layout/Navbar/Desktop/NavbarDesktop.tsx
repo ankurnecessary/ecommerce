@@ -9,7 +9,16 @@ import {
 } from '@/components/layout/Header/types';
 import NavbarLinks from '@/components/layout/Navbar/Desktop/NavbarLinks';
 import NavbarScroller from '@/components/layout/Navbar/Desktop/NavbarScroller';
-
+// TODO: Check how horizontal menu nav items are getting highlighted on hover on shien.com.
+// TODO: test-case: Check how horizontal menu nav items are getting highlighted on hover on shien.com.
+// TODO: test-case: Add test cases for the <scroll-area /> component.
+// TODO: test-case: Add test cases for the navbar menu flap's category section.
+// TODO: Integrate storybook for the Navbar component and its sub-components.
+// DONE: Convert navbar links into an array of objects and map through them to create the links dynamically.
+// DONE: Check why scrollbar is not working in firefox.
+// TODO: Check backdrop of the menubar menu drawer on shien.com.
+// TODO: Check when you slowly take the mouse out of the navbar menu link, the menu drawer takes a hiccup.
+// TODO: Write test cases for the VerticalScrollContainer component.
 const NavbarDesktop = () => {
   const {
     desktop: { toggleMenu },
