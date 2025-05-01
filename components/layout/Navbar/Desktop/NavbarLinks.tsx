@@ -46,7 +46,7 @@ const NavbarLinks = ({
           <Link
             key={link.href}
             prefetch={false}
-            className="inline-block p-2 hover:bg-gray-100"
+            className="relative inline-block p-2 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-black after:transition-transform after:content-[''] hover:bg-gray-100 hover:after:scale-x-100"
             href={link.href}
           >
             {link.label}

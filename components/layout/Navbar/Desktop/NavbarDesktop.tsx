@@ -17,8 +17,9 @@ import NavbarScroller from '@/components/layout/Navbar/Desktop/NavbarScroller';
 // DONE: Convert navbar links into an array of objects and map through them to create the links dynamically.
 // DONE: Check why scrollbar is not working in firefox.
 // TODO: Check backdrop of the menubar menu drawer on shien.com.
-// TODO: Check when you slowly take the mouse out of the navbar menu link, the menu drawer takes a hiccup.
+// DONE: Check when you slowly take the mouse out of the navbar menu link, the menu drawer takes a jump.
 // TODO: Write test cases for the VerticalScrollContainer component.
+// TODO: Set hover behavior for the vertical category links in navbar menu.
 const NavbarDesktop = () => {
   const {
     desktop: { toggleMenu },
@@ -38,11 +39,11 @@ const NavbarDesktop = () => {
   };
 
   return (
-    <nav className="container mx-auto hidden w-[calc(100%-4rem)] px-6 text-sm text-black md:flex">
+    <nav className="container mx-auto hidden w-[calc(100%-4rem)] translate-y-[1px] px-6 text-sm text-black md:flex">
       {/* Category button */}
       <div className="whitespace-nowrap">
         <span
-          className="group inline-block cursor-pointer px-2 py-2 hover:bg-gray-100"
+          className="group relative inline-block p-2 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-black after:transition-transform after:content-[''] hover:bg-gray-100 hover:after:scale-x-100"
           onMouseOver={mouseOverHandler}
           onMouseOut={mouseOutHandler}
         >
