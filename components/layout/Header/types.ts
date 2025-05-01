@@ -11,6 +11,7 @@ export type HeaderInitialState = {
   navbarChildDsktp: HTMLDivElement | null;
   isMenuVisibleDsktp: MenuVisibility;
   navbarChildOffsetDsktp: number;
+  navLinks: Array<NavLink>;
 };
 
 /**
@@ -18,7 +19,7 @@ export type HeaderInitialState = {
  * @param navbarParentDsktp - The parent element of the navbar.
  * @param navbarChildDsktp - The child element of the navbar.
  */
-export type SetNavbarElements = (
+export type SetNavbarElementsDsktp = (
   navbarParent: HTMLDivElement,
   navbarChild: HTMLDivElement,
 ) => void;
@@ -41,7 +42,8 @@ export type HeaderReducer = (
     type:
       | 'UPDATE_NAVBAR_ELEMENTS_DSKTP'
       | 'TOGGLE_MENU_DSKTP'
-      | 'UPDATE_NAVBAR_OFFSET_DSKTP';
+      | 'UPDATE_NAVBAR_OFFSET_DSKTP'
+      | `SET_NAV_LINKS`;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     [key: string]: any;
   },
@@ -62,6 +64,12 @@ export type NavLink = {
 };
 
 /**
+ * A function that adds navigation links to the header context.
+ * @param navLinks - An array of navigation links to be added.
+ */
+export type SetNavLinks = (navLinks: Array<NavLink>) => void;
+
+/**
  * Represents the structure of the HeaderContext.
  */
 export type HeaderContext = {
@@ -69,6 +77,11 @@ export type HeaderContext = {
    * An array of navigation links displayed in the header.
    */
   navLinks: Array<NavLink>;
+  /**
+   * A function that adds navigation links to the header context.
+   * @param navLinks - An array of navigation links to be added.
+   */
+  setNavLinks: SetNavLinks;
   /**
    * Desktop-specific properties and methods.
    */
@@ -105,7 +118,7 @@ export type HeaderContext = {
        * @param navbarParentDsktp - The parent element of the navbar.
        * @param navbarChildDsktp - The child element of the navbar.
        */
-      setNavbarElementsDsktp: SetNavbarElements;
+      setNavbarElementsDsktp: SetNavbarElementsDsktp;
       /**
        * Sets the offset of the child element in the navbar.
        * @param navbarChildOffsetDsktp - The offset of the child element.

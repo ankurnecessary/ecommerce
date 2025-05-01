@@ -4,7 +4,7 @@ import {
   HeaderContext,
   HeaderInitialState,
   ToggleMenu,
-  SetNavbarElements,
+  SetNavbarElementsDsktp,
   HeaderReducer,
   SetNavbarOffsetDsktp,
 } from '@/components/layout/Header/types';
@@ -15,6 +15,7 @@ const headerInitialState: HeaderInitialState = {
   navbarChildDsktp: null,
   isMenuVisibleDsktp: [false, ''],
   navbarChildOffsetDsktp: 0,
+  navLinks: [],
 };
 
 /**
@@ -41,6 +42,11 @@ const headerReducer: HeaderReducer = (state, action) => {
         ...state,
         isMenuVisibleDsktp: [action.isMenuVisible, action.menuCategory],
       };
+    case 'SET_NAV_LINKS':
+      return {
+        ...state,
+        navLinks: action.navLinks,
+      };
     default:
       throw new Error(`Unknown action: ${action.type}`);
   }
@@ -49,6 +55,7 @@ const headerReducer: HeaderReducer = (state, action) => {
 // Created header context
 const headerContext = createContext<HeaderContext>({
   navLinks: [],
+  setNavLinks() {},
   desktop: {
     isMenuVisible: [false, ''],
     toggleMenu() {},
@@ -99,7 +106,7 @@ export const HeaderContextProvider = ({
    * @param navbarParentDsktp - The parent element of the navbar.
    * @param navbarChildDsktp - The child element of the navbar.
    */
-  const setNavbarElementsDsktp: SetNavbarElements = (
+  const setNavbarElementsDsktp: SetNavbarElementsDsktp = (
     navbarParentDsktp,
     navbarChildDsktp,
   ) => {
@@ -124,8 +131,21 @@ export const HeaderContextProvider = ({
     });
   };
 
+  /**
+   * Adds navigation links to the header state.
+   *
+   * @param navLinks - The navigation links to be added.
+   */
+  const setNavLinks = (navLinks: HeaderInitialState['navLinks']) => {
+    dispatchHeaderActions({
+      type: 'SET_NAV_LINKS',
+      navLinks,
+    });
+  };
+
   const contextValue: HeaderContext = {
-    navLinks: [],
+    navLinks: header.navLinks,
+    setNavLinks,
     desktop: {
       isMenuVisible: header.isMenuVisibleDsktp,
       toggleMenu,
