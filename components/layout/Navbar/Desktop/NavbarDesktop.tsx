@@ -16,7 +16,7 @@ import NavbarScroller from '@/components/layout/Navbar/Desktop/NavbarScroller';
 // TODO: Integrate storybook for the Navbar component and its sub-components.
 // DONE: Convert navbar links into an array of objects and map through them to create the links dynamically.
 // DONE: Check why scrollbar is not working in firefox.
-// TODO: Check backdrop of the menubar menu drawer on shien.com.
+// DONE: Check backdrop of the menubar.
 // DONE: Check when you slowly take the mouse out of the navbar menu link, the menu drawer takes a jump.
 // TODO: Write test cases for the VerticalScrollContainer component.
 // TODO: Set hover behavior for the vertical category links in navbar menu.

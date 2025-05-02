@@ -6,6 +6,7 @@ import Link from 'next/link';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import VerticalScrollContainer from '@/components/custom-ui/VerticalScrollContainer';
+import clsx from 'clsx';
 
 const NavbarMenu = () => {
   const {
@@ -25,13 +26,16 @@ const NavbarMenu = () => {
     toggleMenu(false, '');
   };
 
-  // To handle the visibility of the Navbar menu drawer
-  const styleClasses = !isVisible ? '-translate-y-full' : '';
-
   return (
     <div
       data-testid="navbar-menu"
-      className={`absolute z-0 h-96 w-full ${styleClasses} flex transition-transform duration-300`}
+      className={clsx(
+        'absolute z-0 flex h-96 w-full bg-white transition-transform duration-300',
+        {
+          '-translate-y-full': !isVisible,
+          'drop-shadow-2xl': isVisible,
+        },
+      )}
       onMouseOver={mouseOverHandler}
       onMouseOut={mouseOutHandler}
     >
