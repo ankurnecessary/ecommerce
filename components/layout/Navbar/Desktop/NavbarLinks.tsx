@@ -4,6 +4,7 @@ import React, { useEffect, useRef } from 'react';
 import { useHeaderContext } from '@/components/layout/Header/Header.context';
 import { NavbarMouseEvent } from '@/components/layout/Header/types';
 import { links } from '../XnavbarLinkObj';
+import clsx from 'clsx';
 
 type NavbarLinksProps = {
   mouseOverHandler: NavbarMouseEvent;
@@ -20,6 +21,7 @@ const NavbarLinks = ({
     navLinks,
     setNavLinks,
     desktop: {
+      isMenuVisible,
       navbar: { setNavbarElementsDsktp, childOffset },
     },
   } = useHeaderContext();
@@ -46,7 +48,13 @@ const NavbarLinks = ({
           <Link
             key={link.href}
             prefetch={false}
-            className="relative inline-block p-2 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-black after:transition-transform after:content-[''] hover:bg-gray-100 hover:after:scale-x-100"
+            className={clsx(
+              "relative inline-block p-2 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-black after:transition-transform after:content-['']",
+              {
+                'bg-gray-100 after:scale-x-100':
+                  isMenuVisible[0] && isMenuVisible[1] === link.label,
+              },
+            )}
             href={link.href}
           >
             {link.label}
