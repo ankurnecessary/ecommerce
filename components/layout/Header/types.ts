@@ -7,10 +7,35 @@ export type ToggleMenu = (isMenuVisible: boolean, menuCategory: string) => void;
 export type MenuVisibility = [boolean, string];
 
 export type HeaderInitialState = {
+  /**
+   * The parent element of the horizontal navbar in which child scrolls.
+   */
   navbarParentDsktp: HTMLDivElement | null;
+  /**
+   * The child element in the horizontal navbar which is scrollable.
+   */
   navbarChildDsktp: HTMLDivElement | null;
+  /**
+   * Indicates whether the desktop menu is visible and the current menu category.
+   * The first element is a boolean for visibility, and the second is the menu category.
+   */
   isMenuVisibleDsktp: MenuVisibility;
+  /**
+   * The current menu category selected in the horizontal category navigation in header.
+   */
+  selectedHorizontalNavLink: string;
+  /**
+   * The current menu category selected in the vertical category links in navbar menu.
+   */
+  selectedVerticalNavLink: string;
+  /**
+   * The offset of the child element in the horizontal navbar which is scrollable.
+   */
   navbarChildOffsetDsktp: number;
+  /**
+   * The navigation links displayed in the header. Either vertical or horizontal.
+   * The links are common for both desktop and mobile.
+   */
   navLinks: Array<NavLink>;
 };
 
@@ -43,7 +68,9 @@ export type HeaderReducer = (
       | 'UPDATE_NAVBAR_ELEMENTS_DSKTP'
       | 'TOGGLE_MENU_DSKTP'
       | 'UPDATE_NAVBAR_OFFSET_DSKTP'
-      | `SET_NAV_LINKS`;
+      | `SET_NAV_LINKS`
+      | 'SET_SELECTED_HORIZONTAL_NAV_LINK'
+      | 'SET_SELECTED_VERTICAL_NAV_LINK';
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     [key: string]: any;
   },
@@ -91,6 +118,24 @@ export type HeaderContext = {
      * The first element is a boolean for visibility, and the second is the menu category.
      */
     isMenuVisible: MenuVisibility;
+    /**
+     * The current menu category selected in the horizontal category navigation in header.
+     */
+    selectedHorizontalNavLink: string;
+    /**
+     * Sets the current menu category selected in the horizontal category navigation in header.
+     * @param category - The category to set as selected.
+     */
+    setSelectedHorizontalNavLink: (category: string) => void;
+    /**
+     * The current menu category selected in the vertical category links in navbar menu.
+     */
+    selectedVerticalNavLink: string;
+    /**
+     * Sets the current menu category selected in the vertical category links in navbar menu.
+     * @param category - The category to set as selected.
+     */
+    setSelectedVerticalNavLink: (category: string) => void;
     /**
      * Toggles the visibility of the desktop menu.
      * @param isMenuVisible - Whether the menu should be visible.

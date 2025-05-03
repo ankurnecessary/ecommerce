@@ -14,6 +14,8 @@ const headerInitialState: HeaderInitialState = {
   navbarParentDsktp: null,
   navbarChildDsktp: null,
   isMenuVisibleDsktp: [false, ''],
+  selectedHorizontalNavLink: '',
+  selectedVerticalNavLink: '',
   navbarChildOffsetDsktp: 0,
   navLinks: [],
 };
@@ -47,6 +49,16 @@ const headerReducer: HeaderReducer = (state, action) => {
         ...state,
         navLinks: action.navLinks,
       };
+    case 'SET_SELECTED_HORIZONTAL_NAV_LINK':
+      return {
+        ...state,
+        selectedHorizontalNavLink: action.menuCategory,
+      };
+    case 'SET_SELECTED_VERTICAL_NAV_LINK':
+      return {
+        ...state,
+        selectedVerticalNavLink: action.menuCategory,
+      };
     default:
       throw new Error(`Unknown action: ${action.type}`);
   }
@@ -58,6 +70,10 @@ const headerContext = createContext<HeaderContext>({
   setNavLinks() {},
   desktop: {
     isMenuVisible: [false, ''],
+    selectedHorizontalNavLink: '',
+    setSelectedHorizontalNavLink() {},
+    selectedVerticalNavLink: '',
+    setSelectedVerticalNavLink() {},
     toggleMenu() {},
     navbar: {
       parent: null,
@@ -143,11 +159,39 @@ export const HeaderContextProvider = ({
     });
   };
 
+  /**
+   * Sets the selected horizontal navigation link.
+   *
+   * @param category - The category to set as selected.
+   */
+  const setSelectedHorizontalNavLink = (category: string) => {
+    dispatchHeaderActions({
+      type: 'SET_SELECTED_HORIZONTAL_NAV_LINK',
+      menuCategory: category,
+    });
+  };
+
+  /**
+   * Sets the selected vertical navigation link.
+   *
+   * @param category - The category to set as selected.
+   */
+  const setSelectedVerticalNavLink = (category: string) => {
+    dispatchHeaderActions({
+      type: 'SET_SELECTED_VERTICAL_NAV_LINK',
+      menuCategory: category,
+    });
+  };
+
   const contextValue: HeaderContext = {
     navLinks: header.navLinks,
     setNavLinks,
     desktop: {
       isMenuVisible: header.isMenuVisibleDsktp,
+      selectedHorizontalNavLink: header.selectedHorizontalNavLink,
+      setSelectedHorizontalNavLink,
+      selectedVerticalNavLink: header.selectedVerticalNavLink,
+      setSelectedVerticalNavLink,
       toggleMenu,
       navbar: {
         parent: header.navbarParentDsktp,
