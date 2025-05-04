@@ -20,23 +20,34 @@ import clsx from 'clsx';
 // DONE: Check backdrop of the menubar.
 // DONE: Check when you slowly take the mouse out of the navbar menu link, the menu drawer takes a jump.
 // TODO: Write test cases for the VerticalScrollContainer component.
-// TODO: Set hover behavior for the vertical category links in navbar menu.
+// DONE: Set hover behavior for the vertical category links in navbar menu.
 // TODO: Add CSS skeleton for the navbar menu.
 // TODO: useScrollArea custom hook
+// TODO: Add autoscroll feature in VerticalScrollContainer component. So that when a user hovers over the categories in the horizontal navbar, the vertical scroll area scrolls to the hovered category.
 const NavbarDesktop = () => {
   const {
-    desktop: { isMenuVisible, toggleMenu },
+    desktop: {
+      isMenuVisible,
+      toggleMenu,
+      selectedHorizontalNavLink,
+      setSelectedHorizontalNavLink,
+      setSelectedVerticalNavLink,
+    },
   }: HeaderContext = useHeaderContext();
 
   const mouseOverHandler: NavbarMouseEvent = (e) => {
     // Fetching link text from the link
     const link = e.target as HTMLAnchorElement;
     toggleMenu(true, link.textContent || '');
+    setSelectedHorizontalNavLink(link.textContent || '');
+    setSelectedVerticalNavLink(link.textContent || '');
   };
 
   // Can be done by FP
   const mouseOutHandler: NavbarMouseEvent = () => {
     toggleMenu(false, '');
+    setSelectedHorizontalNavLink('');
+    setSelectedVerticalNavLink('');
   };
 
   return (
@@ -48,7 +59,7 @@ const NavbarDesktop = () => {
             "relative inline-block p-2 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-black after:transition-transform after:content-['']",
             {
               'bg-gray-100 after:scale-x-100':
-                isMenuVisible[0] && isMenuVisible[1] === 'Categories',
+                selectedHorizontalNavLink === 'Categories',
             },
           )}
           onMouseOver={mouseOverHandler}

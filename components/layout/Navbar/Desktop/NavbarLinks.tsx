@@ -21,7 +21,7 @@ const NavbarLinks = ({
     navLinks,
     setNavLinks,
     desktop: {
-      isMenuVisible,
+      selectedHorizontalNavLink,
       navbar: { setNavbarElementsDsktp, childOffset },
     },
   } = useHeaderContext();
@@ -52,7 +52,7 @@ const NavbarLinks = ({
               "relative inline-block p-2 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-black after:transition-transform after:content-['']",
               {
                 'bg-gray-100 after:scale-x-100':
-                  isMenuVisible[0] && isMenuVisible[1] === link.label,
+                  selectedHorizontalNavLink === link.label,
               },
             )}
             href={link.href}
