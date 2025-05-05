@@ -25,6 +25,7 @@ import clsx from 'clsx';
 // DONE: Add autoscroll feature in VerticalScrollContainer component. So that when a user hovers over the categories in the horizontal navbar, the vertical scroll area scrolls to the hovered category.
 // DONE: After navbar menu gets visible, when we bring our mouse pointer on the right and left arrow buttons, the menu hides. It should not hide. Fix this issue.
 // DONE: Initially, scroll buttons are getting disabled on first load of the component. Atleast one of them should be enabled. Fix this issue.
+// DONE: Hide horizontal scrollbar buttons from the navbar menu if the categories reel don't outgrow it's parent container.
 const NavbarDesktop = () => {
   const {
     navLinks,

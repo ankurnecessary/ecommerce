@@ -6,6 +6,7 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useHeaderContext } from '@/components/layout/Header/Header.context';
 import { CalculateOffset } from '@/components/layout/Header/types';
+import clsx from 'clsx';
 
 const calculateOffset: CalculateOffset =
   (direction) => (parentWidth, childWidth) => (offset) => {
@@ -83,9 +84,14 @@ const NavbarScroller = () => {
   };
 
   return (
-    <div className="shadow-left whitespace-nowrap">
+    <div
+      className={clsx('shadow-left whitespace-nowrap', {
+        hidden: childWidth <= parentWidth,
+      })}
+    >
       <button
-        className="inline-block cursor-pointer p-2 hover:bg-gray-100 disabled:cursor-auto disabled:opacity-25"
+        type="button"
+        className="inline-block cursor-pointer p-2 disabled:cursor-auto disabled:opacity-25"
         onClick={linksLeftScroller}
         disabled={navbarChildOffset == 0}
         aria-label="left scroller"
@@ -93,7 +99,8 @@ const NavbarScroller = () => {
         <FontAwesomeIcon icon={faChevronLeft} className="text-xs" />
       </button>
       <button
-        className="inline-block cursor-pointer p-2 hover:bg-gray-100 disabled:cursor-auto disabled:opacity-25"
+        type="button"
+        className="inline-block cursor-pointer p-2 disabled:cursor-auto disabled:opacity-25"
         onClick={linksRightScroller}
         disabled={navbarChildOffset === maxRightOffset}
         aria-label="right scroller"

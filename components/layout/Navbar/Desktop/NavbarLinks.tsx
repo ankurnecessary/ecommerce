@@ -36,7 +36,10 @@ const NavbarLinks = ({
   }, []);
 
   return (
-    <div className="overflow-x-hidden whitespace-nowrap" ref={parentNavbarRef}>
+    <div
+      className="flex-grow overflow-x-hidden whitespace-nowrap"
+      ref={parentNavbarRef}
+    >
       <div
         className="inline-flex transition-transform duration-300"
         style={{ transform: `translateX(${childOffset || 0}px)` }}
