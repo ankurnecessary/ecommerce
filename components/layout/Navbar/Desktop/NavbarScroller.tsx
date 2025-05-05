@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   faChevronLeft,
   faChevronRight,
@@ -41,10 +41,31 @@ const NavbarScroller = () => {
     },
   } = useHeaderContext();
 
-  // <parent> - Need width of the <div> having overflow property set over it.
-  const parentWidth = navbarParent?.getBoundingClientRect().width ?? 0;
-  // <child> - Need width of the <div> wrapping all links inside <parent>.
-  const childWidth = navbarChild?.getBoundingClientRect().width ?? 0;
+  const [parentWidth, setParentWidth] = useState(0);
+  const [childWidth, setChildWidth] = useState(0);
+
+  useEffect(() => {
+    // Recalculate widths when the component mounts or when the DOM changes
+    const updateWidths = () => {
+      // <parent> - Need width of the <div> having overflow property set over it.
+      setParentWidth(navbarParent?.getBoundingClientRect().width ?? 0);
+      // <child> - Need width of the <div> wrapping all links inside <parent>.
+      setChildWidth(navbarChild?.getBoundingClientRect().width ?? 0);
+    };
+
+    updateWidths();
+
+    // Add a resize observer or event listener to handle dynamic changes in the size of parent and child elements
+    const resizeObserver = new ResizeObserver(updateWidths);
+    if (navbarParent) resizeObserver.observe(navbarParent);
+    if (navbarChild) resizeObserver.observe(navbarChild);
+
+    return () => {
+      if (navbarParent) resizeObserver.unobserve(navbarParent);
+      if (navbarChild) resizeObserver.unobserve(navbarChild);
+    };
+  }, [navbarParent, navbarChild]);
+
   const maxRightOffset = parentWidth - childWidth;
 
   const calculateLeftOffset = calculateOffset('left')(parentWidth, childWidth);
