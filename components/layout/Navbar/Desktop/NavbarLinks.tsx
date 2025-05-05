@@ -8,7 +8,7 @@ import clsx from 'clsx';
 
 type NavbarLinksProps = {
   mouseOverHandler: NavbarMouseEvent;
-  mouseOutHandler: NavbarMouseEvent;
+  mouseOutHandler?: NavbarMouseEvent;
 };
 const NavbarLinks = ({
   mouseOverHandler,
@@ -46,7 +46,8 @@ const NavbarLinks = ({
       >
         {navLinks.map((link) => (
           <Link
-            key={link.href}
+            id={link.id}
+            key={link.id}
             prefetch={false}
             className={clsx(
               "relative inline-block p-2 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-black after:transition-transform after:content-['']",

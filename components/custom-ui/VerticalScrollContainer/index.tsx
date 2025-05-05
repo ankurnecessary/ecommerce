@@ -13,6 +13,7 @@ type VerticalScrollContainerProps = {
   className?: string;
   scrollbarClassName?: string;
   thumbClassName?: string;
+  scrollToElementId?: string;
 };
 
 const VerticalScrollContainer = ({
@@ -20,13 +21,34 @@ const VerticalScrollContainer = ({
   className = 'w-full',
   scrollbarClassName = '',
   thumbClassName = '',
+  scrollToElementId,
 }: VerticalScrollContainerProps) => {
+  console.log({ scrollToElementId });
   const verticalScrollContainerRef = useRef<HTMLDivElement>(null);
   const verticalScrollContentRef = useRef<HTMLDivElement>(null);
   const scrollbarThumbRef = useRef<HTMLDivElement>(null);
   const [isDragging, setIsDragging] = useState<boolean>(false);
   const [startY, setStartY] = useState<number>(0);
   const [startTop, setStartTop] = useState<number>(0);
+
+  const scrollTo = (elementId: string) => {
+    if (!elementId) return;
+    const content = verticalScrollContentRef.current;
+    if (!content) return;
+
+    const targetElement = content.querySelector(`#${elementId}`) as HTMLElement;
+    if (targetElement) {
+      content.scrollTo({
+        top: targetElement.offsetTop - 60, // Adjust for any offset
+        behavior: 'smooth', // Enables smooth scrolling
+      });
+      syncThumbPosition(
+        verticalScrollContainerRef.current,
+        verticalScrollContentRef.current,
+        scrollbarThumbRef.current,
+      );
+    }
+  };
 
   const contentScrollHandler = () => {
     syncThumbPosition(
@@ -101,6 +123,8 @@ const VerticalScrollContainer = ({
     const thumb = scrollbarThumbRef.current;
     if (!container || !content || !thumb) return;
 
+    scrollTo(scrollToElementId || '');
+
     updateThumbHeight(container, content, thumb);
     syncThumbPosition(container, content, thumb);
 
@@ -118,7 +142,7 @@ const VerticalScrollContainer = ({
       container.removeEventListener('mouseup', documentMouseUpHandler);
       container.removeEventListener('mousemove', documentMouseMoveHandler);
     };
-  }, [children, documentMouseMoveHandler]);
+  }, [children, documentMouseMoveHandler, scrollToElementId]);
 
   return (
     // container

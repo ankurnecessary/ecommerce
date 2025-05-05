@@ -22,36 +22,58 @@ import clsx from 'clsx';
 // TODO: Write test cases for the VerticalScrollContainer component.
 // DONE: Set hover behavior for the vertical category links in navbar menu.
 // TODO: Add CSS skeleton for the navbar menu.
-// TODO: useScrollArea custom hook
-// TODO: Add autoscroll feature in VerticalScrollContainer component. So that when a user hovers over the categories in the horizontal navbar, the vertical scroll area scrolls to the hovered category.
+// DONE: Add autoscroll feature in VerticalScrollContainer component. So that when a user hovers over the categories in the horizontal navbar, the vertical scroll area scrolls to the hovered category.
+// DONE: After navbar menu gets visible, when we bring our mouse pointer on the right and left arrow buttons, the menu hides. It should not hide. Fix this issue.
+// TODO: Now initially, scroll buttons are getting disabled on first load of the component. Atleast one of them should be enabled. Fix this issue.
 const NavbarDesktop = () => {
   const {
+    navLinks,
     desktop: {
       isMenuVisible,
       toggleMenu,
       selectedHorizontalNavLink,
       setSelectedHorizontalNavLink,
       setSelectedVerticalNavLink,
+      setVerticalNavScrollToElementId,
     },
   }: HeaderContext = useHeaderContext();
 
   const mouseOverHandler: NavbarMouseEvent = (e) => {
+    e.stopPropagation();
     // Fetching link text from the link
     const link = e.target as HTMLAnchorElement;
     toggleMenu(true, link.textContent || '');
     setSelectedHorizontalNavLink(link.textContent || '');
     setSelectedVerticalNavLink(link.textContent || '');
+    setVerticalNavScrollToElementId(link?.id ? `vertical-${link.id}` : '');
   };
 
-  // Can be done by FP
-  const mouseOutHandler: NavbarMouseEvent = () => {
+  const navbarMouseOverHandler: NavbarMouseEvent = () => {
+    if (isMenuVisible[1]) toggleMenu(true, isMenuVisible[1]);
+    if (selectedHorizontalNavLink)
+      setSelectedHorizontalNavLink(selectedHorizontalNavLink);
+  };
+
+  const navbarMouseOutHandler: NavbarMouseEvent = () => {
     toggleMenu(false, '');
     setSelectedHorizontalNavLink('');
-    setSelectedVerticalNavLink('');
+  };
+
+  const categoryMouseOverHandler: NavbarMouseEvent = (e) => {
+    e.stopPropagation();
+    const link = e.target as HTMLAnchorElement;
+    toggleMenu(true, navLinks[0].label || '');
+    setSelectedHorizontalNavLink(link.textContent || '');
+    setSelectedVerticalNavLink(navLinks[0].label || '');
+    setVerticalNavScrollToElementId(`vertical-${navLinks[0].id}` || '');
   };
 
   return (
-    <nav className="container mx-auto hidden w-[calc(100%-4rem)] translate-y-[1px] px-6 text-sm text-black md:flex">
+    <nav
+      className="container mx-auto hidden w-[calc(100%-4rem)] translate-y-[1px] px-6 text-sm text-black md:flex"
+      onMouseOver={navbarMouseOverHandler}
+      onMouseOut={navbarMouseOutHandler}
+    >
       {/* Category button */}
       <div className="whitespace-nowrap">
         <span
@@ -62,8 +84,7 @@ const NavbarDesktop = () => {
                 selectedHorizontalNavLink === 'Categories',
             },
           )}
-          onMouseOver={mouseOverHandler}
-          onMouseOut={mouseOutHandler}
+          onMouseOver={categoryMouseOverHandler}
         >
           Categories
           <FontAwesomeIcon
@@ -77,10 +98,7 @@ const NavbarDesktop = () => {
       </div>
 
       {/* horizontal links scroller */}
-      <NavbarLinks
-        mouseOverHandler={mouseOverHandler}
-        mouseOutHandler={mouseOutHandler}
-      />
+      <NavbarLinks mouseOverHandler={mouseOverHandler} />
 
       {/* Buttons to scroll links horizontally */}
       <NavbarScroller />

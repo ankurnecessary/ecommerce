@@ -18,6 +18,8 @@ const NavbarMenu = () => {
       setSelectedHorizontalNavLink,
       selectedVerticalNavLink,
       setSelectedVerticalNavLink,
+      verticalNavScrollToElementId,
+      setVerticalNavScrollToElementId,
     },
   }: HeaderContext = useHeaderContext();
 
@@ -26,7 +28,7 @@ const NavbarMenu = () => {
   const menuMouseOverHandler = () => {
     toggleMenu(true, category);
     if (selectedVerticalNavLink && !selectedHorizontalNavLink) return;
-    setSelectedHorizontalNavLink(category);
+    setSelectedHorizontalNavLink(selectedHorizontalNavLink);
     setSelectedVerticalNavLink(category);
   };
 
@@ -38,11 +40,14 @@ const NavbarMenu = () => {
 
   const categoryMouseOverHandler = (e: React.MouseEvent<HTMLAnchorElement>) => {
     e.stopPropagation();
+
     // Fetching link text from the link
     const link = e.currentTarget as HTMLAnchorElement;
     const linkText = link.textContent?.trim() || '';
+
     setSelectedVerticalNavLink(linkText);
     toggleMenu(true, linkText);
+    setVerticalNavScrollToElementId('');
   };
 
   return (
@@ -58,12 +63,16 @@ const NavbarMenu = () => {
       onMouseOver={menuMouseOverHandler}
       onMouseOut={menuMouseOutHandler}
     >
-      <VerticalScrollContainer className="w-80 p-5 pl-10">
+      <VerticalScrollContainer
+        className="w-80 p-5 pl-10"
+        scrollToElementId={verticalNavScrollToElementId}
+      >
         <div>
           {navLinks.map((link) => (
             // TODO: Change this key when actual API is made with unique key. Probably id.
             <Link
-              key={link.href}
+              id={`vertical-${link.id}`}
+              key={link.id}
               prefetch={false}
               className={clsx('flex w-full justify-between px-2 py-3 text-xs', {
                 'bg-gray-100': selectedVerticalNavLink === link.label,

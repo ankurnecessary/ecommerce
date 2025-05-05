@@ -18,6 +18,7 @@ const headerInitialState: HeaderInitialState = {
   selectedVerticalNavLink: '',
   navbarChildOffsetDsktp: 0,
   navLinks: [],
+  verticalNavScrollToElementId: '',
 };
 
 /**
@@ -59,6 +60,11 @@ const headerReducer: HeaderReducer = (state, action) => {
         ...state,
         selectedVerticalNavLink: action.menuCategory,
       };
+    case 'SET_VERTICAL_NAV_SCROLL_TO_ELEMENT_ID':
+      return {
+        ...state,
+        verticalNavScrollToElementId: action.elementId,
+      };
     default:
       throw new Error(`Unknown action: ${action.type}`);
   }
@@ -74,6 +80,8 @@ const headerContext = createContext<HeaderContext>({
     setSelectedHorizontalNavLink() {},
     selectedVerticalNavLink: '',
     setSelectedVerticalNavLink() {},
+    verticalNavScrollToElementId: '',
+    setVerticalNavScrollToElementId() {},
     toggleMenu() {},
     navbar: {
       parent: null,
@@ -183,6 +191,18 @@ export const HeaderContextProvider = ({
     });
   };
 
+  /**
+   * Sets the ID of the element to scroll to in the vertical navbar menu navigation.
+   *
+   * @param elementId - The ID of the element to scroll to.
+   */
+  const setVerticalNavScrollToElementId = (elementId: string) => {
+    dispatchHeaderActions({
+      type: 'SET_VERTICAL_NAV_SCROLL_TO_ELEMENT_ID',
+      elementId,
+    });
+  };
+
   const contextValue: HeaderContext = {
     navLinks: header.navLinks,
     setNavLinks,
@@ -192,6 +212,8 @@ export const HeaderContextProvider = ({
       setSelectedHorizontalNavLink,
       selectedVerticalNavLink: header.selectedVerticalNavLink,
       setSelectedVerticalNavLink,
+      verticalNavScrollToElementId: header.verticalNavScrollToElementId,
+      setVerticalNavScrollToElementId,
       toggleMenu,
       navbar: {
         parent: header.navbarParentDsktp,

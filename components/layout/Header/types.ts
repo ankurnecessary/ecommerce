@@ -4,7 +4,6 @@
  * @param menuCategory - The category of the menu being toggled.
  */
 export type ToggleMenu = (isMenuVisible: boolean, menuCategory: string) => void;
-export type MenuVisibility = [boolean, string];
 
 export type HeaderInitialState = {
   /**
@@ -19,7 +18,7 @@ export type HeaderInitialState = {
    * Indicates whether the desktop menu is visible and the current menu category.
    * The first element is a boolean for visibility, and the second is the menu category.
    */
-  isMenuVisibleDsktp: MenuVisibility;
+  isMenuVisibleDsktp: [boolean, string];
   /**
    * The current menu category selected in the horizontal category navigation in header.
    */
@@ -37,6 +36,10 @@ export type HeaderInitialState = {
    * The links are common for both desktop and mobile.
    */
   navLinks: Array<NavLink>;
+  /**
+   * The ID of the element to scroll to in the vertical navbar menu navigation.
+   */
+  verticalNavScrollToElementId: string;
 };
 
 /**
@@ -70,7 +73,8 @@ export type HeaderReducer = (
       | 'UPDATE_NAVBAR_OFFSET_DSKTP'
       | `SET_NAV_LINKS`
       | 'SET_SELECTED_HORIZONTAL_NAV_LINK'
-      | 'SET_SELECTED_VERTICAL_NAV_LINK';
+      | 'SET_SELECTED_VERTICAL_NAV_LINK'
+      | 'SET_VERTICAL_NAV_SCROLL_TO_ELEMENT_ID';
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     [key: string]: any;
   },
@@ -80,6 +84,10 @@ export type HeaderReducer = (
  * A navigation links displayed in the navbar. Common for both desktop and mobile.
  */
 export type NavLink = {
+  /*
+   * A unique identifier for the navigation link.
+   */
+  id: string;
   /**
    * The URL to navigate to when the link is clicked.
    */
@@ -117,7 +125,7 @@ export type HeaderContext = {
      * Indicates whether the desktop menu is visible and the current menu category.
      * The first element is a boolean for visibility, and the second is the menu category.
      */
-    isMenuVisible: MenuVisibility;
+    isMenuVisible: [boolean, string];
     /**
      * The current menu category selected in the horizontal category navigation in header.
      */
@@ -137,7 +145,16 @@ export type HeaderContext = {
      */
     setSelectedVerticalNavLink: (category: string) => void;
     /**
-     * Toggles the visibility of the desktop menu.
+     * The ID of the element to scroll to in the vertical navbar menu navigation.
+     */
+    verticalNavScrollToElementId: string;
+    /**
+     * Sets the ID of the element to scroll to in the vertical navbar menu navigation.
+     * @param elementId - The ID of the element to scroll to.
+     */
+    setVerticalNavScrollToElementId: (elementId: string) => void;
+    /**
+     * Toggles the visibility of the desktop navbar menu.
      * @param isMenuVisible - Whether the menu should be visible.
      * @param menuCategory - The category of the menu being toggled.
      */
