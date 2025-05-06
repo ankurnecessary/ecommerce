@@ -21,7 +21,7 @@ import clsx from 'clsx';
 // DONE: Check when you slowly take the mouse out of the navbar menu link, the menu drawer takes a jump.
 // TODO: Write test cases for the VerticalScrollContainer component.
 // DONE: Set hover behavior for the vertical category links in navbar menu.
-// TODO: Add CSS skeleton for the navbar menu.
+// DONE: Add CSS skeleton for the navbar menu.
 // DONE: Add autoscroll feature in VerticalScrollContainer component. So that when a user hovers over the categories in the horizontal navbar, the vertical scroll area scrolls to the hovered category.
 // DONE: After navbar menu gets visible, when we bring our mouse pointer on the right and left arrow buttons, the menu hides. It should not hide. Fix this issue.
 // DONE: Initially, scroll buttons are getting disabled on first load of the component. Atleast one of them should be enabled. Fix this issue.

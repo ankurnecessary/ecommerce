@@ -5,6 +5,7 @@ import { useHeaderContext } from '@/components/layout/Header/Header.context';
 import { NavbarMouseEvent } from '@/components/layout/Header/types';
 import { links } from '../XnavbarLinkObj';
 import clsx from 'clsx';
+import { Skeleton } from '@/components/ui/skeleton';
 
 type NavbarLinksProps = {
   mouseOverHandler: NavbarMouseEvent;
@@ -47,6 +48,10 @@ const NavbarLinks = ({
         onMouseOver={mouseOverHandler}
         onMouseOut={mouseOutHandler}
       >
+        {/* TODO: Change this condition when API call is implemented */}
+        {navLinks.length === 0 && (
+          <Skeleton className="h-4 w-[550px] translate-y-3" />
+        )}
         {navLinks.map((link) => (
           <Link
             id={link.id}
