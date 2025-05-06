@@ -1,6 +1,8 @@
 import { vi } from 'vitest';
 
 export const mockUseHeaderContext = (overrides = {}) => ({
+  navLinks: [],
+  setNavLinks: vi.fn(),
   desktop: {
     isMenuVisible: [false, ''],
     toggleMenu: vi.fn(),

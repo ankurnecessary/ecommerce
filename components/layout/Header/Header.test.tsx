@@ -54,10 +54,8 @@ describe('Header', () => {
   });
 
   it('has category links. On it\'s "mouseOver" and "mouseOut" events "<NavbarMenu />" will toggle', async () => {
-    const { getByTestId, container } = render(<Header />);
-    const categoryLinks = container.querySelectorAll(
-      'a.inline-block.p-2.hover\\:bg-gray-100',
-    );
+    const { getByTestId, getAllByRole } = render(<Header />);
+    const categoryLinks = getAllByRole('link');
     expect(categoryLinks.length).toBeGreaterThan(0);
 
     const navbarMenu = getByTestId('navbar-menu');

@@ -1,7 +1,15 @@
-import { afterEach, vi } from 'vitest';
+import { afterEach, beforeAll, vi } from 'vitest';
 import React from 'react';
 import { mockUseHeaderContext } from '@/components/layout/Header/Header.context.mock';
 import { cleanup } from '@testing-library/react';
+
+beforeAll(() => {
+  globalThis.ResizeObserver = vi.fn(() => ({
+    observe: vi.fn(),
+    unobserve: vi.fn(),
+    disconnect: vi.fn(),
+  }));
+});
 
 vi.mock('next/font/google', () => ({
   Mulish: () => ({
@@ -28,4 +36,5 @@ vi.mock('@/components/layout/Header/Header.context', () => ({
 // Automatically clean up the DOM after each test
 afterEach(() => {
   cleanup();
+  vi.resetAllMocks();
 });

@@ -23,7 +23,6 @@ const VerticalScrollContainer = ({
   thumbClassName = '',
   scrollToElementId,
 }: VerticalScrollContainerProps) => {
-  console.log({ scrollToElementId });
   const verticalScrollContainerRef = useRef<HTMLDivElement>(null);
   const verticalScrollContentRef = useRef<HTMLDivElement>(null);
   const scrollbarThumbRef = useRef<HTMLDivElement>(null);
