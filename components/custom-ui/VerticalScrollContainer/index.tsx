@@ -146,6 +146,8 @@ const VerticalScrollContainer = ({
   return (
     // container
     <div
+      role="group"
+      aria-label="Vertical Scroll Container"
       className="group relative h-full overflow-hidden"
       ref={verticalScrollContainerRef}
     >
@@ -157,12 +159,14 @@ const VerticalScrollContainer = ({
         )}
         ref={verticalScrollContentRef}
         onScroll={contentScrollHandler}
+        data-testid="vertical-scrollable-content"
       >
         {children}
       </div>
       {/* scrollbar */}
       {isContentOverflowing() && (
         <div
+          data-testid="scrollbar"
           className={clsx(
             'absolute right-0 top-0 h-full w-2 bg-transparent',
             scrollbarClassName,
