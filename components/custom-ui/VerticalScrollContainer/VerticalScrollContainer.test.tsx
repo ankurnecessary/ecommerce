@@ -257,12 +257,8 @@ describe('VerticalScrollContainer', () => {
 
     const thumb = container.querySelector('.rounded-md') as HTMLElement;
 
-    console.log('before:', thumb.style.height); // Check initial thumb height
-
     // Mock resize event
     fireEvent(window, new Event('resize'));
-
-    console.log('after:', thumb.style.height); // Check initial thumb height
 
     // Verify thumb height is updated
     expect(thumb.style.height).not.toBe('');
