@@ -7,6 +7,7 @@ import {
   SetNavbarElementsDsktp,
   HeaderReducer,
   SetNavbarOffsetDsktp,
+  NavLink,
 } from '@/components/layout/Header/types';
 
 // Need to use in useReducer() hook
@@ -160,7 +161,7 @@ export const HeaderContextProvider = ({
    *
    * @param navLinks - The navigation links to be added.
    */
-  const setNavLinks = (navLinks: HeaderInitialState['navLinks']) => {
+  const setNavLinks = (navLinks: NavLink[]) => {
     dispatchHeaderActions({
       type: 'SET_NAV_LINKS',
       navLinks,
