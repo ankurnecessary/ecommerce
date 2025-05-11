@@ -70,22 +70,21 @@ const NavbarMenu = () => {
         {navLinks.map((link) => (
           // TODO: Check "Catetories" hover in navbar
           // TODO: Change this key when actual API is made with unique key. Probably id.
-          <Link
-            id={`vertical-${link.id}`}
-            key={link.id}
-            prefetch={false}
-            className={clsx('flex w-full justify-between px-2 py-3 text-xs', {
-              'bg-gray-100': selectedVerticalNavLink === link.label,
-            })}
-            href={link.href}
-            onMouseOver={categoryMouseOverHandler}
-          >
-            <span>{link.label}</span>
-            <span>
-              <FontAwesomeIcon
-                icon={faChevronRight}
-                className="text-xs opacity-25"
-              />
+          <Link key={link.id} prefetch={false} href={link.href}>
+            <span
+              id={`vertical-${link.id}`}
+              className={clsx('flex w-full justify-between px-2 py-3 text-xs', {
+                'bg-gray-100': selectedVerticalNavLink === link.label,
+              })}
+              onMouseOver={categoryMouseOverHandler}
+            >
+              <span>{link.label}</span>
+              <span>
+                <FontAwesomeIcon
+                  icon={faChevronRight}
+                  className="text-xs opacity-25"
+                />
+              </span>
             </span>
           </Link>
         ))}
