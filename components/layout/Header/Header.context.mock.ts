@@ -15,20 +15,20 @@ export const mockUseHeaderContext = (
       isMenuVisible: [false, ''],
       toggleMenu: vi.fn(),
       selectedHorizontalNavLink: '',
-      selectedVerticalNavLink: '',
-      verticalNavScrollToElementId: '',
       setSelectedHorizontalNavLink: vi.fn(),
+      selectedVerticalNavLink: '',
       setSelectedVerticalNavLink: vi.fn(),
+      verticalNavScrollToElementId: '',
       setVerticalNavScrollToElementId: vi.fn(),
       navbar: {
-        child: null,
         parent: null,
+        child: null,
+        setNavbarElementsDsktp: vi.fn(),
         childOffset: 0,
         setNavbarOffsetDsktp: vi.fn(),
-        setNavbarElementsDsktp: vi.fn(),
       },
     },
-    mobile: null
+    mobile: null,
   };
   return merge({}, defaultContext, overrides);
 };
