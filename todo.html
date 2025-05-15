@@ -1,8 +1,13 @@
-TODO: Implement CSS skeleton for menu bar
-TODO: Check all components have their type definition as a separate type
-TODO: Always make sure that all the compnents that are using hooks have 'use client'
-TODO: Check if type is assigned to all the `useState()`
-TODO: Add a carousel too
-TODO: SEO: How to make the links of the categoreis and subcategories to embed in the HTML instead of fetching them via an HTTP call from "client"?
+Some checks to perform before committing the code:
 
-DONE: On hover of <NavbarMenuDesktop />, drawer disappears after a while. This should not happen.
+1. Check all components have their type definition as a separate type.
+2. Always make sure that all the compnents that are using hooks have 'use client'.
+3. Check if type is assigned to all the `useState()`.
+4. Check if all the `import` URLs start with '@/....'.
+5. All the component's names which doesn't denote the page name should start with a capital letter.
+5.1. Name of the types for the functions declared inside or outside the component should start with a capital letter. Like for `getData`, the type should be `GetData`.
+6. Types for all the components should be defined in a separate type file of the component.
+7. Types defined for a component's props should be in the same file. Like for `Header` component, the type should be `HeaderProps`.
+8. Types declared for the functions inside a component should be in the different file called types.ts inside the component's folder.
+9. The difference between the name of the function and its type is of that type's name will start with a capital letter and the function's name will start with a small letter. For example, if the function is `getData`, then the type should be `GetData`.
+10: Is JSDoc comments added for all the functions and types?
