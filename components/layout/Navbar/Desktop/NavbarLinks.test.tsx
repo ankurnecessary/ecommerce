@@ -21,4 +21,61 @@ describe('NavbarLinks', () => {
     const categoryLinks = getAllByRole('link');
     expect(categoryLinks.length).toBeGreaterThan(0);
   });
+
+  it('renders all nav links with correct text', () => {
+    (HeaderContextModule.useHeaderContext as Mock).mockReturnValue(
+      mockUseHeaderContext({
+        navLinks: [
+          { id: 'fkjffh1', href: '/newIn', label: 'New In' },
+          { id: 'fkjffh2', href: '/sale', label: 'Sale' },
+        ],
+      }),
+    );
+
+    const { getByText } = render(
+      <NavbarLinks mouseOverHandler={vi.fn()} mouseOutHandler={vi.fn()} />,
+    );
+    expect(getByText('New In')).toBeInTheDocument();
+    expect(getByText('Sale')).toBeInTheDocument();
+  });
+
+  it('calls mouseOverHandler when a link is hovered', () => {
+    const mouseOverHandler = vi.fn();
+    (HeaderContextModule.useHeaderContext as Mock).mockReturnValue(
+      mockUseHeaderContext({
+        navLinks: [{ id: 'fkjffh1', href: '/newIn', label: 'New In' }],
+      }),
+    );
+
+    const { getByText } = render(
+      <NavbarLinks
+        mouseOverHandler={mouseOverHandler}
+        mouseOutHandler={vi.fn()}
+      />,
+    );
+    getByText('New In').dispatchEvent(
+      new MouseEvent('mouseover', { bubbles: true }),
+    );
+    expect(mouseOverHandler).toHaveBeenCalled();
+  });
+
+  it('calls mouseOutHandler when a link is mouse out', () => {
+    const mouseOutHandler = vi.fn();
+    (HeaderContextModule.useHeaderContext as Mock).mockReturnValue(
+      mockUseHeaderContext({
+        navLinks: [{ id: 'fkjffh1', href: '/newIn', label: 'New In' }],
+      }),
+    );
+
+    const { getByText } = render(
+      <NavbarLinks
+        mouseOverHandler={vi.fn()}
+        mouseOutHandler={mouseOutHandler}
+      />,
+    );
+    getByText('New In').dispatchEvent(
+      new MouseEvent('mouseout', { bubbles: true }),
+    );
+    expect(mouseOutHandler).toHaveBeenCalled();
+  });
 });
