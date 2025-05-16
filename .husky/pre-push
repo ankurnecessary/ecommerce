@@ -1,3 +1,10 @@
+# Check if there are commits to push
+if [ -z "$(git log origin/$(git rev-parse --abbrev-ref HEAD)..HEAD)" ]; then
+  echo -e "\033[44m\033[37m ⛔  No commits to push. Skipping pre-push hook. ⛔ \033[0m"
+  exit 0
+fi
+
+# If there are commits to push, run the commands
 echo -e "\033[44m\033[37m 🛑  Stopping server running on port 3000 🛑 \033[0m"
 npx kill-port 3000
 echo -e "\n"

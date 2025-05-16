@@ -2,49 +2,28 @@
 import React, { createContext, useContext, useReducer } from 'react';
 import {
   HeaderContext,
-  HeaderInitialState,
   ToggleMenu,
-  SetNavbarElements,
-  HeaderReducer,
+  SetNavbarElementsDsktp,
   SetNavbarOffsetDsktp,
+  NavLink,
 } from '@/components/layout/Header/types';
-
-// Need to use in useReducer() hook
-const headerInitialState: HeaderInitialState = {
-  navbarParentDsktp: null,
-  navbarChildDsktp: null,
-  isMenuVisibleDsktp: [false, ''],
-  navbarChildOffsetDsktp: 0,
-};
-
-// Need to use in useReducer() hook
-const headerReducer: HeaderReducer = (state, action) => {
-  switch (action.type) {
-    case 'UPDATE_NAVBAR_OFFSET_DSKTP':
-      return {
-        ...state,
-        navbarChildOffsetDsktp: action.navbarChildOffsetDsktp,
-      };
-    case 'UPDATE_NAVBAR_ELEMENTS_DSKTP':
-      return {
-        ...state,
-        navbarParentDsktp: action.navbarParentDsktp,
-        navbarChildDsktp: action.navbarChildDsktp,
-      };
-    case 'TOGGLE_MENU_DSKTP':
-      return {
-        ...state,
-        isMenuVisibleDsktp: [action.isMenuVisible, action.menuCategory],
-      };
-    default:
-      throw new Error(`Unknown action: ${action.type}`);
-  }
-};
+import {
+  headerReducer,
+  headerInitialState,
+} from '@/components/layout/Header/Header.reducer';
 
 // Created header context
 const headerContext = createContext<HeaderContext>({
+  navLinks: [],
+  setNavLinks() {},
   desktop: {
     isMenuVisible: [false, ''],
+    selectedHorizontalNavLink: '',
+    setSelectedHorizontalNavLink() {},
+    selectedVerticalNavLink: '',
+    setSelectedVerticalNavLink() {},
+    verticalNavScrollToElementId: '',
+    setVerticalNavScrollToElementId() {},
     toggleMenu() {},
     navbar: {
       parent: null,
@@ -57,6 +36,12 @@ const headerContext = createContext<HeaderContext>({
   mobile: null,
 });
 
+/**
+ * Provides the HeaderContext to its children.
+ * This context manages the state and behavior of the header, including the navbar and menu visibility.
+ *
+ * @param children - The child components that will consume the context.
+ */
 export const HeaderContextProvider = ({
   children,
 }: {
@@ -67,7 +52,12 @@ export const HeaderContextProvider = ({
     headerInitialState,
   );
 
-  // To toggle navigation menu
+  /**
+   * Toggles the visibility of the desktop menu.
+   *
+   * @param isMenuVisible - Whether the menu should be visible.
+   * @param menuCategory - The category of the menu being toggled.
+   */
   const toggleMenu: ToggleMenu = (isMenuVisible, menuCategory) => {
     dispatchHeaderActions({
       type: 'TOGGLE_MENU_DSKTP',
@@ -76,8 +66,13 @@ export const HeaderContextProvider = ({
     });
   };
 
-  // To set navbar elements
-  const setNavbarElementsDsktp: SetNavbarElements = (
+  /**
+   * Sets the parent and child elements of the navbar.
+   *
+   * @param navbarParentDsktp - The parent element of the navbar.
+   * @param navbarChildDsktp - The child element of the navbar.
+   */
+  const setNavbarElementsDsktp: SetNavbarElementsDsktp = (
     navbarParentDsktp,
     navbarChildDsktp,
   ) => {
@@ -88,7 +83,11 @@ export const HeaderContextProvider = ({
     });
   };
 
-  // To set navbar offset when scroll buttons are used
+  /**
+   * To set navbar offset when scroll buttons are used.
+   *
+   * @param navbarChildOffsetDsktp - The offset of the child element.
+   */
   const setNavbarOffsetDsktp: SetNavbarOffsetDsktp = (
     navbarChildOffsetDsktp,
   ) => {
@@ -98,9 +97,65 @@ export const HeaderContextProvider = ({
     });
   };
 
+  /**
+   * Adds navigation links to the header state.
+   *
+   * @param navLinks - The navigation links to be added.
+   */
+  const setNavLinks = (navLinks: NavLink[]) => {
+    dispatchHeaderActions({
+      type: 'SET_NAV_LINKS',
+      navLinks,
+    });
+  };
+
+  /**
+   * Sets the selected horizontal navigation link.
+   *
+   * @param category - The category to set as selected.
+   */
+  const setSelectedHorizontalNavLink = (category: string) => {
+    dispatchHeaderActions({
+      type: 'SET_SELECTED_HORIZONTAL_NAV_LINK',
+      menuCategory: category,
+    });
+  };
+
+  /**
+   * Sets the selected vertical navigation link.
+   *
+   * @param category - The category to set as selected.
+   */
+  const setSelectedVerticalNavLink = (category: string) => {
+    dispatchHeaderActions({
+      type: 'SET_SELECTED_VERTICAL_NAV_LINK',
+      menuCategory: category,
+    });
+  };
+
+  /**
+   * Sets the ID of the element to scroll to in the vertical navbar menu navigation.
+   *
+   * @param elementId - The ID of the element to scroll to.
+   */
+  const setVerticalNavScrollToElementId = (elementId: string) => {
+    dispatchHeaderActions({
+      type: 'SET_VERTICAL_NAV_SCROLL_TO_ELEMENT_ID',
+      elementId,
+    });
+  };
+
   const contextValue: HeaderContext = {
+    navLinks: header.navLinks,
+    setNavLinks,
     desktop: {
       isMenuVisible: header.isMenuVisibleDsktp,
+      selectedHorizontalNavLink: header.selectedHorizontalNavLink,
+      setSelectedHorizontalNavLink,
+      selectedVerticalNavLink: header.selectedVerticalNavLink,
+      setSelectedVerticalNavLink,
+      verticalNavScrollToElementId: header.verticalNavScrollToElementId,
+      setVerticalNavScrollToElementId,
       toggleMenu,
       navbar: {
         parent: header.navbarParentDsktp,

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 import {
   faChevronLeft,
   faChevronRight,
@@ -6,6 +6,7 @@ import {
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useHeaderContext } from '@/components/layout/Header/Header.context';
 import { CalculateOffset } from '@/components/layout/Header/types';
+import clsx from 'clsx';
 
 const calculateOffset: CalculateOffset =
   (direction) => (parentWidth, childWidth) => (offset) => {
@@ -41,10 +42,31 @@ const NavbarScroller = () => {
     },
   } = useHeaderContext();
 
-  // <parent> - Need width of the <div> having overflow property set over it.
-  const parentWidth = navbarParent?.getBoundingClientRect().width ?? 0;
-  // <child> - Need width of the <div> wrapping all links inside <parent>.
-  const childWidth = navbarChild?.getBoundingClientRect().width ?? 0;
+  const [parentWidth, setParentWidth] = useState(0);
+  const [childWidth, setChildWidth] = useState(0);
+
+  useEffect(() => {
+    // Recalculate widths when the component mounts or when the DOM changes
+    const updateWidths = () => {
+      // <parent> - Need width of the <div> having overflow property set over it.
+      setParentWidth(navbarParent?.getBoundingClientRect().width ?? 0);
+      // <child> - Need width of the <div> wrapping all links inside <parent>.
+      setChildWidth(navbarChild?.getBoundingClientRect().width ?? 0);
+    };
+
+    updateWidths();
+
+    // Add a resize observer or event listener to handle dynamic changes in the size of parent and child elements
+    const resizeObserver = new ResizeObserver(updateWidths);
+    if (navbarParent) resizeObserver.observe(navbarParent);
+    if (navbarChild) resizeObserver.observe(navbarChild);
+
+    return () => {
+      if (navbarParent) resizeObserver.unobserve(navbarParent);
+      if (navbarChild) resizeObserver.unobserve(navbarChild);
+    };
+  }, [navbarParent, navbarChild]);
+
   const maxRightOffset = parentWidth - childWidth;
 
   const calculateLeftOffset = calculateOffset('left')(parentWidth, childWidth);
@@ -62,9 +84,14 @@ const NavbarScroller = () => {
   };
 
   return (
-    <div className="shadow-left whitespace-nowrap">
+    <div
+      className={clsx('shadow-left whitespace-nowrap', {
+        hidden: childWidth <= parentWidth,
+      })}
+    >
       <button
-        className="inline-block cursor-pointer p-2 hover:bg-gray-100 disabled:cursor-auto disabled:opacity-25"
+        type="button"
+        className="inline-block cursor-pointer p-2 disabled:cursor-auto disabled:opacity-25"
         onClick={linksLeftScroller}
         disabled={navbarChildOffset == 0}
         aria-label="left scroller"
@@ -72,7 +99,8 @@ const NavbarScroller = () => {
         <FontAwesomeIcon icon={faChevronLeft} className="text-xs" />
       </button>
       <button
-        className="inline-block cursor-pointer p-2 hover:bg-gray-100 disabled:cursor-auto disabled:opacity-25"
+        type="button"
+        className="inline-block cursor-pointer p-2 disabled:cursor-auto disabled:opacity-25"
         onClick={linksRightScroller}
         disabled={navbarChildOffset === maxRightOffset}
         aria-label="right scroller"

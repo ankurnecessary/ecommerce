@@ -2,35 +2,95 @@
 import React from 'react';
 import { useHeaderContext } from '@/components/layout/Header/Header.context';
 import { HeaderContext } from '@/components/layout/Header/types';
+import Link from 'next/link';
+import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import VerticalScrollContainer from '@/components/custom-ui/VerticalScrollContainer';
+import clsx from 'clsx';
 
 const NavbarMenu = () => {
   const {
-    desktop: { isMenuVisible, toggleMenu },
+    navLinks,
+    desktop: {
+      isMenuVisible,
+      toggleMenu,
+      selectedHorizontalNavLink,
+      setSelectedHorizontalNavLink,
+      selectedVerticalNavLink,
+      setSelectedVerticalNavLink,
+      verticalNavScrollToElementId,
+      setVerticalNavScrollToElementId,
+    },
   }: HeaderContext = useHeaderContext();
 
   const [isVisible, category] = isMenuVisible;
 
-  const mouseOverHandler = () => {
-    // Fetching link text from the link
+  const menuMouseOverHandler = () => {
     toggleMenu(true, category);
+    if (selectedVerticalNavLink && !selectedHorizontalNavLink) return;
+    setSelectedHorizontalNavLink(selectedHorizontalNavLink);
+    setSelectedVerticalNavLink(category);
   };
 
   // Can be done by FP
-  const mouseOutHandler = () => {
+  const menuMouseOutHandler = () => {
     toggleMenu(false, '');
+    setSelectedHorizontalNavLink('');
   };
 
-  // To handle the visibility of the Navbar menu drawer
-  const styleClasses = !isVisible ? '-translate-y-full' : '';
+  const categoryMouseOverHandler = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.stopPropagation();
+
+    // Fetching link text from the link
+    const link = e.currentTarget as HTMLAnchorElement;
+    const linkText = link.textContent?.trim() || '';
+
+    setSelectedVerticalNavLink(linkText);
+    toggleMenu(true, linkText);
+    setVerticalNavScrollToElementId('');
+  };
 
   return (
     <div
       data-testid="navbar-menu"
-      className={`absolute z-0 h-96 w-full ${styleClasses} bg-gray-200 transition-transform duration-300`}
-      onMouseOver={mouseOverHandler}
-      onMouseOut={mouseOutHandler}
+      className={clsx(
+        'absolute z-0 flex h-96 w-full bg-white transition-transform duration-300',
+        {
+          '-translate-y-full': !isVisible,
+          'drop-shadow-2xl': isVisible,
+        },
+      )}
+      onMouseOver={menuMouseOverHandler}
+      onMouseOut={menuMouseOutHandler}
     >
-      {category}
+      <VerticalScrollContainer
+        className="w-80 p-5 pl-10"
+        scrollToElementId={verticalNavScrollToElementId}
+      >
+        {navLinks.map((link) => (
+          // TODO: Check "Catetories" hover in navbar
+          // TODO: Change this key when actual API is made with unique key. Probably id.
+          <Link key={link.id} prefetch={false} href={link.href}>
+            <span
+              id={`vertical-${link.id}`}
+              className={clsx('flex w-full justify-between px-2 py-3 text-xs', {
+                'bg-gray-100': selectedVerticalNavLink === link.label,
+              })}
+              onMouseOver={categoryMouseOverHandler}
+            >
+              <span>{link.label}</span>
+              <span>
+                <FontAwesomeIcon
+                  icon={faChevronRight}
+                  className="text-xs opacity-25"
+                />
+              </span>
+            </span>
+          </Link>
+        ))}
+      </VerticalScrollContainer>
+      <div className="my-5 w-[1px] bg-gray-300"></div>
+      <div className="flex-grow">{category}</div>
     </div>
   );
 };

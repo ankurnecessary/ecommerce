@@ -1,16 +1,34 @@
 import { vi } from 'vitest';
+import { PartialDeep } from 'type-fest';
+import { HeaderContext } from '@/components/layout/Header/types';
+import { merge } from 'lodash';
 
-export const mockUseHeaderContext = (overrides = {}) => ({
-  desktop: {
-    isMenuVisible: [false, ''],
-    toggleMenu: vi.fn(),
-    navbar: {
-      child: { getBoundingClientRect: () => ({ width: 5000 }) },
-      parent: { getBoundingClientRect: () => ({ width: 1000 }) },
-      childOffset: 0,
-      setNavbarOffsetDsktp: vi.fn(),
-      setNavbarElementsDsktp: vi.fn(),
-      ...overrides, // Allow overriding specific properties
+export type HeaderContextOverrides = PartialDeep<HeaderContext>;
+
+export const mockUseHeaderContext = (
+  overrides: HeaderContextOverrides = {},
+): HeaderContext => {
+  const defaultContext: HeaderContext = {
+    navLinks: [{ id: 'fkjffh1', href: '/newIn', label: 'New In' }],
+    setNavLinks: vi.fn(),
+    desktop: {
+      isMenuVisible: [false, ''],
+      toggleMenu: vi.fn(),
+      selectedHorizontalNavLink: '',
+      setSelectedHorizontalNavLink: vi.fn(),
+      selectedVerticalNavLink: '',
+      setSelectedVerticalNavLink: vi.fn(),
+      verticalNavScrollToElementId: '',
+      setVerticalNavScrollToElementId: vi.fn(),
+      navbar: {
+        parent: null,
+        child: null,
+        setNavbarElementsDsktp: vi.fn(),
+        childOffset: 0,
+        setNavbarOffsetDsktp: vi.fn(),
+      },
     },
-  },
-});
+    mobile: null,
+  };
+  return merge({}, defaultContext, overrides);
+};

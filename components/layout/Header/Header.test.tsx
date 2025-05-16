@@ -38,7 +38,7 @@ describe('Header', () => {
     // Wait for the class to be applied
     await waitFor(() => {
       expect(navbarMenu).toHaveClass(
-        'absolute z-0 h-96 w-full bg-gray-200 transition-transform duration-300',
+        'absolute z-0 h-96 w-full  transition-transform duration-300 flex',
       );
     });
 
@@ -48,16 +48,14 @@ describe('Header', () => {
     // Wait for the class to be applied
     await waitFor(() => {
       expect(navbarMenu).toHaveClass(
-        'absolute z-0 h-96 w-full -translate-y-full bg-gray-200 transition-transform duration-300',
+        'absolute z-0 h-96 w-full -translate-y-full transition-transform duration-300 flex',
       );
     });
   });
 
   it('has category links. On it\'s "mouseOver" and "mouseOut" events "<NavbarMenu />" will toggle', async () => {
-    const { getByTestId, container } = render(<Header />);
-    const categoryLinks = container.querySelectorAll(
-      'a.inline-block.p-2.hover\\:bg-gray-100',
-    );
+    const { getByTestId, getAllByRole } = render(<Header />);
+    const categoryLinks = getAllByRole('link');
     expect(categoryLinks.length).toBeGreaterThan(0);
 
     const navbarMenu = getByTestId('navbar-menu');
@@ -71,9 +69,8 @@ describe('Header', () => {
 
     // Wait for the class to be applied
     await waitFor(() => {
-      expect(navbarMenu).not.toHaveClass(
-        'absolute z-0 h-96 w-full bg-gray-200 transition-transform duration-300',
-        { exact: true },
+      expect(navbarMenu).toHaveClass(
+        'absolute z-0 h-96 w-full  transition-transform duration-300 flex',
       );
     });
 
