@@ -58,7 +58,7 @@ const VerticalScrollContainer = ({
   };
 
   const scrollWheelHandler: ScrollWheelHandler = (e) => {
-    // TODO: Add throttle to this function if needed
+    // [ ]: Add throttle to this function if needed
     const content = verticalScrollContentRef.current;
     if (!content) return;
 

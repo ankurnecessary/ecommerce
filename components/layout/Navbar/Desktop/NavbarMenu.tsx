@@ -68,8 +68,9 @@ const NavbarMenu = () => {
         scrollToElementId={verticalNavScrollToElementId}
       >
         {navLinks.map((link) => (
-          // TODO: Check "Catetories" hover in navbar
-          // TODO: Change this key when actual API is made with unique key. Probably id.
+          // FIXME: Check "Catetories" hover in navbar
+          // [ ]: Change `key={link.id}` when actual API is made with unique key. Probably id.
+          // FIXME: Remove prefetch={false} from <Link />
           <Link key={link.id} prefetch={false} href={link.href}>
             <span
               id={`vertical-${link.id}`}
