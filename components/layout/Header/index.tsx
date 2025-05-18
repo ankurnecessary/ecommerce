@@ -29,7 +29,7 @@ const Header = () => {
           <div className="border-r border-black md:grow">
             {/* For hamburger menu button */}
             <button
-              className="hidden px-4 py-3"
+              className="px-4 py-3 md:hidden"
               aria-label="Open navigation menu"
             >
               <FontAwesomeIcon icon={faBars} />
@@ -38,12 +38,12 @@ const Header = () => {
 
           {/* For the center of the header */}
           <div className="md:grow">
-            {/* [Mobile only]: Center space for logo */}
+            {/* [Mobile only]: Center space for logo which is absolutely positioned */}
             <div
               role="search"
               className="mx-auto my-1 hidden w-1/2 border border-black md:invisible md:flex"
             >
-              {/* md:invisible - Just remove this class from the <div> above to see the search text bar */}
+              {/* md:invisible - Just remove this class from the <div> above to see the search text box */}
               <input
                 type="search"
                 placeholder="Search..."
@@ -61,14 +61,24 @@ const Header = () => {
           </div>
 
           {/* For the right side of the header */}
-          <div className="border-l border-black md:grow">
-            {/* [Moblie only]: Search button */}
-            <button
-              className="px-4 py-3 md:hidden"
-              aria-label="Open search bar"
-            >
-              <FontAwesomeIcon icon={faSearch} />
-            </button>
+          <div className="flex md:grow md:justify-end">
+            {/* Start: [Mobile only]: <div> */}
+            <div className="md:hidden">
+              {/* [Mobile only]: Search button */}
+              <button
+                className="border-l border-black px-4 py-3"
+                aria-label="Open search bar"
+              >
+                <FontAwesomeIcon icon={faSearch} />
+              </button>
+            </div>
+            {/* End: [Mobile only]: <div> */}
+
+            {/* Start: [Desktop only]: <div> */}
+            <div className="hidden pr-16 md:block">
+              {/* You can add those items which are only visible on desktop version */}
+            </div>
+            {/* End: [Desktop only]: <div> */}
           </div>
         </div>
         <Navbar />
