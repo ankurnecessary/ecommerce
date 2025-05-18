@@ -75,12 +75,13 @@ const NavbarDesktop = () => {
       onMouseOut={navbarMouseOutHandler}
     >
       {/* Category button */}
+      {/* [ ]: Check the logic of highlighting category button */}
       <div className="whitespace-nowrap">
         <span
           className={clsx(
-            "relative inline-block p-2 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-black after:transition-transform after:content-['']",
+            "relative inline-block p-2 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-black after:transition-transform after:content-[''] dark:text-zinc-300 dark:after:bg-white",
             {
-              'bg-gray-100 after:scale-x-100':
+              'bg-gray-100 after:scale-x-100 dark:bg-zinc-800':
                 selectedHorizontalNavLink === 'Categories',
             },
           )}
@@ -90,8 +91,7 @@ const NavbarDesktop = () => {
           <FontAwesomeIcon
             icon={faChevronDown}
             className={clsx('ml-1 text-xs transition-transform duration-300', {
-              'rotate-180':
-                isMenuVisible[0] && isMenuVisible[1] === 'Categories',
+              'rotate-180': selectedHorizontalNavLink === 'Categories',
             })}
           />
         </span>

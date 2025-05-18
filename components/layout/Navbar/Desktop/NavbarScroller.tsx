@@ -85,7 +85,7 @@ const NavbarScroller = () => {
 
   return (
     <div
-      className={clsx('shadow-left whitespace-nowrap', {
+      className={clsx('shadow-left whitespace-nowrap dark:text-zinc-300', {
         hidden: childWidth <= parentWidth,
       })}
     >

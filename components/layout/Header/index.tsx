@@ -14,7 +14,7 @@ const mulish = Mulish({
 const Header = () => {
   return (
     <HeaderContextProvider>
-      <header className="relative z-[1] border-b border-black bg-white md:border-gray-300">
+      <header className="relative z-[1] border-b border-black bg-white md:border-gray-300 dark:border-zinc-800 dark:bg-zinc-700">
         <div className="relative flex items-center justify-between md:container md:mx-auto md:py-5">
           {/* Logo container */}
           <div className="absolute left-1/2 -translate-x-1/2 md:left-28">

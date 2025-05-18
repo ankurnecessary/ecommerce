@@ -58,9 +58,9 @@ const NavbarLinks = ({
             key={link.id}
             prefetch={false}
             className={clsx(
-              "relative inline-block p-2 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-black after:transition-transform after:content-['']",
+              "relative inline-block p-2 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-black after:transition-transform after:content-[''] dark:text-zinc-300 dark:after:bg-white",
               {
-                'bg-gray-100 after:scale-x-100':
+                'bg-gray-100 after:scale-x-100 dark:bg-zinc-800':
                   selectedHorizontalNavLink === link.label,
               },
             )}
