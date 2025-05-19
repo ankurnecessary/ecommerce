@@ -54,27 +54,33 @@ const NavbarMenu = () => {
     <div
       data-testid="navbar-menu"
       className={clsx(
-        'absolute z-0 flex h-96 w-full bg-white transition-transform duration-300',
+        'absolute z-0 flex h-96 w-full bg-white transition-transform duration-300 dark:bg-zinc-700',
         {
           '-translate-y-full': !isVisible,
-          'drop-shadow-2xl': isVisible,
+          'shadow-2xl dark:shadow-zinc-500': isVisible,
         },
       )}
       onMouseOver={menuMouseOverHandler}
-      onMouseOut={menuMouseOutHandler}
+      onMouseLeave={menuMouseOutHandler}
     >
       <VerticalScrollContainer
         className="w-80 p-5 pl-10"
         scrollToElementId={verticalNavScrollToElementId}
       >
         {navLinks.map((link) => (
-          // TODO: Check "Catetories" hover in navbar
-          // TODO: Change this key when actual API is made with unique key. Probably id.
-          <Link key={link.id} prefetch={false} href={link.href}>
+          // [ ]: Change `key={link.id}` when actual API is made with unique key. Probably id.
+          // FIXME: Remove prefetch={false} from <Link /> when we will create a page for categories
+          <Link
+            key={link.id}
+            prefetch={false}
+            href={link.href}
+            className="block"
+          >
             <span
               id={`vertical-${link.id}`}
               className={clsx('flex w-full justify-between px-2 py-3 text-xs', {
-                'bg-gray-100': selectedVerticalNavLink === link.label,
+                'bg-gray-100 dark:bg-zinc-800':
+                  selectedVerticalNavLink === link.label,
               })}
               onMouseOver={categoryMouseOverHandler}
             >
@@ -89,7 +95,7 @@ const NavbarMenu = () => {
           </Link>
         ))}
       </VerticalScrollContainer>
-      <div className="my-5 w-[1px] bg-gray-300"></div>
+      <div className="my-5 w-[1px] bg-gray-300 dark:bg-zinc-500"></div>
       <div className="flex-grow">{category}</div>
     </div>
   );

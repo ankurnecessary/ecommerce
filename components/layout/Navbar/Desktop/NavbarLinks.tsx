@@ -31,7 +31,7 @@ const NavbarLinks = ({
     if (parentNavbarRef.current && childNavbarRef.current) {
       setNavbarElementsDsktp(parentNavbarRef.current, childNavbarRef.current);
     }
-    // TODO: Replace "setNavLinks(links)" call with an API call to fetch the links
+    // [ ]: Replace "setNavLinks(links)" call with an API call to fetch the links
     setNavLinks(links);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -48,7 +48,7 @@ const NavbarLinks = ({
         onMouseOver={mouseOverHandler}
         onMouseOut={mouseOutHandler}
       >
-        {/* TODO: Change this condition when API call is implemented */}
+        {/* [ ]: Change this condition when API call is implemented */}
         {navLinks.length === 0 && (
           <Skeleton className="h-4 w-[550px] translate-y-3" />
         )}
@@ -58,9 +58,9 @@ const NavbarLinks = ({
             key={link.id}
             prefetch={false}
             className={clsx(
-              "relative inline-block p-2 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-black after:transition-transform after:content-['']",
+              "relative inline-block p-2 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-black after:transition-transform after:content-[''] dark:text-zinc-300 dark:after:bg-white",
               {
-                'bg-gray-100 after:scale-x-100':
+                'bg-gray-100 after:scale-x-100 dark:bg-zinc-800':
                   selectedHorizontalNavLink === link.label,
               },
             )}

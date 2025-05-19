@@ -16,7 +16,7 @@ function TestComponent() {
       null as unknown as HTMLDivElement,
       null as unknown as HTMLDivElement,
     );
-  }, []);
+  });
 
   return <div data-testid="test">No Crash</div>;
 }
