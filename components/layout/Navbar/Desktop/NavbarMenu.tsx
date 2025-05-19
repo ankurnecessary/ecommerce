@@ -61,17 +61,21 @@ const NavbarMenu = () => {
         },
       )}
       onMouseOver={menuMouseOverHandler}
-      onMouseOut={menuMouseOutHandler}
+      onMouseLeave={menuMouseOutHandler}
     >
       <VerticalScrollContainer
         className="w-80 p-5 pl-10"
         scrollToElementId={verticalNavScrollToElementId}
       >
         {navLinks.map((link) => (
-          // FIXME: Check "Catetories" hover in navbar
           // [ ]: Change `key={link.id}` when actual API is made with unique key. Probably id.
-          // FIXME: Remove prefetch={false} from <Link />
-          <Link key={link.id} prefetch={false} href={link.href}>
+          // FIXME: Remove prefetch={false} from <Link /> when we will create a page for categories
+          <Link
+            key={link.id}
+            prefetch={false}
+            href={link.href}
+            className="block"
+          >
             <span
               id={`vertical-${link.id}`}
               className={clsx('flex w-full justify-between px-2 py-3 text-xs', {

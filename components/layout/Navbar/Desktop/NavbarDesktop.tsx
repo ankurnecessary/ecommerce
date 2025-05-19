@@ -75,7 +75,6 @@ const NavbarDesktop = () => {
       onMouseOut={navbarMouseOutHandler}
     >
       {/* Category button */}
-      {/* [ ]: Check the logic of highlighting category button */}
       <div className="whitespace-nowrap">
         <span
           className={clsx(
