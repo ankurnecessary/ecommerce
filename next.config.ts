@@ -3,6 +3,9 @@ import withBundleAnalyzer from '@next/bundle-analyzer';
 
 const nextConfig: NextConfig = {
   /* config options here */
+  images: {
+    domains: ['picsum.photos'],
+  },
 };
 
 const analyzeBundle = withBundleAnalyzer({
