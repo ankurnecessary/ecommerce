@@ -7,6 +7,7 @@ import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import VerticalScrollContainer from '@/components/custom-ui/VerticalScrollContainer';
 import clsx from 'clsx';
+import Image from 'next/image';
 
 const NavbarMenu = () => {
   const {
@@ -64,7 +65,7 @@ const NavbarMenu = () => {
       onMouseLeave={menuMouseOutHandler}
     >
       <VerticalScrollContainer
-        className="w-80 p-5 pl-10"
+        className="w-64 flex-shrink-0 p-5 pl-10"
         scrollToElementId={verticalNavScrollToElementId}
       >
         {navLinks.map((link) => (
@@ -96,7 +97,276 @@ const NavbarMenu = () => {
         ))}
       </VerticalScrollContainer>
       <div className="my-5 w-[1px] bg-gray-300 dark:bg-zinc-500"></div>
-      <div className="flex-grow">{category}</div>
+      <div className="flex-grow p-5">
+        <VerticalScrollContainer>
+          <div className="flex flex-wrap gap-6">
+            <Link href="/test" className="flex w-20 flex-col">
+              <span className="m-1 flex justify-center">
+                <Image
+                  src="https://picsum.photos/id/1/55/55"
+                  alt="T-shirts"
+                  width={55}
+                  height={55}
+                  className="rounded-full object-cover"
+                />
+              </span>
+              <span className="w-full text-center text-xs">{category}</span>
+            </Link>
+            <Link href="/test" className="flex w-20 flex-col">
+              <span className="m-1 flex justify-center">
+                <Image
+                  src="https://picsum.photos/id/1/55/55"
+                  alt="T-shirts"
+                  width={55}
+                  height={55}
+                  className="rounded-full object-cover"
+                />
+              </span>
+              <span className="w-full text-center text-xs">category1</span>
+            </Link>
+            <Link href="/test" className="flex w-20 flex-col">
+              <span className="m-1 flex justify-center">
+                <Image
+                  src="https://picsum.photos/id/1/55/55"
+                  alt="T-shirts"
+                  width={55}
+                  height={55}
+                  className="rounded-full object-cover"
+                />
+              </span>
+              <span className="w-full text-center text-xs">category1</span>
+            </Link>
+            <Link href="/test" className="flex w-20 flex-col">
+              <span className="m-1 flex justify-center">
+                <Image
+                  src="https://picsum.photos/id/1/55/55"
+                  alt="T-shirts"
+                  width={55}
+                  height={55}
+                  className="rounded-full object-cover"
+                />
+              </span>
+              <span className="w-full text-center text-xs">category1</span>
+            </Link>
+            <Link href="/test" className="flex w-20 flex-col">
+              <span className="m-1 flex justify-center">
+                <Image
+                  src="https://picsum.photos/id/1/55/55"
+                  alt="T-shirts"
+                  width={55}
+                  height={55}
+                  className="rounded-full object-cover"
+                />
+              </span>
+              <span className="w-full text-center text-xs">category1</span>
+            </Link>
+            <Link href="/test" className="flex w-20 flex-col">
+              <span className="m-1 flex justify-center">
+                <Image
+                  src="https://picsum.photos/id/1/55/55"
+                  alt="T-shirts"
+                  width={55}
+                  height={55}
+                  className="rounded-full object-cover"
+                />
+              </span>
+              <span className="w-full text-center text-xs">category1</span>
+            </Link>
+            <Link href="/test" className="flex w-20 flex-col">
+              <span className="m-1 flex justify-center">
+                <Image
+                  src="https://picsum.photos/id/1/55/55"
+                  alt="T-shirts"
+                  width={55}
+                  height={55}
+                  className="rounded-full object-cover"
+                />
+              </span>
+              <span className="w-full text-center text-xs">category1</span>
+            </Link>
+            <Link href="/test" className="flex w-20 flex-col">
+              <span className="m-1 flex justify-center">
+                <Image
+                  src="https://picsum.photos/id/1/55/55"
+                  alt="T-shirts"
+                  width={55}
+                  height={55}
+                  className="rounded-full object-cover"
+                />
+              </span>
+              <span className="w-full text-center text-xs">category1</span>
+            </Link>
+            <Link href="/test" className="flex w-20 flex-col">
+              <span className="m-1 flex justify-center">
+                <Image
+                  src="https://picsum.photos/id/1/55/55"
+                  alt="T-shirts"
+                  width={55}
+                  height={55}
+                  className="rounded-full object-cover"
+                />
+              </span>
+              <span className="w-full text-center text-xs">category1</span>
+            </Link>
+            <Link href="/test" className="flex w-20 flex-col">
+              <span className="m-1 flex justify-center">
+                <Image
+                  src="https://picsum.photos/id/1/55/55"
+                  alt="T-shirts"
+                  width={55}
+                  height={55}
+                  className="rounded-full object-cover"
+                />
+              </span>
+              <span className="w-full text-center text-xs">category1</span>
+            </Link>
+            <Link href="/test" className="flex w-20 flex-col">
+              <span className="m-1 flex justify-center">
+                <Image
+                  src="https://picsum.photos/id/1/55/55"
+                  alt="T-shirts"
+                  width={55}
+                  height={55}
+                  className="rounded-full object-cover"
+                />
+              </span>
+              <span className="w-full text-center text-xs">category1</span>
+            </Link>
+            <Link href="/test" className="flex w-20 flex-col">
+              <span className="m-1 flex justify-center">
+                <Image
+                  src="https://picsum.photos/id/1/55/55"
+                  alt="T-shirts"
+                  width={55}
+                  height={55}
+                  className="rounded-full object-cover"
+                />
+              </span>
+              <span className="w-full text-center text-xs">category1</span>
+            </Link>
+            <Link href="/test" className="flex w-20 flex-col">
+              <span className="m-1 flex justify-center">
+                <Image
+                  src="https://picsum.photos/id/1/55/55"
+                  alt="T-shirts"
+                  width={55}
+                  height={55}
+                  className="rounded-full object-cover"
+                />
+              </span>
+              <span className="w-full text-center text-xs">category1</span>
+            </Link>
+            <Link href="/test" className="flex w-20 flex-col">
+              <span className="m-1 flex justify-center">
+                <Image
+                  src="https://picsum.photos/id/1/55/55"
+                  alt="T-shirts"
+                  width={55}
+                  height={55}
+                  className="rounded-full object-cover"
+                />
+              </span>
+              <span className="w-full text-center text-xs">category1</span>
+            </Link>
+            <Link href="/test" className="flex w-20 flex-col">
+              <span className="m-1 flex justify-center">
+                <Image
+                  src="https://picsum.photos/id/1/55/55"
+                  alt="T-shirts"
+                  width={55}
+                  height={55}
+                  className="rounded-full object-cover"
+                />
+              </span>
+              <span className="w-full text-center text-xs">category1</span>
+            </Link>
+            <Link href="/test" className="flex w-20 flex-col">
+              <span className="m-1 flex justify-center">
+                <Image
+                  src="https://picsum.photos/id/1/55/55"
+                  alt="T-shirts"
+                  width={55}
+                  height={55}
+                  className="rounded-full object-cover"
+                />
+              </span>
+              <span className="w-full text-center text-xs">category1</span>
+            </Link>
+            <Link href="/test" className="flex w-20 flex-col">
+              <span className="m-1 flex justify-center">
+                <Image
+                  src="https://picsum.photos/id/1/55/55"
+                  alt="T-shirts"
+                  width={55}
+                  height={55}
+                  className="rounded-full object-cover"
+                />
+              </span>
+              <span className="w-full text-center text-xs">category1</span>
+            </Link>
+            <Link href="/test" className="flex w-20 flex-col">
+              <span className="m-1 flex justify-center">
+                <Image
+                  src="https://picsum.photos/id/1/55/55"
+                  alt="T-shirts"
+                  width={55}
+                  height={55}
+                  className="rounded-full object-cover"
+                />
+              </span>
+              <span className="w-full text-center text-xs">category1</span>
+            </Link>
+            <Link href="/test" className="flex w-20 flex-col">
+              <span className="m-1 flex justify-center">
+                <Image
+                  src="https://picsum.photos/id/1/55/55"
+                  alt="T-shirts"
+                  width={55}
+                  height={55}
+                  className="rounded-full object-cover"
+                />
+              </span>
+              <span className="w-full text-center text-xs">category1</span>
+            </Link>
+            <Link href="/test" className="flex w-20 flex-col">
+              <span className="m-1 flex justify-center">
+                <Image
+                  src="https://picsum.photos/id/1/55/55"
+                  alt="T-shirts"
+                  width={55}
+                  height={55}
+                  className="rounded-full object-cover"
+                />
+              </span>
+              <span className="w-full text-center text-xs">category1</span>
+            </Link>
+            <Link href="/test" className="flex w-20 flex-col">
+              <span className="m-1 flex justify-center">
+                <Image
+                  src="https://picsum.photos/id/1/55/55"
+                  alt="T-shirts"
+                  width={55}
+                  height={55}
+                  className="rounded-full object-cover"
+                />
+              </span>
+              <span className="w-full text-center text-xs">category1</span>
+            </Link>
+            <Link href="/test" className="flex w-20 flex-col">
+              <span className="m-1 flex justify-center">
+                <Image
+                  src="https://picsum.photos/id/1/55/55"
+                  alt="T-shirts"
+                  width={55}
+                  height={55}
+                  className="rounded-full object-cover"
+                />
+              </span>
+              <span className="w-full text-center text-xs">category1</span>
+            </Link>
+          </div>
+        </VerticalScrollContainer>
+      </div>
     </div>
   );
 };
