@@ -1,13 +1,17 @@
 'use client';
 import React from 'react';
 import { useHeaderContext } from '@/components/layout/Header/Header.context';
-import { HeaderContext } from '@/components/layout/Header/types';
+import {
+  CategoryMouseOverHandler,
+  HeaderContext,
+  MenuCategory,
+} from '@/components/layout/Header/types';
 import Link from 'next/link';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import VerticalScrollContainer from '@/components/custom-ui/VerticalScrollContainer';
 import clsx from 'clsx';
-import Image from 'next/image';
+import NavbarSubcategories from './NavbarSubcategories';
 
 const NavbarMenu = () => {
   const {
@@ -30,26 +34,27 @@ const NavbarMenu = () => {
     toggleMenu(true, category);
     if (selectedVerticalNavLink && !selectedHorizontalNavLink) return;
     setSelectedHorizontalNavLink(selectedHorizontalNavLink);
-    setSelectedVerticalNavLink(category);
+    setSelectedVerticalNavLink(category.label);
   };
 
   // Can be done by FP
   const menuMouseOutHandler = () => {
-    toggleMenu(false, '');
+    toggleMenu(false, {} as MenuCategory);
     setSelectedHorizontalNavLink('');
   };
 
-  const categoryMouseOverHandler = (e: React.MouseEvent<HTMLAnchorElement>) => {
-    e.stopPropagation();
+  const categoryMouseOverHandler: CategoryMouseOverHandler =
+    (category: MenuCategory) => (e) => {
+      e.stopPropagation();
 
-    // Fetching link text from the link
-    const link = e.currentTarget as HTMLAnchorElement;
-    const linkText = link.textContent?.trim() || '';
+      // Fetching link text from the link
+      const link = e.currentTarget as HTMLAnchorElement;
+      const linkText = link.textContent?.trim() || '';
 
-    setSelectedVerticalNavLink(linkText);
-    toggleMenu(true, linkText);
-    setVerticalNavScrollToElementId('');
-  };
+      setSelectedVerticalNavLink(linkText);
+      toggleMenu(true, category);
+      setVerticalNavScrollToElementId('');
+    };
 
   return (
     <div
@@ -64,308 +69,46 @@ const NavbarMenu = () => {
       onMouseOver={menuMouseOverHandler}
       onMouseLeave={menuMouseOutHandler}
     >
-      <VerticalScrollContainer
-        className="w-64 flex-shrink-0 p-5 pl-10"
-        scrollToElementId={verticalNavScrollToElementId}
-      >
-        {navLinks.map((link) => (
-          // [ ]: Change `key={link.id}` when actual API is made with unique key. Probably id.
-          // FIXME: Remove prefetch={false} from <Link /> when we will create a page for categories
-          <Link
-            key={link.id}
-            prefetch={false}
-            href={link.href}
-            className="block"
-          >
-            <span
-              id={`vertical-${link.id}`}
-              className={clsx('flex w-full justify-between px-2 py-3 text-xs', {
-                'bg-gray-100 dark:bg-zinc-800':
-                  selectedVerticalNavLink === link.label,
-              })}
-              onMouseOver={categoryMouseOverHandler}
+      <div className="w-64 flex-shrink-0">
+        <VerticalScrollContainer
+          className="p-5 pl-10"
+          scrollToElementId={verticalNavScrollToElementId}
+        >
+          {navLinks.map((link) => (
+            // [ ]: Change `key={link.id}` when actual API is made with unique key. Probably id.
+            // FIXME: Remove prefetch={false} from <Link /> when we will create a page for categories
+            <Link
+              key={link.id}
+              prefetch={false}
+              href={link.href}
+              className="block"
             >
-              <span>{link.label}</span>
-              <span>
-                <FontAwesomeIcon
-                  icon={faChevronRight}
-                  className="text-xs opacity-25"
-                />
+              <span
+                id={`vertical-${link.id}`}
+                className={clsx(
+                  'flex w-full justify-between px-2 py-3 text-xs',
+                  {
+                    'bg-gray-100 dark:bg-zinc-800':
+                      selectedVerticalNavLink === link.label,
+                  },
+                )}
+                onMouseOver={categoryMouseOverHandler(link)}
+              >
+                <span>{link.label}</span>
+                <span>
+                  <FontAwesomeIcon
+                    icon={faChevronRight}
+                    className="text-xs opacity-25"
+                  />
+                </span>
               </span>
-            </span>
-          </Link>
-        ))}
-      </VerticalScrollContainer>
+            </Link>
+          ))}
+        </VerticalScrollContainer>
+      </div>
       <div className="my-5 w-[1px] bg-gray-300 dark:bg-zinc-500"></div>
       <div className="flex-grow p-5">
-        <VerticalScrollContainer>
-          <div className="flex flex-wrap gap-6">
-            <Link href="/test" className="flex w-20 flex-col">
-              <span className="m-1 flex justify-center">
-                <Image
-                  src="https://picsum.photos/id/1/55/55"
-                  alt="T-shirts"
-                  width={55}
-                  height={55}
-                  className="rounded-full object-cover"
-                />
-              </span>
-              <span className="w-full text-center text-xs">{category}</span>
-            </Link>
-            <Link href="/test" className="flex w-20 flex-col">
-              <span className="m-1 flex justify-center">
-                <Image
-                  src="https://picsum.photos/id/1/55/55"
-                  alt="T-shirts"
-                  width={55}
-                  height={55}
-                  className="rounded-full object-cover"
-                />
-              </span>
-              <span className="w-full text-center text-xs">category1</span>
-            </Link>
-            <Link href="/test" className="flex w-20 flex-col">
-              <span className="m-1 flex justify-center">
-                <Image
-                  src="https://picsum.photos/id/1/55/55"
-                  alt="T-shirts"
-                  width={55}
-                  height={55}
-                  className="rounded-full object-cover"
-                />
-              </span>
-              <span className="w-full text-center text-xs">category1</span>
-            </Link>
-            <Link href="/test" className="flex w-20 flex-col">
-              <span className="m-1 flex justify-center">
-                <Image
-                  src="https://picsum.photos/id/1/55/55"
-                  alt="T-shirts"
-                  width={55}
-                  height={55}
-                  className="rounded-full object-cover"
-                />
-              </span>
-              <span className="w-full text-center text-xs">category1</span>
-            </Link>
-            <Link href="/test" className="flex w-20 flex-col">
-              <span className="m-1 flex justify-center">
-                <Image
-                  src="https://picsum.photos/id/1/55/55"
-                  alt="T-shirts"
-                  width={55}
-                  height={55}
-                  className="rounded-full object-cover"
-                />
-              </span>
-              <span className="w-full text-center text-xs">category1</span>
-            </Link>
-            <Link href="/test" className="flex w-20 flex-col">
-              <span className="m-1 flex justify-center">
-                <Image
-                  src="https://picsum.photos/id/1/55/55"
-                  alt="T-shirts"
-                  width={55}
-                  height={55}
-                  className="rounded-full object-cover"
-                />
-              </span>
-              <span className="w-full text-center text-xs">category1</span>
-            </Link>
-            <Link href="/test" className="flex w-20 flex-col">
-              <span className="m-1 flex justify-center">
-                <Image
-                  src="https://picsum.photos/id/1/55/55"
-                  alt="T-shirts"
-                  width={55}
-                  height={55}
-                  className="rounded-full object-cover"
-                />
-              </span>
-              <span className="w-full text-center text-xs">category1</span>
-            </Link>
-            <Link href="/test" className="flex w-20 flex-col">
-              <span className="m-1 flex justify-center">
-                <Image
-                  src="https://picsum.photos/id/1/55/55"
-                  alt="T-shirts"
-                  width={55}
-                  height={55}
-                  className="rounded-full object-cover"
-                />
-              </span>
-              <span className="w-full text-center text-xs">category1</span>
-            </Link>
-            <Link href="/test" className="flex w-20 flex-col">
-              <span className="m-1 flex justify-center">
-                <Image
-                  src="https://picsum.photos/id/1/55/55"
-                  alt="T-shirts"
-                  width={55}
-                  height={55}
-                  className="rounded-full object-cover"
-                />
-              </span>
-              <span className="w-full text-center text-xs">category1</span>
-            </Link>
-            <Link href="/test" className="flex w-20 flex-col">
-              <span className="m-1 flex justify-center">
-                <Image
-                  src="https://picsum.photos/id/1/55/55"
-                  alt="T-shirts"
-                  width={55}
-                  height={55}
-                  className="rounded-full object-cover"
-                />
-              </span>
-              <span className="w-full text-center text-xs">category1</span>
-            </Link>
-            <Link href="/test" className="flex w-20 flex-col">
-              <span className="m-1 flex justify-center">
-                <Image
-                  src="https://picsum.photos/id/1/55/55"
-                  alt="T-shirts"
-                  width={55}
-                  height={55}
-                  className="rounded-full object-cover"
-                />
-              </span>
-              <span className="w-full text-center text-xs">category1</span>
-            </Link>
-            <Link href="/test" className="flex w-20 flex-col">
-              <span className="m-1 flex justify-center">
-                <Image
-                  src="https://picsum.photos/id/1/55/55"
-                  alt="T-shirts"
-                  width={55}
-                  height={55}
-                  className="rounded-full object-cover"
-                />
-              </span>
-              <span className="w-full text-center text-xs">category1</span>
-            </Link>
-            <Link href="/test" className="flex w-20 flex-col">
-              <span className="m-1 flex justify-center">
-                <Image
-                  src="https://picsum.photos/id/1/55/55"
-                  alt="T-shirts"
-                  width={55}
-                  height={55}
-                  className="rounded-full object-cover"
-                />
-              </span>
-              <span className="w-full text-center text-xs">category1</span>
-            </Link>
-            <Link href="/test" className="flex w-20 flex-col">
-              <span className="m-1 flex justify-center">
-                <Image
-                  src="https://picsum.photos/id/1/55/55"
-                  alt="T-shirts"
-                  width={55}
-                  height={55}
-                  className="rounded-full object-cover"
-                />
-              </span>
-              <span className="w-full text-center text-xs">category1</span>
-            </Link>
-            <Link href="/test" className="flex w-20 flex-col">
-              <span className="m-1 flex justify-center">
-                <Image
-                  src="https://picsum.photos/id/1/55/55"
-                  alt="T-shirts"
-                  width={55}
-                  height={55}
-                  className="rounded-full object-cover"
-                />
-              </span>
-              <span className="w-full text-center text-xs">category1</span>
-            </Link>
-            <Link href="/test" className="flex w-20 flex-col">
-              <span className="m-1 flex justify-center">
-                <Image
-                  src="https://picsum.photos/id/1/55/55"
-                  alt="T-shirts"
-                  width={55}
-                  height={55}
-                  className="rounded-full object-cover"
-                />
-              </span>
-              <span className="w-full text-center text-xs">category1</span>
-            </Link>
-            <Link href="/test" className="flex w-20 flex-col">
-              <span className="m-1 flex justify-center">
-                <Image
-                  src="https://picsum.photos/id/1/55/55"
-                  alt="T-shirts"
-                  width={55}
-                  height={55}
-                  className="rounded-full object-cover"
-                />
-              </span>
-              <span className="w-full text-center text-xs">category1</span>
-            </Link>
-            <Link href="/test" className="flex w-20 flex-col">
-              <span className="m-1 flex justify-center">
-                <Image
-                  src="https://picsum.photos/id/1/55/55"
-                  alt="T-shirts"
-                  width={55}
-                  height={55}
-                  className="rounded-full object-cover"
-                />
-              </span>
-              <span className="w-full text-center text-xs">category1</span>
-            </Link>
-            <Link href="/test" className="flex w-20 flex-col">
-              <span className="m-1 flex justify-center">
-                <Image
-                  src="https://picsum.photos/id/1/55/55"
-                  alt="T-shirts"
-                  width={55}
-                  height={55}
-                  className="rounded-full object-cover"
-                />
-              </span>
-              <span className="w-full text-center text-xs">category1</span>
-            </Link>
-            <Link href="/test" className="flex w-20 flex-col">
-              <span className="m-1 flex justify-center">
-                <Image
-                  src="https://picsum.photos/id/1/55/55"
-                  alt="T-shirts"
-                  width={55}
-                  height={55}
-                  className="rounded-full object-cover"
-                />
-              </span>
-              <span className="w-full text-center text-xs">category1</span>
-            </Link>
-            <Link href="/test" className="flex w-20 flex-col">
-              <span className="m-1 flex justify-center">
-                <Image
-                  src="https://picsum.photos/id/1/55/55"
-                  alt="T-shirts"
-                  width={55}
-                  height={55}
-                  className="rounded-full object-cover"
-                />
-              </span>
-              <span className="w-full text-center text-xs">category1</span>
-            </Link>
-            <Link href="/test" className="flex w-20 flex-col">
-              <span className="m-1 flex justify-center">
-                <Image
-                  src="https://picsum.photos/id/1/55/55"
-                  alt="T-shirts"
-                  width={55}
-                  height={55}
-                  className="rounded-full object-cover"
-                />
-              </span>
-              <span className="w-full text-center text-xs">category1</span>
-            </Link>
-          </div>
-        </VerticalScrollContainer>
+        <NavbarSubcategories category={category} />
       </div>
     </div>
   );

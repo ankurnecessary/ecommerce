@@ -4,7 +4,9 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { useHeaderContext } from '@/components/layout/Header/Header.context';
 import {
+  CategoryMouseOverHandler,
   HeaderContext,
+  MenuCategory,
   NavbarMouseEvent,
 } from '@/components/layout/Header/types';
 import NavbarLinks from '@/components/layout/Navbar/Desktop/NavbarLinks';
@@ -38,15 +40,17 @@ const NavbarDesktop = () => {
     },
   }: HeaderContext = useHeaderContext();
 
-  const mouseOverHandler: NavbarMouseEvent = (e) => {
-    e.stopPropagation();
-    // Fetching link text from the link
-    const link = e.target as HTMLAnchorElement;
-    toggleMenu(true, link.textContent || '');
-    setSelectedHorizontalNavLink(link.textContent || '');
-    setSelectedVerticalNavLink(link.textContent || '');
-    setVerticalNavScrollToElementId(link?.id ? `vertical-${link.id}` : '');
-  };
+  const mouseOverHandler: CategoryMouseOverHandler =
+    (category: MenuCategory): NavbarMouseEvent =>
+    (e) => {
+      e.stopPropagation();
+      toggleMenu(true, category);
+      setSelectedHorizontalNavLink(category.label || '');
+      setSelectedVerticalNavLink(category.label || '');
+      setVerticalNavScrollToElementId(
+        category.id ? `vertical-${category.id}` : '',
+      );
+    };
 
   const navbarMouseOverHandler: NavbarMouseEvent = () => {
     if (isMenuVisible[1]) toggleMenu(true, isMenuVisible[1]);
@@ -55,14 +59,14 @@ const NavbarDesktop = () => {
   };
 
   const navbarMouseOutHandler: NavbarMouseEvent = () => {
-    toggleMenu(false, '');
+    toggleMenu(false, {} as MenuCategory);
     setSelectedHorizontalNavLink('');
   };
 
   const categoryMouseOverHandler: NavbarMouseEvent = (e) => {
     e.stopPropagation();
     const link = e.target as HTMLAnchorElement;
-    toggleMenu(true, navLinks[0].label || '');
+    toggleMenu(true, navLinks[0]);
     setSelectedHorizontalNavLink(link.textContent || '');
     setSelectedVerticalNavLink(navLinks[0].label || '');
     setVerticalNavScrollToElementId(`vertical-${navLinks[0].id}` || '');

@@ -5,7 +5,7 @@ import {
   HeaderContextProvider,
 } from '@/components/layout/Header/Header.context';
 import React from 'react';
-import { NavLink } from './types';
+import { MenuCategory } from './types';
 
 function TestComponent() {
   const { desktop } = useHeaderContext();
@@ -64,7 +64,7 @@ describe('HeaderContext', () => {
       wrapper: HeaderContextProvider,
     });
 
-    const newLinks: NavLink[] = [
+    const newLinks: MenuCategory[] = [
       { id: 'abc', href: '/abc', label: 'ABC' },
       { id: 'xyz', href: '/xyz', label: 'XYZ' },
     ];
