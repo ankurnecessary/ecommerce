@@ -107,7 +107,7 @@ const NavbarMenu = () => {
         </VerticalScrollContainer>
       </div>
       <div className="my-5 w-[1px] bg-gray-300 dark:bg-zinc-500"></div>
-      <div className="flex-grow p-5">
+      <div className="flex-grow px-5">
         <NavbarSubcategories category={category} />
       </div>
     </div>

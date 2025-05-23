@@ -88,6 +88,10 @@ export type HeaderReducer = (
  */
 export type MenuSubCategory = {
   /**
+   * Id of the sub-category
+   */
+  id: string;
+  /**
    * Name of a sub-category
    */
   name: string;
