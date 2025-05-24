@@ -3,7 +3,10 @@ import React from 'react';
 
 const NavbarSubcategoriesLoader = () => {
   return (
-    <div className="flex flex-wrap gap-10 py-5">
+    <div
+      className="flex flex-wrap gap-10 py-5"
+      data-testid="navbar-subcategories-loader"
+    >
       <div>
         <Skeleton className="h-12 w-12 rounded-full" />
         <Skeleton className="mt-2 h-3 w-12" />

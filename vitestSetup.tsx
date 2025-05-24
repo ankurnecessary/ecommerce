@@ -21,8 +21,9 @@ vi.mock('next/font/google', () => ({
 vi.mock('next/link', () => {
   return {
     __esModule: true,
-    default: ({ children, href, className }: { children: React.ReactNode; href: string, className: string }) => {
-      return <a href={href} className={className}> {children} </a>;
+    default: (props: React.AnchorHTMLAttributes<HTMLAnchorElement>) => {
+      const { href, children, ...rest } = props;
+      return <a href={href} {...rest}>{children}</a>;
     },
   };
 });
@@ -31,6 +32,14 @@ vi.mock('@/components/layout/Header/Header.context', () => ({
   __esModule: true,
   useHeaderContext: vi.fn(() => mockUseHeaderContext({})),
   HeaderContextProvider: ({ children }: { children: React.ReactNode }) => <>{children}</>,
+}));
+
+vi.mock('next/image', () => ({
+  __esModule: true,
+  default: (props: React.ImgHTMLAttributes<HTMLImageElement>) => {
+    // eslint-disable-next-line jsx-a11y/alt-text, @next/next/no-img-element
+    return <img {...props} />;
+  },
 }));
 
 // Automatically clean up the DOM after each test

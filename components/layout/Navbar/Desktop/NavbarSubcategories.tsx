@@ -20,7 +20,10 @@ const NavbarSubcategories = ({ category }: NavbarSubcategoriesProps) => {
 
   return (
     <VerticalScrollContainer>
-      <div className="flex flex-wrap gap-6 py-5">
+      <div
+        className="flex flex-wrap gap-6 py-5"
+        data-testid="navbar-subcategories"
+      >
         {subCategories.map((subCategory) => (
           <Link
             key={subCategory.id}
