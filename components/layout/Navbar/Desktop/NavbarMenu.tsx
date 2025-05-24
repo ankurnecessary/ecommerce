@@ -10,7 +10,7 @@ import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import VerticalScrollContainer from '@/components/custom-ui/VerticalScrollContainer';
 import clsx from 'clsx';
-import NavbarSubcategories from './NavbarSubcategories';
+import NavbarSubcategories from '@/components/layout/Navbar/Desktop/NavbarSubcategories';
 
 const NavbarMenu = () => {
   const {

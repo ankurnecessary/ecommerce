@@ -1,6 +1,6 @@
 import { vi } from 'vitest';
 import { PartialDeep } from 'type-fest';
-import { HeaderContext } from '@/components/layout/Header/types';
+import { HeaderContext, MenuCategory } from '@/components/layout/Header/types';
 import { merge } from 'lodash';
 
 export type HeaderContextOverrides = PartialDeep<HeaderContext>;
@@ -12,7 +12,7 @@ export const mockUseHeaderContext = (
     navLinks: [{ id: 'fkjffh1', href: '/newIn', label: 'New In' }],
     setNavLinks: vi.fn(),
     desktop: {
-      isMenuVisible: [false, ''],
+      isMenuVisible: [false, {} as MenuCategory],
       toggleMenu: vi.fn(),
       selectedHorizontalNavLink: '',
       setSelectedHorizontalNavLink: vi.fn(),
