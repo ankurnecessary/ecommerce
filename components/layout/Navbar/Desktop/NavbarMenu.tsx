@@ -6,7 +6,6 @@ import {
   HeaderContext,
   MenuCategory,
 } from '@/components/layout/Header/types';
-import Link from 'next/link';
 import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import VerticalScrollContainer from '@/components/custom-ui/VerticalScrollContainer';
@@ -76,33 +75,23 @@ const NavbarMenu = () => {
         >
           {navLinks.map((link) => (
             // [ ]: Change `key={link.id}` when actual API is made with unique key. Probably id.
-            // FIXME: Remove prefetch={false} from <Link /> when we will create a page for categories
-            <Link
+            <span
               key={link.id}
-              prefetch={false}
-              href={link.href}
-              className="block"
+              id={`vertical-${link.id}`}
+              className={clsx('flex w-full justify-between px-2 py-3 text-xs', {
+                'bg-gray-100 dark:bg-zinc-800':
+                  selectedVerticalNavLink === link.label,
+              })}
+              onMouseOver={categoryMouseOverHandler(link)}
             >
-              <span
-                id={`vertical-${link.id}`}
-                className={clsx(
-                  'flex w-full justify-between px-2 py-3 text-xs',
-                  {
-                    'bg-gray-100 dark:bg-zinc-800':
-                      selectedVerticalNavLink === link.label,
-                  },
-                )}
-                onMouseOver={categoryMouseOverHandler(link)}
-              >
-                <span>{link.label}</span>
-                <span>
-                  <FontAwesomeIcon
-                    icon={faChevronRight}
-                    className="text-xs opacity-25"
-                  />
-                </span>
+              <span>{link.label}</span>
+              <span>
+                <FontAwesomeIcon
+                  icon={faChevronRight}
+                  className="text-xs opacity-25"
+                />
               </span>
-            </Link>
+            </span>
           ))}
         </VerticalScrollContainer>
       </div>
