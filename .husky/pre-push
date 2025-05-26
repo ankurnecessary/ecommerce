@@ -1,5 +1,21 @@
+
+# Fetch remote refs to ensure up-to-date info
+git fetch
+
+# Get current branch name
+branch=$(git rev-parse --abbrev-ref HEAD)
+
+# Check if remote branch exists
+if git show-ref --verify --quiet refs/remotes/origin/$branch; then
+  # Remote branch exists, check for commits to push
+  range="origin/$branch..HEAD"
+else
+  # Remote branch does not exist, all commits are to be pushed
+  range="HEAD"
+fi
+
 # Check if there are commits to push
-if [ -z "$(git log origin/$(git rev-parse --abbrev-ref HEAD)..HEAD)" ]; then
+if [ -z "$(git log $range)" ]; then
   echo -e "\033[44m\033[37m ⛔  No commits to push. Skipping pre-push hook. ⛔ \033[0m"
   exit 0
 fi
@@ -22,3 +38,5 @@ npm run validate-html
 echo -e "\n"
 echo -e "\033[44m\033[37m 🏗️   Building lighthouse report 🏗️  \033[0m"
 npm run lighthouse
+echo -e "\033[44m\033[37m 🛑  Stopping server running on port 3000 🛑 \033[0m"
+npx kill-port 3000

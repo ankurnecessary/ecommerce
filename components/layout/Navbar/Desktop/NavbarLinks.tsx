@@ -2,13 +2,16 @@
 import Link from 'next/link';
 import React, { useEffect, useRef } from 'react';
 import { useHeaderContext } from '@/components/layout/Header/Header.context';
-import { NavbarMouseEvent } from '@/components/layout/Header/types';
+import {
+  CategoryMouseOverHandler,
+  NavbarMouseEvent,
+} from '@/components/layout/Header/types';
 import { links } from '../XnavbarLinkObj';
 import clsx from 'clsx';
 import { Skeleton } from '@/components/ui/skeleton';
 
 type NavbarLinksProps = {
-  mouseOverHandler: NavbarMouseEvent;
+  mouseOverHandler: CategoryMouseOverHandler;
   mouseOutHandler?: NavbarMouseEvent;
 };
 const NavbarLinks = ({
@@ -45,8 +48,6 @@ const NavbarLinks = ({
         className="inline-flex transition-transform duration-300"
         style={{ transform: `translateX(${childOffset || 0}px)` }}
         ref={childNavbarRef}
-        onMouseOver={mouseOverHandler}
-        onMouseOut={mouseOutHandler}
       >
         {/* [ ]: Change this condition when API call is implemented */}
         {navLinks.length === 0 && (
@@ -66,7 +67,12 @@ const NavbarLinks = ({
             )}
             href={link.href}
           >
-            {link.label}
+            <span
+              onMouseOver={mouseOverHandler(link)}
+              onMouseOut={mouseOutHandler}
+            >
+              {link.label}
+            </span>
           </Link>
         ))}
       </div>

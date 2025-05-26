@@ -1,13 +1,14 @@
 import {
   HeaderInitialState,
   HeaderReducer,
+  MenuCategory,
 } from '@/components/layout/Header/types';
 
 // Needed to use in useReducer() hook
 const headerInitialState: HeaderInitialState = {
   navbarParentDsktp: null,
   navbarChildDsktp: null,
-  isMenuVisibleDsktp: [false, ''],
+  isMenuVisibleDsktp: [false, {} as MenuCategory],
   selectedHorizontalNavLink: '',
   selectedVerticalNavLink: '',
   navbarChildOffsetDsktp: 0,

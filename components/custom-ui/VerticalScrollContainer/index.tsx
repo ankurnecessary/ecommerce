@@ -148,15 +148,12 @@ const VerticalScrollContainer = ({
     <div
       role="group"
       aria-label="Vertical Scroll Container"
-      className="group relative h-full overflow-hidden"
+      className={clsx('group relative h-full overflow-hidden', className)}
       ref={verticalScrollContainerRef}
     >
       {/* content */}
       <div
-        className={clsx(
-          'h-full overflow-y-auto overflow-x-hidden scrollbar-none',
-          className,
-        )}
+        className="h-full overflow-y-auto overflow-x-hidden scrollbar-none"
         ref={verticalScrollContentRef}
         onScroll={contentScrollHandler}
         data-testid="vertical-scrollable-content"

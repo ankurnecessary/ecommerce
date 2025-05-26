@@ -3,6 +3,7 @@ import NavbarMenu from '@/components/layout/Navbar/Desktop/NavbarMenu';
 import { fireEvent, render } from '@testing-library/react';
 import * as HeaderContextModule from '@/components/layout/Header/Header.context';
 import { mockUseHeaderContext } from '@/components/layout/Header/Header.context.mock';
+import { MenuCategory } from '../../Header/types';
 
 describe('NavbarMenu', () => {
   it('renders in the DOM.', () => {
@@ -20,7 +21,10 @@ describe('NavbarMenu', () => {
     (HeaderContextModule.useHeaderContext as Mock).mockReturnValue(
       mockUseHeaderContext({
         desktop: {
-          isMenuVisible: [true, 'category'],
+          isMenuVisible: [
+            true,
+            { id: '1', label: 'Category1', href: '/category1' },
+          ],
         },
       }),
     );
@@ -39,7 +43,7 @@ describe('NavbarMenu', () => {
           toggleMenu: toggleMenuMock,
           setSelectedHorizontalNavLink: setSelectedHorizontalNavLinkMock,
           setSelectedVerticalNavLink: setSelectedVerticalNavLinkMock,
-          isMenuVisible: [false, ''],
+          isMenuVisible: [false, {} as MenuCategory],
         },
       }),
     );
@@ -48,8 +52,7 @@ describe('NavbarMenu', () => {
     const menu = getByTestId('navbar-menu');
 
     fireEvent.mouseOver(menu);
-
-    expect(toggleMenuMock).toHaveBeenCalledWith(true, expect.any(String));
+    expect(toggleMenuMock).toHaveBeenCalledWith(true, expect.any(Object));
     expect(setSelectedHorizontalNavLinkMock).toHaveBeenCalled();
     expect(setSelectedVerticalNavLinkMock).toHaveBeenCalled();
   });
@@ -65,7 +68,10 @@ describe('NavbarMenu', () => {
         navLinks: [{ id: '1', label: 'Category', href: '/category' }],
         desktop: {
           setSelectedHorizontalNavLink: setSelectedHorizontalNavLinkMock,
-          isMenuVisible: [true, 'Category'],
+          isMenuVisible: [
+            true,
+            { id: '1', label: 'Category', href: '/category' },
+          ],
           toggleMenu: toggleMenuMock,
           setSelectedVerticalNavLink: setSelectedVerticalNavLinkMock,
           setVerticalNavScrollToElementId: setVerticalNavScrollToElementIdMock,
@@ -74,13 +80,18 @@ describe('NavbarMenu', () => {
     );
 
     const { getByTestId } = render(<NavbarMenu />);
-    const navLink = getByTestId('vertical-scrollable-content')
-      .querySelector('a')
-      ?.querySelector('span');
+    const verticalScrollContainer = getByTestId('navbar-menu').querySelector(
+      '[data-testid="vertical-scrollable-content"]',
+    );
+    const navLink = verticalScrollContainer?.querySelector('span');
     expect(navLink).toBeInTheDocument();
     fireEvent.mouseOver(navLink as HTMLAnchorElement);
 
-    expect(toggleMenuMock).toHaveBeenCalledWith(true, 'Category');
+    expect(toggleMenuMock).toHaveBeenCalledWith(true, {
+      id: '1',
+      label: 'Category',
+      href: '/category',
+    });
     expect(setSelectedVerticalNavLinkMock).toHaveBeenCalledWith('Category');
     expect(setVerticalNavScrollToElementIdMock).toHaveBeenCalledWith('');
   });
@@ -90,16 +101,21 @@ describe('NavbarMenu', () => {
       mockUseHeaderContext({
         navLinks: [{ id: '1', label: 'Category', href: '/category' }],
         desktop: {
-          isMenuVisible: [true, 'Category'],
+          isMenuVisible: [
+            true,
+            { id: '1', label: 'Category', href: '/category' },
+          ],
           verticalNavScrollToElementId: '1',
         },
       }),
     );
 
     const { getByTestId } = render(<NavbarMenu />);
-    const verticalScrollContainer = getByTestId('vertical-scrollable-content');
+    const verticalScrollContainer = getByTestId('navbar-menu').querySelector(
+      '[data-testid="vertical-scrollable-content"]',
+    );
     expect(
-      verticalScrollContainer.querySelector('#vertical-1'),
+      verticalScrollContainer?.querySelector('#vertical-1'),
     ).toBeInTheDocument(); // "vertical-" is constant part of the id
   });
 
@@ -114,7 +130,10 @@ describe('NavbarMenu', () => {
           { id: '2', label: 'Category2', href: '/category2' },
         ],
         desktop: {
-          isMenuVisible: [true, 'Category1'],
+          isMenuVisible: [
+            true,
+            { id: '1', label: 'Category1', href: '/category1' },
+          ],
           selectedVerticalNavLink: 'Category1', // Initially set to 'Category1'
           setSelectedVerticalNavLink: setSelectedVerticalNavLinkMock,
           toggleMenu: vi.fn(),
@@ -124,10 +143,10 @@ describe('NavbarMenu', () => {
     );
 
     const { getByTestId, rerender } = render(<NavbarMenu />);
-    const verticalScrollContainer = getByTestId('vertical-scrollable-content');
-    const category = verticalScrollContainer.querySelector(
-      'a:nth-child(2)>span',
+    const verticalScrollContainer = getByTestId('navbar-menu').querySelector(
+      '[data-testid="vertical-scrollable-content"]',
     );
+    const category = verticalScrollContainer?.querySelector('#vertical-2');
 
     expect(category).toBeInTheDocument();
 
@@ -142,7 +161,10 @@ describe('NavbarMenu', () => {
           { id: '2', label: 'Category2', href: '/category2' },
         ],
         desktop: {
-          isMenuVisible: [true, 'Category2'], // Update to 'Category2'
+          isMenuVisible: [
+            true,
+            { id: '2', label: 'Category2', href: '/category2' },
+          ], // Update to 'Category2'
           selectedVerticalNavLink: 'Category2', // Update to 'Category2'
           setSelectedVerticalNavLink: setSelectedVerticalNavLinkMock,
           toggleMenu: vi.fn(),

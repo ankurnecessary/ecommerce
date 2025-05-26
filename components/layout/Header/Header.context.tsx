@@ -5,7 +5,7 @@ import {
   ToggleMenu,
   SetNavbarElementsDsktp,
   SetNavbarOffsetDsktp,
-  NavLink,
+  MenuCategory,
 } from '@/components/layout/Header/types';
 import {
   headerReducer,
@@ -17,7 +17,7 @@ const headerContext = createContext<HeaderContext>({
   navLinks: [],
   setNavLinks() {},
   desktop: {
-    isMenuVisible: [false, ''],
+    isMenuVisible: [false, {} as MenuCategory],
     selectedHorizontalNavLink: '',
     setSelectedHorizontalNavLink() {},
     selectedVerticalNavLink: '',
@@ -102,7 +102,7 @@ export const HeaderContextProvider = ({
    *
    * @param navLinks - The navigation links to be added.
    */
-  const setNavLinks = (navLinks: NavLink[]) => {
+  const setNavLinks = (navLinks: MenuCategory[]) => {
     dispatchHeaderActions({
       type: 'SET_NAV_LINKS',
       navLinks,

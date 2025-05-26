@@ -5,7 +5,8 @@ import {
   HeaderContextProvider,
 } from '@/components/layout/Header/Header.context';
 import React from 'react';
-import { NavLink } from './types';
+import { MenuCategory } from './types';
+import { links } from '../Navbar/XnavbarLinkObj';
 
 function TestComponent() {
   const { desktop } = useHeaderContext();
@@ -33,7 +34,7 @@ describe('HeaderContext', () => {
       { id: 'fkjffh1', href: '/newIn', label: 'New In' },
     ]);
     expect(typeof result.current.setNavLinks).toBe('function');
-    expect(result.current.desktop.isMenuVisible).toEqual([false, '']);
+    expect(result.current.desktop.isMenuVisible).toEqual([false, {}]);
     expect(typeof result.current.desktop.toggleMenu).toBe('function');
     expect(result.current.desktop.selectedHorizontalNavLink).toBe('');
     expect(typeof result.current.desktop.setSelectedHorizontalNavLink).toBe(
@@ -64,7 +65,7 @@ describe('HeaderContext', () => {
       wrapper: HeaderContextProvider,
     });
 
-    const newLinks: NavLink[] = [
+    const newLinks: MenuCategory[] = [
       { id: 'abc', href: '/abc', label: 'ABC' },
       { id: 'xyz', href: '/xyz', label: 'XYZ' },
     ];
@@ -131,14 +132,17 @@ describe('HeaderContext', () => {
       wrapper: HeaderContextProvider,
     });
 
-    result.current.desktop.toggleMenu(true, 'Shoes');
+    result.current.desktop.toggleMenu(true, links[0]);
     waitFor(() => {
-      expect(result.current.desktop.isMenuVisible).toEqual([true, 'Shoes']);
+      expect(result.current.desktop.isMenuVisible).toEqual([true, links[0]]);
     });
 
-    result.current.desktop.toggleMenu(false, '');
+    result.current.desktop.toggleMenu(false, {} as MenuCategory);
     waitFor(() => {
-      expect(result.current.desktop.isMenuVisible).toEqual([false, '']);
+      expect(result.current.desktop.isMenuVisible).toEqual([
+        false,
+        {} as MenuCategory,
+      ]);
     });
   });
 

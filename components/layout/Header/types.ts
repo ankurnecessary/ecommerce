@@ -3,7 +3,10 @@
  * @param isMenuVisible - Whether the menu should be visible.
  * @param menuCategory - The category of the menu being toggled.
  */
-export type ToggleMenu = (isMenuVisible: boolean, menuCategory: string) => void;
+export type ToggleMenu = (
+  isMenuVisible: boolean,
+  menuCategory: MenuCategory,
+) => void;
 
 export type HeaderInitialState = {
   /**
@@ -18,7 +21,7 @@ export type HeaderInitialState = {
    * Indicates whether the desktop menu is visible and the current menu category.
    * The first element is a boolean for visibility, and the second is the menu category.
    */
-  isMenuVisibleDsktp: [boolean, string];
+  isMenuVisibleDsktp: [boolean, MenuCategory];
   /**
    * The current menu category selected in the horizontal category navigation in header.
    */
@@ -35,7 +38,7 @@ export type HeaderInitialState = {
    * The navigation links displayed in the header. Either vertical or horizontal.
    * The links are common for both desktop and mobile.
    */
-  navLinks: Array<NavLink>;
+  navLinks: Array<MenuCategory>;
   /**
    * The ID of the element to scroll to in the vertical navbar menu navigation.
    */
@@ -81,28 +84,50 @@ export type HeaderReducer = (
 ) => HeaderInitialState;
 
 /**
- * A navigation links displayed in the navbar. Common for both desktop and mobile.
+ * Represents a sub-category under a category
  */
-export type NavLink = {
-  /*
-   * A unique identifier for the navigation link.
+export type MenuSubCategory = {
+  /**
+   * Id of the sub-category
    */
   id: string;
   /**
-   * The URL to navigate to when the link is clicked.
+   * Name of a sub-category
+   */
+  name: string;
+  /**
+   * URL of the image that will be used for the sub-category in menu
+   */
+  image: string;
+};
+
+/**
+ * A navigation links displayed in the navbar. Common for both desktop and mobile.
+ */
+export type MenuCategory = {
+  /**
+   * Id of the category
+   */
+  id: string;
+  /**
+   * URL of the category page
    */
   href: string;
   /**
-   * The text label displayed for the link.
+   * Label of the category
    */
   label: string;
+  /**
+   * Collection of sub-categories in a category
+   */
+  subcategories?: Array<MenuSubCategory>;
 };
 
 /**
  * A function that adds navigation links to the header context.
  * @param navLinks - An array of navigation links to be added.
  */
-export type SetNavLinks = (navLinks: Array<NavLink>) => void;
+export type SetNavLinks = (navLinks: Array<MenuCategory>) => void;
 
 /**
  * Represents the structure of the HeaderContext.
@@ -111,7 +136,7 @@ export type HeaderContext = {
   /**
    * An array of navigation links displayed in the header.
    */
-  navLinks: Array<NavLink>;
+  navLinks: Array<MenuCategory>;
   /**
    * A function that adds navigation links to the header context.
    * @param navLinks - An array of navigation links to be added.
@@ -125,7 +150,7 @@ export type HeaderContext = {
      * Indicates whether the desktop menu is visible and the current menu category.
      * The first element is a boolean for visibility, and the second is the menu category.
      */
-    isMenuVisible: [boolean, string];
+    isMenuVisible: [boolean, MenuCategory];
     /**
      * The current menu category selected in the horizontal category navigation in header.
      */
@@ -208,5 +233,9 @@ export type CalculateOffset = (
  * @param e - The mouse event.
  */
 export type NavbarMouseEvent = (
-  e: React.MouseEvent<HTMLDivElement, MouseEvent>,
+  e: React.MouseEvent<HTMLDivElement | HTMLAnchorElement, MouseEvent>,
 ) => void;
+
+export type CategoryMouseOverHandler = (
+  category: MenuCategory,
+) => NavbarMouseEvent;
