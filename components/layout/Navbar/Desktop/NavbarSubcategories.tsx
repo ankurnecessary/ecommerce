@@ -14,7 +14,7 @@ const NavbarSubcategories = ({ category }: NavbarSubcategoriesProps) => {
   //[ ]: Later on we will extract sub-categories of a category via a separate HTTP request
   const subCategories = category.subcategories || [];
 
-  if (subCategories.length === 0) {
+  if (!subCategories || subCategories.length === 0) {
     return <NavbarSubcategoriesLoader />;
   }
 
@@ -29,6 +29,7 @@ const NavbarSubcategories = ({ category }: NavbarSubcategoriesProps) => {
             key={subCategory.id}
             href={`/${subCategory.name}`}
             className="group/subcat flex w-20 flex-col"
+            prefetch={false}
           >
             <span className="m-1 flex justify-center">
               <Image
