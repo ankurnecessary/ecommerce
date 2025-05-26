@@ -59,7 +59,7 @@ const NavbarMenu = () => {
     <div
       data-testid="navbar-menu"
       className={clsx(
-        'absolute z-0 flex h-96 w-full bg-white transition-transform duration-300 dark:bg-zinc-700',
+        'absolute z-0 flex h-96 w-full overflow-hidden bg-white transition-transform duration-300 dark:bg-zinc-700',
         {
           '-translate-y-full': !isVisible,
           'shadow-2xl dark:shadow-zinc-500': isVisible,
