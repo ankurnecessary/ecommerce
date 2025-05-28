@@ -54,20 +54,16 @@ const NavbarLinks = ({
           <Skeleton className="h-4 w-[550px] translate-y-3" />
         )}
         {navLinks.map((link) => (
-          <Link
-            id={link.id}
-            key={link.id}
-            prefetch={false}
-            className={clsx(
-              "relative inline-block p-2 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-black after:transition-transform after:content-[''] dark:text-zinc-300 dark:after:bg-white",
-              {
-                'bg-gray-100 after:scale-x-100 dark:bg-zinc-800':
-                  selectedHorizontalNavLink === link.label,
-              },
-            )}
-            href={link.href}
-          >
+          <Link key={link.id} prefetch={false} href={link.href}>
             <span
+              id={link.id}
+              className={clsx(
+                "relative inline-block p-2 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-black after:transition-transform after:content-[''] dark:text-zinc-300 dark:after:bg-white",
+                {
+                  'bg-gray-100 after:scale-x-100 dark:bg-zinc-800':
+                    selectedHorizontalNavLink === link.label,
+                },
+              )}
               onMouseOver={mouseOverHandler(link)}
               onMouseOut={mouseOutHandler}
             >
