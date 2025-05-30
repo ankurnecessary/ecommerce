@@ -10,7 +10,8 @@ const meta = {
   tags: ['autodocs'],
   argTypes: {
     children: { control: 'text' },
-    className: { control: 'text' },
+    containerClassName: { control: 'text' },
+    contentClassName: { control: 'text' },
     scrollbarClassName: { control: 'text' },
     thumbClassName: { control: 'text' },
     scrollToElementId: { control: 'text' },
@@ -31,7 +32,8 @@ export const Default: Story = {
   args: {
     children:
       'Lorem ipsum dolor sit amet consectetur, adipisicing elit. Neque deleniti vel voluptatibus enim fugit eum minus, ipsam sequi sed similique fuga dolore doloribus aperiam quam veniam. Optio animi numquam explicabo.Lorem ipsum dolor sit amet consectetur, adipisicing elit. Neque deleniti vel voluptatibus enim fugit eum minus, ipsam sequi sed similique fuga dolore doloribus aperiam quam veniam. Optio animi numquam explicabo.Lorem ipsum dolor sit amet consectetur, adipisicing elit. Neque deleniti vel voluptatibus enim fugit eum minus, ipsam sequi sed similique fuga dolore doloribus aperiam quam veniam. Optio animi numquam explicabo.Lorem ipsum dolor sit amet consectetur, adipisicing elit. Neque deleniti vel voluptatibus enim fugit eum minus, ipsam sequi sed similique fuga dolore doloribus aperiam quam veniam. Optio animi numquam explicabo.1',
-    className: '',
+    containerClassName: '',
+    contentClassName: 'pr-2',
     scrollbarClassName: '',
     thumbClassName: '',
     scrollToElementId: '',

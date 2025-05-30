@@ -9,7 +9,8 @@ import { syncThumbPosition, updateThumbHeight } from './utils';
 
 type VerticalScrollContainerProps = {
   children: React.ReactNode;
-  className?: string;
+  containerClassName?: string;
+  contentClassName?: string;
   scrollbarClassName?: string;
   thumbClassName?: string;
   scrollToElementId?: string;
@@ -17,7 +18,8 @@ type VerticalScrollContainerProps = {
 
 const VerticalScrollContainer = ({
   children,
-  className = 'w-full',
+  containerClassName,
+  contentClassName,
   scrollbarClassName = '',
   thumbClassName = '',
   scrollToElementId,
@@ -159,12 +161,18 @@ const VerticalScrollContainer = ({
     <div
       role="group"
       aria-label="Vertical Scroll Container"
-      className={clsx('group relative h-full overflow-hidden', className)}
+      className={clsx(
+        'group relative h-full overflow-hidden',
+        containerClassName,
+      )}
       ref={verticalScrollContainerRef}
     >
       {/* content */}
       <div
-        className="h-full overflow-y-auto overflow-x-hidden scrollbar-none"
+        className={clsx(
+          'h-full overflow-y-auto overflow-x-hidden scrollbar-none',
+          contentClassName,
+        )}
         ref={verticalScrollContentRef}
         onScroll={contentScrollHandler}
         data-testid="vertical-scrollable-content"

@@ -70,7 +70,7 @@ const NavbarMenu = () => {
     >
       <div className="w-64 flex-shrink-0">
         <VerticalScrollContainer
-          className="p-5 pl-10"
+          contentClassName="p-5 pl-10"
           scrollToElementId={verticalNavScrollToElementId}
         >
           {navLinks.map((link) => (
