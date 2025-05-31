@@ -11,9 +11,9 @@ import {
   headerReducer,
   headerInitialState,
 } from '@/components/layout/Header/Header.reducer';
-
+// [ ] Change type HeaderContext to HeaderContextType
 // Created header context
-const headerContext = createContext<HeaderContext>({
+export const headerContext = createContext<HeaderContext>({
   navLinks: [],
   setNavLinks() {},
   desktop: {

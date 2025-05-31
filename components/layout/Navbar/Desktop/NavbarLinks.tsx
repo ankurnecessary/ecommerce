@@ -45,14 +45,14 @@ const NavbarLinks = ({
       ref={parentNavbarRef}
     >
       <div
-        className="inline-flex transition-transform duration-300"
+        className={clsx('inline-flex transition-transform duration-300', {
+          'pt-3': navLinks.length === 0,
+        })}
         style={{ transform: `translateX(${childOffset || 0}px)` }}
         ref={childNavbarRef}
       >
         {/* [ ]: Change this condition when API call is implemented */}
-        {navLinks.length === 0 && (
-          <Skeleton className="h-4 w-[550px] translate-y-3" />
-        )}
+        {navLinks.length === 0 && <Skeleton className="h-4 w-[550px]" />}
         {navLinks.map((link) => (
           <Link key={link.id} prefetch={false} href={link.href}>
             <span
