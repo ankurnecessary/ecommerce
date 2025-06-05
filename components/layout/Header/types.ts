@@ -1,3 +1,5 @@
+import { PartialDeep } from 'type-fest';
+
 /**
  * Toggles the visibility of the desktop menu.
  * @param isMenuVisible - Whether the menu should be visible.
@@ -239,3 +241,9 @@ export type NavbarMouseEvent = (
 export type CategoryMouseOverHandler = (
   category: MenuCategory,
 ) => NavbarMouseEvent;
+
+/**
+ * A type that will help in using object in partial way.
+ * It allows to override only the properties that are needed via a **parameter in a function**.
+ */
+export type HeaderContextOverrides = PartialDeep<HeaderContext>;
