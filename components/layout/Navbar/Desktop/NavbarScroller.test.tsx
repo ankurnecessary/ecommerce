@@ -2,7 +2,7 @@ import { afterEach, describe, expect, it, Mock, vi } from 'vitest';
 import NavbarScroller from '@/components/layout/Navbar/Desktop/NavbarScroller';
 import { cleanup, fireEvent, render, waitFor } from '@testing-library/react';
 import { useHeaderContext } from '@/components/layout/Header/Header.context';
-import { mockUseHeaderContext } from '@/components/layout/Header/Header.context.mock';
+import { mockUseHeaderContext } from '@/components/layout/Header/Header.context.test.mock';
 
 describe('NavbarScroller', () => {
   it('should render the component', () => {
