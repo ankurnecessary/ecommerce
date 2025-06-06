@@ -58,12 +58,13 @@ const NavbarScroller = () => {
 
     // Add a resize observer or event listener to handle dynamic changes in the size of parent and child elements
     const resizeObserver = new ResizeObserver(updateWidths);
-    if (navbarParent) resizeObserver.observe(navbarParent);
-    if (navbarChild) resizeObserver.observe(navbarChild);
+    if (navbarParent instanceof Element) resizeObserver.observe(navbarParent);
+    if (navbarChild instanceof Element) resizeObserver.observe(navbarChild);
 
     return () => {
-      if (navbarParent) resizeObserver.unobserve(navbarParent);
-      if (navbarChild) resizeObserver.unobserve(navbarChild);
+      if (navbarParent instanceof Element)
+        resizeObserver.unobserve(navbarParent);
+      if (navbarChild instanceof Element) resizeObserver.unobserve(navbarChild);
     };
   }, [navbarParent, navbarChild]);
 
