@@ -1,48 +1,8 @@
 import { Meta } from '@storybook/nextjs-vite';
 import NavbarLinks from '@/components/layout/Navbar/Desktop/NavbarLinks';
 import { fn } from 'storybook/test';
-import { headerContext } from '@/components/layout/Header/Header.context';
-import { HeaderContext, MenuCategory } from '@/components/layout/Header/types';
 import type { StoryObj } from '@storybook/nextjs-vite';
-import { links } from '@/components/layout/Navbar/XnavbarLinkObj';
-
-const MockHeaderContextProvider = ({
-  children,
-  navLinks,
-}: {
-  children: React.ReactNode;
-  navLinks: MenuCategory[];
-}) => {
-  // Provide all required context values, mock as needed
-  const contextValue: HeaderContext = {
-    navLinks,
-    setNavLinks: () => {},
-    desktop: {
-      isMenuVisible: [false, {} as MenuCategory],
-      selectedHorizontalNavLink: '',
-      setSelectedHorizontalNavLink: () => {},
-      selectedVerticalNavLink: '',
-      setSelectedVerticalNavLink: () => {},
-      verticalNavScrollToElementId: '',
-      setVerticalNavScrollToElementId: () => {},
-      toggleMenu: () => {},
-      navbar: {
-        parent: null,
-        child: null,
-        childOffset: 0,
-        setNavbarElementsDsktp: () => {},
-        setNavbarOffsetDsktp: () => {},
-      },
-    },
-    mobile: null,
-  };
-
-  return (
-    <headerContext.Provider value={contextValue}>
-      {children}
-    </headerContext.Provider>
-  );
-};
+import MockHeaderContextProvider from '@/components/layout/Header/Header.context.stories.mock';
 
 const meta = {
   title: 'components/layout/Navbar/Desktop/NavbarLinks',
@@ -63,9 +23,9 @@ const meta = {
   },
   decorators: [
     (Story, context) => {
-      const navLinks = context.parameters.navLinks || [];
+      const overrides = context.parameters.overrides || [];
       return (
-        <MockHeaderContextProvider navLinks={navLinks}>
+        <MockHeaderContextProvider overrides={overrides}>
           <Story />
         </MockHeaderContextProvider>
       );
@@ -81,7 +41,28 @@ export const Default: StoryObj<typeof NavbarLinks> = {
     mouseOutHandler: () => {},
   },
   parameters: {
-    navLinks: links,
+    overrides: {
+      navLinks: [
+        {
+          id: 'fkjffh1',
+          href: '/newIn',
+          label: 'New In',
+          subcategories: [],
+        },
+        {
+          id: 'fkjffh2',
+          href: '/sale',
+          label: 'Sale',
+          subcategories: [],
+        },
+        {
+          id: 'fkjffh3',
+          href: '/womenClothing',
+          label: 'Women Clothing',
+          subcategories: [],
+        },
+      ],
+    },
   },
 };
 
@@ -91,7 +72,9 @@ export const Loading: StoryObj<typeof NavbarLinks> = {
     mouseOutHandler: () => {},
   },
   parameters: {
-    navLinks: [],
+    overrides: {
+      navLinks: [],
+    },
   },
 };
 
