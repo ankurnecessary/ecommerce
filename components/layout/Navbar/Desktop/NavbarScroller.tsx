@@ -1,12 +1,8 @@
 import React, { useEffect, useState } from 'react';
-import {
-  faChevronLeft,
-  faChevronRight,
-} from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useHeaderContext } from '@/components/layout/Header/Header.context';
 import { CalculateOffset } from '@/components/layout/Header/types';
 import clsx from 'clsx';
+import { ChevronRight, ChevronLeft } from 'lucide-react';
 
 const calculateOffset: CalculateOffset =
   (direction) => (parentWidth, childWidth) => (offset) => {
@@ -86,27 +82,27 @@ const NavbarScroller = () => {
 
   return (
     <div
-      className={clsx('shadow-left whitespace-nowrap dark:text-zinc-300', {
+      className={clsx('shadow-left flex whitespace-nowrap dark:text-zinc-300', {
         hidden: childWidth <= parentWidth,
       })}
     >
       <button
         type="button"
-        className="inline-block cursor-pointer p-2 disabled:cursor-auto disabled:opacity-25"
+        className="inline-block cursor-pointer p-1 disabled:cursor-auto disabled:opacity-25"
         onClick={linksLeftScroller}
         disabled={navbarChildOffset == 0}
         aria-label="left scroller"
       >
-        <FontAwesomeIcon icon={faChevronLeft} className="text-xs" />
+        <ChevronLeft className="h-5 w-4" />
       </button>
       <button
         type="button"
-        className="inline-block cursor-pointer p-2 disabled:cursor-auto disabled:opacity-25"
+        className="inline-block cursor-pointer p-1 disabled:cursor-auto disabled:opacity-25"
         onClick={linksRightScroller}
         disabled={navbarChildOffset === maxRightOffset}
         aria-label="right scroller"
       >
-        <FontAwesomeIcon icon={faChevronRight} className="text-xs" />
+        <ChevronRight className="h-5 w-4" />
       </button>
     </div>
   );

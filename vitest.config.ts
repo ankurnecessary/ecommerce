@@ -10,12 +10,11 @@ export default defineConfig({
       provider: 'playwright',
       instances: [{ browser: 'chromium' }],
     },
-    exclude: [...configDefaults.exclude, '**/**.config.{?(c|m)js,ts}', 'fontawesome.ts',
+    exclude: [...configDefaults.exclude, '**/**.config.{?(c|m)js,ts}',
       'setupTests.ts'],
     coverage: {
       exclude: [
         '**/**.config.{?(c|m)js,ts}', // Exclude config files
-        'fontawesome.ts',
         'setupTests.ts',
         ...coverageConfigDefaults.exclude
       ]

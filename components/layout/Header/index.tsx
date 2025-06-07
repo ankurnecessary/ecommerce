@@ -1,11 +1,10 @@
 import React from 'react';
 import { Mulish } from 'next/font/google';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBars, faSearch } from '@fortawesome/free-solid-svg-icons';
 import Link from 'next/link';
 import { Navbar } from '@/components/layout';
 import NavbarMenu from '@/components/layout/Navbar/Desktop/NavbarMenu';
 import { HeaderContextProvider } from '@/components/layout/Header/Header.context';
+import { Menu, Search } from 'lucide-react';
 
 const mulish = Mulish({
   subsets: ['latin'],
@@ -32,7 +31,7 @@ const Header = () => {
               className="px-4 py-3 md:hidden"
               aria-label="Open navigation menu"
             >
-              <FontAwesomeIcon icon={faBars} />
+              <Menu />
             </button>
           </div>
 
@@ -55,7 +54,7 @@ const Header = () => {
                 aria-label="search"
                 className="bg-black px-3 py-1.5 text-white"
               >
-                <FontAwesomeIcon icon={faSearch} />
+                <Search />
               </button>
             </div>
           </div>
@@ -69,7 +68,7 @@ const Header = () => {
                 className="border-l border-black px-4 py-3"
                 aria-label="Open search bar"
               >
-                <FontAwesomeIcon icon={faSearch} />
+                <Search />
               </button>
             </div>
             {/* End: [Mobile only]: <div> */}
