@@ -1,4 +1,4 @@
-import { Meta } from '@storybook/nextjs-vite';
+import { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { action } from 'storybook/actions';
 import NavbarScroller from '@/components/layout/Navbar/Desktop/NavbarScroller';
 import MockHeaderContextProvider from '@/components/layout/Header/Header.context.stories.mock';
@@ -11,7 +11,7 @@ const meta = {
   tags: ['autodocs'],
   decorators: [
     (Story, context) => {
-      const overrides = context.parameters.overrides || [];
+      const overrides = context?.parameters?.overrides || {};
       return (
         <MockHeaderContextProvider overrides={overrides}>
           <Story />
@@ -19,13 +19,14 @@ const meta = {
       );
     },
   ],
-} as Meta<typeof NavbarScroller>;
+} satisfies Meta<typeof NavbarScroller>;
 
 // BUG: When we hover over navbar scroller arrows, it opens the navbar menu. It should not open it.
 
 export default meta;
+type Story = StoryObj<typeof meta>;
 
-export const Default = {
+export const Default: Story = {
   args: {},
   parameters: {
     overrides: {
@@ -49,7 +50,7 @@ export const Default = {
   },
 };
 
-export const BothButtonsEnabled = {
+export const BothButtonsEnabled: Story = {
   args: {},
   parameters: {
     overrides: {
@@ -73,7 +74,7 @@ export const BothButtonsEnabled = {
   },
 };
 
-export const OnlyLeftButtonEnabled = {
+export const OnlyLeftButtonEnabled: Story = {
   args: {},
   parameters: {
     overrides: {

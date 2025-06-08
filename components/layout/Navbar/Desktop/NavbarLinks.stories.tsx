@@ -8,7 +8,7 @@ const meta = {
   title: 'components/layout/Navbar/Desktop/NavbarLinks',
   component: NavbarLinks,
   parameters: {
-    layout: 'centered',
+    layout: 'fullscreen',
   },
   tags: ['autodocs'],
   argTypes: {
@@ -23,7 +23,7 @@ const meta = {
   },
   decorators: [
     (Story, context) => {
-      const overrides = context.parameters.overrides || [];
+      const overrides = context?.parameters?.overrides || {};
       return (
         <MockHeaderContextProvider overrides={overrides}>
           <Story />
@@ -31,11 +31,12 @@ const meta = {
       );
     },
   ],
-} as Meta<typeof NavbarLinks>;
+} satisfies Meta<typeof NavbarLinks>;
 
 export default meta;
+type Story = StoryObj<typeof meta>;
 
-export const Default: StoryObj<typeof NavbarLinks> = {
+export const Default: Story = {
   args: {
     mouseOverHandler: () => () => {},
     mouseOutHandler: () => {},
@@ -62,11 +63,14 @@ export const Default: StoryObj<typeof NavbarLinks> = {
           subcategories: [],
         },
       ],
+      desktop: {
+        selectedHorizontalNavLink: 'Sale',
+      },
     },
   },
 };
 
-export const Loading: StoryObj<typeof NavbarLinks> = {
+export const Loading: Story = {
   args: {
     mouseOverHandler: () => () => {},
     mouseOutHandler: () => {},

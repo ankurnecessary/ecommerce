@@ -1,4 +1,4 @@
-import { Meta } from '@storybook/nextjs-vite';
+import { Meta, StoryObj } from '@storybook/nextjs-vite';
 import NavbarSubcategories from './NavbarSubcategories';
 
 const meta = {
@@ -8,11 +8,12 @@ const meta = {
     layout: 'centered',
   },
   tags: ['autodocs'],
-} as Meta<typeof NavbarSubcategories>;
+} satisfies Meta<typeof NavbarSubcategories>;
 
 export default meta;
+type Story = StoryObj<typeof meta>;
 
-export const Default = {
+export const Default: Story = {
   args: {
     category: {
       id: 'fkjffh2',
@@ -219,7 +220,7 @@ export const Default = {
   },
 };
 
-export const Loading = {
+export const Loading: Story = {
   args: {
     category: {
       id: 'fkjffh2',
