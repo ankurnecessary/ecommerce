@@ -1,0 +1,55 @@
+.header {
+  @apply relative z-[1] border-b border-black bg-white md:border-gray-300 dark:border-zinc-800 dark:bg-zinc-700;
+
+  &__container {
+    @apply relative flex items-center justify-between md:container md:mx-auto md:py-5;
+  }
+
+  &__mobileNav {
+    @apply border-r border-black md:grow;
+  }
+
+  &__mobileNavButton {
+    @apply px-4 py-3 md:hidden;
+  }
+
+  &__left {
+    @apply md:grow;
+  }
+
+  &__search {
+    @apply mx-auto my-1 hidden w-1/2 border border-black md:invisible md:flex;
+  }
+
+  &__searchInput {
+    @apply min-w-0 flex-grow border-r border-black px-2 text-sm placeholder-black outline-none;
+  }
+
+  &__searchButton {
+    @apply bg-black px-3 py-1.5 text-white;
+  }
+
+  &__right {
+    @apply flex md:grow md:justify-end;
+  }
+
+  &__mobileSearch {
+    @apply md:hidden;
+  }
+
+  &__mobileSearchBtn {
+    @apply border-l border-black px-4 py-3;
+  }
+
+  &__buttons {
+    @apply hidden pr-16 md:block;
+  }
+}
+
+.logo {
+  @apply absolute left-1/2 -translate-x-1/2 md:left-28;
+  
+  &__text {
+    @apply relative p-1 text-3xl font-bold uppercase;
+  }
+}
