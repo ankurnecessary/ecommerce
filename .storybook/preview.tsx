@@ -2,6 +2,14 @@ import type { Preview } from '@storybook/nextjs-vite';
 
 import '@/app/globals.css';
 
+export const decorators = [
+  (Story) => (
+    <div className="dark:bg-zinc-700 dark:text-white">
+      <Story />
+    </div>
+  ),
+];
+
 const preview: Preview = {
   parameters: {
     controls: {
@@ -18,6 +26,7 @@ const preview: Preview = {
       test: 'todo',
     },
   },
+  decorators,
 };
 
 export default preview;
