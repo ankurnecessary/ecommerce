@@ -176,6 +176,7 @@ const VerticalScrollContainer = ({
         ref={verticalScrollContentRef}
         onScroll={contentScrollHandler}
         data-testid="vertical-scrollable-content"
+        tabIndex={0}
       >
         {children}
       </div>
