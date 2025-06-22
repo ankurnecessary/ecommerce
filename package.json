@@ -76,7 +76,8 @@
     "type-fest": "^4.41.0",
     "typescript": "^5",
     "vite-tsconfig-paths": "^5.1.4",
-    "vitest": "^3.2.3"
+    "vitest": "^3.2.3",
+    "wait-on": "^8.0.3"
   },
   "overrides": {
     "storybook": "$storybook"
