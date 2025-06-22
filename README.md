@@ -2,11 +2,16 @@
 
 Project link - [Click to see the project.](https://main.d26n91xt1o9he3.amplifyapp.com/)
 
+Storybook - [Click here to see components and their stories in Storybook.](https://21-storybook-integration--684b2dd0e00196c6b3028277.chromatic.com/)
+
+Chromatic library - [Click here to see the Chromatic library](https://www.chromatic.com/library?appId=684b2dd0e00196c6b3028277&branch=21-storybook-integration)
+
 ## Stack
 
 1. Next.js 15.
 2. Vitest for testing.
 3. TailwindCSS
+4. Storybook
 
 ## AWS
 
