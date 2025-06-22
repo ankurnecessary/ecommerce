@@ -1,3 +1,3 @@
-npm run build
-npm run lighthouse
-npx kill-port 3000
+pnpm run build
+pnpm run lighthouse
+pnpm exec kill-port 3000

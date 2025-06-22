@@ -2,7 +2,7 @@ module.exports = {
   ci: {
     collect: {
       url: ['http://localhost:3000/'],
-      startServerCommand: 'npm start',
+      startServerCommand: 'pnpm start',
       numberOfRuns: 3,
       settings: {
         throttlingMethod: 'devtools', // Use real-world throttling like DevTools
