@@ -65,6 +65,7 @@
     "husky": "^9.1.7",
     "is-ci": "^4.1.0",
     "jsdom": "^26.0.0",
+    "kill-port": "^2.0.1",
     "lint-staged": "^15.4.3",
     "playwright": "^1.53.0",
     "postcss": "^8",
