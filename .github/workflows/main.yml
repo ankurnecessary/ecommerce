@@ -13,11 +13,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up Node.js and pnpm
-        uses: pnpm/action-setup@v2
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
         with:
-          version: 8
-          run_install: true
+          node-version: '22.6.0'
+
+      - name: Install pnpm
+        run: npm install -g pnpm
 
       - name: Install Dependencies
         run: pnpm install --frozen-lockfile
@@ -48,11 +50,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up Node.js and pnpm
-        uses: pnpm/action-setup@v2
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
         with:
-          version: 8
-          run_install: true
+          node-version: '22.6.0'
+
+      - name: Install pnpm
+        run: npm install -g pnpm
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -71,11 +75,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Set up Node.js and pnpm
-        uses: pnpm/action-setup@v2
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
         with:
-          version: 8
-          run_install: true
+          node-version: '22.6.0'
+
+      - name: Install pnpm
+        run: npm install -g pnpm
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
