@@ -19,7 +19,13 @@ jobs:
           node-version: '22.6.0'
 
       - name: Install pnpm
-        run: npm install -g pnpm
+        run: |
+          npm install -g pnpm
+          pnpm setup
+          echo "$HOME/.local/share/pnpm" >> $GITHUB_PATH
+        shell: bash
+        env:
+          SHELL: /bin/bash
 
       - name: Install Dependencies
         run: pnpm install --frozen-lockfile
@@ -44,7 +50,7 @@ jobs:
   test:
     runs-on: ubuntu-latest
     container:
-      image: mcr.microsoft.com/playwright:v1.52.0-noble
+      image: mcr.microsoft.com/playwright:v1.53.1-noble
 
     steps:
       - name: Checkout code
@@ -56,7 +62,13 @@ jobs:
           node-version: '22.6.0'
 
       - name: Install pnpm
-        run: npm install -g pnpm
+        run: |
+          npm install -g pnpm
+          pnpm setup
+          echo "$HOME/.local/share/pnpm" >> $GITHUB_PATH
+        shell: bash
+        env:
+          SHELL: /bin/bash
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
@@ -81,7 +93,13 @@ jobs:
           node-version: '22.6.0'
 
       - name: Install pnpm
-        run: npm install -g pnpm
+        run: |
+          npm install -g pnpm
+          pnpm setup
+          echo "$HOME/.local/share/pnpm" >> $GITHUB_PATH
+        shell: bash
+        env:
+          SHELL: /bin/bash
 
       - name: Install dependencies
         run: pnpm install --frozen-lockfile
