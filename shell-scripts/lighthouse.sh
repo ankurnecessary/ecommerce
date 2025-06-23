@@ -1,4 +1,3 @@
-npm run lint
-npm run coverage
-npm run build
-npm run lighthouse
+pnpm run build
+pnpm run lighthouse
+pnpm exec kill-port 3000

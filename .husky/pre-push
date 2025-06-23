@@ -22,21 +22,23 @@ fi
 
 # If there are commits to push, run the commands
 echo -e "\033[44m\033[37m 🛑  Stopping server running on port 3000 🛑 \033[0m"
-npx kill-port 3000
+pnpm exec kill-port 3000
 echo -e "\n"
 echo -e "\033[44m\033[37m 🧪  Running unit tests 🧪 \033[0m"
-npm run coverage
+pnpm run coverage
 echo -e "\n"
 echo -e "\033[44m\033[37m 🏭  Preparing build 🏭 \033[0m"
-npm run build
+pnpm run build
 echo -e "\n"
 echo -e "\033[44m\033[37m 🚀  Running build 🚀 \033[0m"
-npm start & npx wait-on http://localhost:3000
+pnpm start & pnpm exec wait-on http://localhost:3000
 echo -e "\n"
 echo -e "\033[44m\033[37m 🚧  Validating HTML 🚧 \033[0m"
-npm run validate-html
+pnpm run validate-html
 echo -e "\n"
 echo -e "\033[44m\033[37m 🏗️   Building lighthouse report 🏗️  \033[0m"
-npm run lighthouse
+pnpm run lighthouse
 echo -e "\033[44m\033[37m 🛑  Stopping server running on port 3000 🛑 \033[0m"
-npx kill-port 3000
+pnpm exec kill-port 3000
+
+# [ ]: When push stops in between before freeing up port 3000 in the end, it should free up the port. We need to write code to ensure that the port is always freed up.

@@ -182,6 +182,66 @@ export const links = [
         id: '28lsjflsj',
         image: 'https://picsum.photos/id/28/55/55',
       },
+      {
+        name: 'Wallets and Belts',
+        id: '29lsjflsj',
+        image: 'https://picsum.photos/id/29/55/55',
+      },
+      {
+        name: 'Wallets and Belts',
+        id: '30lsjflsj',
+        image: 'https://picsum.photos/id/30/55/55',
+      },
+      {
+        name: 'Wallets and Belts',
+        id: '31lsjflsj',
+        image: 'https://picsum.photos/id/31/55/55',
+      },
+      {
+        name: 'Wallets and Belts',
+        id: '32lsjflsj',
+        image: 'https://picsum.photos/id/32/55/55',
+      },
+      {
+        name: 'Wallets and Belts',
+        id: '33lsjflsj',
+        image: 'https://picsum.photos/id/33/55/55',
+      },
+      {
+        name: 'Wallets and Belts',
+        id: '34lsjflsj',
+        image: 'https://picsum.photos/id/34/55/55',
+      },
+      {
+        name: 'Wallets and Belts',
+        id: '35lsjflsj',
+        image: 'https://picsum.photos/id/35/55/55',
+      },
+      {
+        name: 'Wallets and Belts',
+        id: '36lsjflsj',
+        image: 'https://picsum.photos/id/36/55/55',
+      },
+      {
+        name: 'Wallets and Belts',
+        id: '37lsjflsj',
+        image: 'https://picsum.photos/id/37/55/55',
+      },
+      {
+        name: 'Wallets and Belts',
+        id: '38lsjflsj',
+        image: 'https://picsum.photos/id/38/55/55',
+      },
+      {
+        name: 'Wallets and Belts',
+        id: '39lsjflsj',
+        image: 'https://picsum.photos/id/39/55/55',
+      },
+      {
+        name: 'Wallets and Belts',
+        id: '40lsjflsj',
+        image: 'https://picsum.photos/id/40/55/55',
+      },
     ],
   },
   {

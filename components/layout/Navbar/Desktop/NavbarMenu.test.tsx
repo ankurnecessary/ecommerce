@@ -2,7 +2,7 @@ import { describe, expect, it, Mock, vi } from 'vitest';
 import NavbarMenu from '@/components/layout/Navbar/Desktop/NavbarMenu';
 import { fireEvent, render } from '@testing-library/react';
 import * as HeaderContextModule from '@/components/layout/Header/Header.context';
-import { mockUseHeaderContext } from '@/components/layout/Header/Header.context.mock';
+import { mockUseHeaderContext } from '@/components/layout/Header/Header.context.test.mock';
 import { MenuCategory } from '../../Header/types';
 
 describe('NavbarMenu', () => {

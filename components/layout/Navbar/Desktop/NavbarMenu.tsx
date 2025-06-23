@@ -6,11 +6,10 @@ import {
   HeaderContext,
   MenuCategory,
 } from '@/components/layout/Header/types';
-import { faChevronRight } from '@fortawesome/free-solid-svg-icons';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import VerticalScrollContainer from '@/components/custom-ui/VerticalScrollContainer';
 import clsx from 'clsx';
 import NavbarSubcategories from '@/components/layout/Navbar/Desktop/NavbarSubcategories';
+import { ChevronRight } from 'lucide-react';
 
 const NavbarMenu = () => {
   const {
@@ -70,7 +69,7 @@ const NavbarMenu = () => {
     >
       <div className="w-64 flex-shrink-0">
         <VerticalScrollContainer
-          className="p-5 pl-10"
+          contentClassName="p-5 pl-10"
           scrollToElementId={verticalNavScrollToElementId}
         >
           {navLinks.map((link) => (
@@ -78,18 +77,18 @@ const NavbarMenu = () => {
             <span
               key={link.id}
               id={`vertical-${link.id}`}
-              className={clsx('flex w-full justify-between px-2 py-3 text-xs', {
-                'bg-gray-100 dark:bg-zinc-800':
-                  selectedVerticalNavLink === link.label,
-              })}
+              className={clsx(
+                'flex w-full cursor-pointer justify-between px-2 py-3 text-xs',
+                {
+                  'bg-gray-100 dark:bg-zinc-800':
+                    selectedVerticalNavLink === link.label,
+                },
+              )}
               onMouseOver={categoryMouseOverHandler(link)}
             >
               <span>{link.label}</span>
               <span>
-                <FontAwesomeIcon
-                  icon={faChevronRight}
-                  className="text-xs opacity-25"
-                />
+                <ChevronRight className="h-4 w-4 opacity-25" />
               </span>
             </span>
           ))}

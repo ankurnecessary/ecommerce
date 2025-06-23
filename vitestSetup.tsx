@@ -1,6 +1,6 @@
 import { afterEach, beforeAll, vi } from 'vitest';
 import React from 'react';
-import { mockUseHeaderContext } from '@/components/layout/Header/Header.context.mock';
+import { mockUseHeaderContext } from '@/components/layout/Header/Header.context.test.mock';
 import { cleanup } from '@testing-library/react';
 
 beforeAll(() => {

@@ -25,6 +25,7 @@ const NavbarSubcategories = ({ category }: NavbarSubcategoriesProps) => {
         data-testid="navbar-subcategories"
       >
         {subCategories.map((subCategory) => (
+          // [ ] We will eventually remove prefetch={false} when we make respective sub-category page
           <Link
             key={subCategory.id}
             href={`/${subCategory.name}`}

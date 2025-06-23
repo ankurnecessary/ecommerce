@@ -1,9 +1,10 @@
 import { vi } from 'vitest';
-import { PartialDeep } from 'type-fest';
-import { HeaderContext, MenuCategory } from '@/components/layout/Header/types';
+import {
+  HeaderContext,
+  HeaderContextOverrides,
+  MenuCategory,
+} from '@/components/layout/Header/types';
 import { merge } from 'lodash';
-
-export type HeaderContextOverrides = PartialDeep<HeaderContext>;
 
 export const mockUseHeaderContext = (
   overrides: HeaderContextOverrides = {},

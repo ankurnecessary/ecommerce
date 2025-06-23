@@ -42,3 +42,7 @@ next-env.d.ts
 
 #lighthouse
 .lighthouseci
+
+temp
+*storybook.log
+storybook-static

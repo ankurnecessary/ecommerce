@@ -1,7 +1,5 @@
 'use client';
 import React from 'react';
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faChevronDown } from '@fortawesome/free-solid-svg-icons';
 import { useHeaderContext } from '@/components/layout/Header/Header.context';
 import {
   CategoryMouseOverHandler,
@@ -12,6 +10,7 @@ import {
 import NavbarLinks from '@/components/layout/Navbar/Desktop/NavbarLinks';
 import NavbarScroller from '@/components/layout/Navbar/Desktop/NavbarScroller';
 import clsx from 'clsx';
+import { ChevronDown } from 'lucide-react';
 // [x] Check how horizontal menu nav items are getting highlighted on hover on shien.com.
 // [x]: test-case: Check how horizontal menu nav items are getting highlighted on hover on shien.com.
 // [x]: test-case: Add test cases for the navbar menu flap's category section.
@@ -82,7 +81,7 @@ const NavbarDesktop = () => {
       <div className="whitespace-nowrap">
         <span
           className={clsx(
-            "relative inline-block p-2 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-black after:transition-transform after:content-[''] dark:text-zinc-300 dark:after:bg-white",
+            "relative inline-block p-2 pb-1 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-black after:transition-transform after:content-[''] dark:text-zinc-300 dark:after:bg-white",
             {
               'bg-gray-100 after:scale-x-100 dark:bg-zinc-800':
                 selectedHorizontalNavLink === 'Categories',
@@ -91,11 +90,13 @@ const NavbarDesktop = () => {
           onMouseOver={categoryMouseOverHandler}
         >
           Categories
-          <FontAwesomeIcon
-            icon={faChevronDown}
-            className={clsx('ml-1 text-xs transition-transform duration-300', {
-              'rotate-180': selectedHorizontalNavLink === 'Categories',
-            })}
+          <ChevronDown
+            className={clsx(
+              'mb-[1px] ml-1 inline-block w-4 text-xs transition-transform duration-300',
+              {
+                'rotate-180': selectedHorizontalNavLink === 'Categories',
+              },
+            )}
           />
         </span>
       </div>

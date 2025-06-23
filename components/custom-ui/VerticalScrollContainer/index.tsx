@@ -6,11 +6,11 @@ import {
   ThumbMouseDownHandler,
 } from '@/components/custom-ui/VerticalScrollContainer/types';
 import { syncThumbPosition, updateThumbHeight } from './utils';
-import { debounce } from 'lodash';
 
 type VerticalScrollContainerProps = {
   children: React.ReactNode;
-  className?: string;
+  containerClassName?: string;
+  contentClassName?: string;
   scrollbarClassName?: string;
   thumbClassName?: string;
   scrollToElementId?: string;
@@ -18,7 +18,8 @@ type VerticalScrollContainerProps = {
 
 const VerticalScrollContainer = ({
   children,
-  className = 'w-full',
+  containerClassName,
+  contentClassName,
   scrollbarClassName = '',
   thumbClassName = '',
   scrollToElementId,
@@ -29,6 +30,7 @@ const VerticalScrollContainer = ({
   const [isDragging, setIsDragging] = useState<boolean>(false);
   const [startY, setStartY] = useState<number>(0);
   const [startTop, setStartTop] = useState<number>(0);
+  const [isOverflowing, setIsOverflowing] = useState(false);
 
   const scrollTo = (elementId: string) => {
     if (!elementId) return;
@@ -108,13 +110,19 @@ const VerticalScrollContainer = ({
     [isDragging, startY, startTop],
   );
 
-  const isContentOverflowing = () => {
+  useEffect(() => {
     const container = verticalScrollContainerRef.current;
     const content = verticalScrollContentRef.current;
-    if (!container || !content) return false;
+    const thumb = scrollbarThumbRef.current;
 
-    return content.scrollHeight > container.offsetHeight;
-  };
+    if (!container || !content) return;
+    setIsOverflowing(content.scrollHeight > container.offsetHeight);
+
+    if (!container || !content || !thumb) return;
+    updateThumbHeight(container, content, thumb);
+    syncThumbPosition(container, content, thumb);
+    scrollTo(scrollToElementId || '');
+  }, [children, scrollToElementId, isOverflowing]);
 
   useEffect(() => {
     const container = verticalScrollContainerRef.current;
@@ -122,46 +130,58 @@ const VerticalScrollContainer = ({
     const thumb = scrollbarThumbRef.current;
     if (!container || !content || !thumb) return;
 
-    scrollTo(scrollToElementId || '');
+    const update = () => {
+      setIsOverflowing(content.scrollHeight > container.offsetHeight);
+      updateThumbHeight(container, content, thumb);
+      syncThumbPosition(container, content, thumb);
+    };
 
-    updateThumbHeight(container, content, thumb);
-    syncThumbPosition(container, content, thumb);
+    const resizeObserver = new window.ResizeObserver(update);
+    resizeObserver.observe(container);
+    resizeObserver.observe(content);
 
-    // Using a debounce function to limit the number of times the updateThumbHeight function is called on resize
-    const debouncedUpdateThumbHeight = debounce(
-      updateThumbHeight.bind(null, container, content, thumb),
-      300,
-    );
+    return () => {
+      resizeObserver.disconnect();
+    };
+  }, [children]);
 
-    window.addEventListener('resize', debouncedUpdateThumbHeight);
+  useEffect(() => {
+    const container = verticalScrollContainerRef.current;
+    if (!container) return;
     container.addEventListener('mouseup', documentMouseUpHandler);
     container.addEventListener('mousemove', documentMouseMoveHandler);
     return () => {
-      window.removeEventListener('resize', debouncedUpdateThumbHeight);
       container.removeEventListener('mouseup', documentMouseUpHandler);
       container.removeEventListener('mousemove', documentMouseMoveHandler);
     };
-  }, [children, documentMouseMoveHandler, scrollToElementId]);
+  }, [documentMouseMoveHandler]);
 
   return (
     // container
     <div
       role="group"
       aria-label="Vertical Scroll Container"
-      className={clsx('group relative h-full overflow-hidden', className)}
+      className={clsx(
+        'group relative h-full overflow-hidden',
+        containerClassName,
+      )}
       ref={verticalScrollContainerRef}
     >
       {/* content */}
       <div
-        className="h-full overflow-y-auto overflow-x-hidden scrollbar-none"
+        className={clsx(
+          'h-full overflow-y-auto overflow-x-hidden scrollbar-none',
+          contentClassName,
+        )}
         ref={verticalScrollContentRef}
         onScroll={contentScrollHandler}
         data-testid="vertical-scrollable-content"
+        tabIndex={0}
       >
         {children}
       </div>
       {/* scrollbar */}
-      {isContentOverflowing() && (
+      {isOverflowing && (
         <div
           data-testid="scrollbar"
           className={clsx(
