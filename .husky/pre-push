@@ -1,3 +1,10 @@
+set -e
+
+cleanup() {
+  echo -e "\033[44m\033[37m 🛑  Cleaning up: Stopping server on port 3000 🛑 \033[0m"
+  pnpm exec kill-port 3000 || true
+}
+trap cleanup EXIT
 
 # Fetch remote refs to ensure up-to-date info
 git fetch
@@ -22,7 +29,7 @@ fi
 
 # If there are commits to push, run the commands
 echo -e "\033[44m\033[37m 🛑  Stopping server running on port 3000 🛑 \033[0m"
-pnpm exec kill-port 3000
+pnpm exec kill-port 3000 || true
 echo -e "\n"
 echo -e "\033[44m\033[37m 🧪  Running unit tests 🧪 \033[0m"
 pnpm run coverage
@@ -38,7 +45,5 @@ pnpm run validate-html
 echo -e "\n"
 echo -e "\033[44m\033[37m 🏗️   Building lighthouse report 🏗️  \033[0m"
 pnpm run lighthouse
-echo -e "\033[44m\033[37m 🛑  Stopping server running on port 3000 🛑 \033[0m"
-pnpm exec kill-port 3000
 
 # [ ]: When push stops in between before freeing up port 3000 in the end, it should free up the port. We need to write code to ensure that the port is always freed up.
