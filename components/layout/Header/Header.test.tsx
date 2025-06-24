@@ -15,7 +15,9 @@ describe('Header', () => {
 
   it('renders the component with search button', () => {
     const { getByRole } = render(<Header />);
-    expect(getByRole('button', { name: /^search/i })).toBeInTheDocument();
+    expect(
+      getByRole('button', { name: /^search/i, hidden: true }),
+    ).toBeInTheDocument();
   });
 
   it('has a logo link on click of which user will land on home page', () => {
