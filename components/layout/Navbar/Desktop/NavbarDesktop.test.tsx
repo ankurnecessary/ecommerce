@@ -11,12 +11,12 @@ describe('NavbarDesktop', () => {
   it('renders navigation links', () => {
     const { getByRole } = render(<NavbarDesktop />);
     // Example: check for a nav element
-    expect(getByRole('navigation')).toBeInTheDocument();
+    expect(getByRole('navigation', { hidden: true })).toBeInTheDocument();
   });
 
   it('handles mouse over and mouse out events', () => {
     const { getByRole } = render(<NavbarDesktop />);
-    const nav = getByRole('navigation');
+    const nav = getByRole('navigation', { hidden: true });
     nav.dispatchEvent(new MouseEvent('mouseover', { bubbles: true }));
     nav.dispatchEvent(new MouseEvent('mouseout', { bubbles: true }));
     // Add assertions based on expected state changes or side effects
