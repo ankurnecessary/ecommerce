@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { render, fireEvent, waitFor } from '@testing-library/react';
 import Header from '@/components/layout/Header';
+import styles from '@/components/layout/Navbar/Desktop/NavbarMenu.module.scss';
 
 describe('Header', () => {
   it('renders the component with text', () => {
@@ -39,9 +40,7 @@ describe('Header', () => {
 
     // Wait for the class to be applied
     await waitFor(() => {
-      expect(navbarMenu).toHaveClass(
-        'absolute z-0 h-96 w-full  transition-transform duration-300 flex',
-      );
+      expect(navbarMenu).toHaveClass(styles.navbarMenu);
     });
 
     // Trigger mouseout event
@@ -49,9 +48,7 @@ describe('Header', () => {
 
     // Wait for the class to be applied
     await waitFor(() => {
-      expect(navbarMenu).toHaveClass(
-        'absolute z-0 h-96 w-full -translate-y-full transition-transform duration-300 flex',
-      );
+      expect(navbarMenu).toHaveClass(styles['navbarMenu--invisible']);
     });
   });
 
@@ -64,16 +61,14 @@ describe('Header', () => {
     expect(navbarMenu).toBeInTheDocument();
 
     // Check if the initial class is applied
-    expect(navbarMenu).toHaveClass('-translate-y-full');
+    expect(navbarMenu).toHaveClass(styles['navbarMenu--invisible']);
 
     // Trigger mouseover event
     fireEvent.mouseOver(categoryLinks[0]);
 
     // Wait for the class to be applied
     await waitFor(() => {
-      expect(navbarMenu).toHaveClass(
-        'absolute z-0 h-96 w-full  transition-transform duration-300 flex',
-      );
+      expect(navbarMenu).toHaveClass(styles.navbarMenu);
     });
 
     // Trigger mouseout event
@@ -81,7 +76,7 @@ describe('Header', () => {
 
     // Wait for the class to be applied
     await waitFor(() => {
-      expect(navbarMenu).toHaveClass('-translate-y-full');
+      expect(navbarMenu).toHaveClass(styles['navbarMenu--invisible']);
     });
   });
 });

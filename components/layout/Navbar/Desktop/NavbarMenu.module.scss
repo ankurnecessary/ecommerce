@@ -1,0 +1,35 @@
+.navbarMenu {
+  @apply absolute z-0 flex h-96 w-full overflow-hidden bg-white transition-transform duration-300 dark:bg-zinc-700;
+
+  &--visible {
+    @apply shadow-2xl dark:shadow-zinc-500;
+  }
+
+  &--invisible {
+    @apply -translate-y-full;
+  }
+
+  &__leftCol {
+    @apply w-64 flex-shrink-0;
+  }
+
+  &__rightCol {
+    @apply flex-grow px-5;
+  }
+
+  &__categoryChevron {
+    @apply h-4 w-4 opacity-25;
+  }
+
+  &__categoryLink {
+    @apply flex w-full cursor-pointer justify-between px-2 py-3 text-xs;
+
+    &--active {
+      @apply bg-gray-100 dark:bg-zinc-800;
+    }
+  }
+
+  &__divider {
+    @apply my-5 w-[1px] bg-gray-300 dark:bg-zinc-500;
+  }
+}
