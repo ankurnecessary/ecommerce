@@ -3,6 +3,7 @@ import { useHeaderContext } from '@/components/layout/Header/Header.context';
 import { CalculateOffset } from '@/components/layout/Header/types';
 import clsx from 'clsx';
 import { ChevronRight, ChevronLeft } from 'lucide-react';
+import styles from '@/components/layout/Navbar/Desktop/NavbarScroller.module.scss';
 
 const calculateOffset: CalculateOffset =
   (direction) => (parentWidth, childWidth) => (offset) => {
@@ -82,27 +83,27 @@ const NavbarScroller = () => {
 
   return (
     <div
-      className={clsx('shadow-left flex whitespace-nowrap dark:text-zinc-300', {
+      className={clsx(styles.navbarScroller, 'shadow-left', {
         hidden: childWidth <= parentWidth,
       })}
     >
       <button
         type="button"
-        className="inline-block cursor-pointer p-1 disabled:cursor-auto disabled:opacity-25"
+        className={styles.navbarScroller__button}
         onClick={linksLeftScroller}
         disabled={navbarChildOffset == 0}
         aria-label="left scroller"
       >
-        <ChevronLeft className="h-5 w-4" />
+        <ChevronLeft className={styles.navbarScroller__cheveron} />
       </button>
       <button
         type="button"
-        className="inline-block cursor-pointer p-1 disabled:cursor-auto disabled:opacity-25"
+        className={styles.navbarScroller__button}
         onClick={linksRightScroller}
         disabled={navbarChildOffset === maxRightOffset}
         aria-label="right scroller"
       >
-        <ChevronRight className="h-5 w-4" />
+        <ChevronRight className={styles.navbarScroller__cheveron} />
       </button>
     </div>
   );
