@@ -1,0 +1,18 @@
+.navbarSubcategories {
+  @apply flex flex-wrap gap-6 py-5;
+
+  &__link {
+    @apply flex w-20 flex-col;
+    &Container {
+      @apply m-1 flex justify-center;
+    }
+  }
+
+  &__image {
+    @apply rounded-full object-cover transition-transform duration-200;
+
+    .navbarSubcategories__link:hover & {
+      @apply scale-110 [box-shadow:0_0_7px_1px_rgba(0,0,0,0.20)] dark:[box-shadow:0_0_7px_1px_rgba(255,255,255,0.20)];
+    }
+  }
+}
