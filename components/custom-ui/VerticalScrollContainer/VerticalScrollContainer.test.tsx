@@ -1,6 +1,7 @@
 import { act, fireEvent, render, screen } from '@testing-library/react';
 import { describe, expect, it, vi } from 'vitest';
 import VerticalScrollContainer from '@/components/custom-ui/VerticalScrollContainer';
+import styles from '@/components/custom-ui/VerticalScrollContainer/VerticalScrollContainer.module.scss';
 
 describe('VerticalScrollContainer', () => {
   it('should render the component', () => {
@@ -110,7 +111,9 @@ describe('VerticalScrollContainer', () => {
       </VerticalScrollContainer>,
     );
 
-    const thumb = container.querySelector('.rounded-md') as HTMLElement;
+    const thumb = container.querySelector(
+      `.${styles.verticalScrollContainer__thumb}`,
+    ) as HTMLElement;
 
     // Simulate scrolling
     scrollableContent.scrollTop = 50; // Set scrollTop to a new value
@@ -202,7 +205,9 @@ describe('VerticalScrollContainer', () => {
       </VerticalScrollContainer>,
     );
 
-    const thumb = container.querySelector('.rounded-md') as HTMLElement;
+    const thumb = container.querySelector(
+      `.${styles.verticalScrollContainer__thumb}`,
+    ) as HTMLElement;
 
     // Simulate mouse down on the thumb
     fireEvent.mouseDown(thumb, { clientY: 0 });
@@ -255,7 +260,9 @@ describe('VerticalScrollContainer', () => {
       </VerticalScrollContainer>,
     );
 
-    const thumb = container.querySelector('.rounded-md') as HTMLElement;
+    const thumb = container.querySelector(
+      `.${styles.verticalScrollContainer__thumb}`,
+    ) as HTMLElement;
 
     // Mock resize event
     fireEvent(window, new Event('resize'));
@@ -296,7 +303,9 @@ describe('VerticalScrollContainer', () => {
       </VerticalScrollContainer>,
     );
 
-    const thumb = container.querySelector('.rounded-md') as HTMLElement;
+    const thumb = container.querySelector(
+      `.${styles.verticalScrollContainer__thumb}`,
+    ) as HTMLElement;
 
     // Check initial thumb height
     const initialThumbHeight = (100 / 300) * 100; // (containerHeight / contentHeight) * containerHeight

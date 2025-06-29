@@ -5,7 +5,7 @@ import { Navbar } from '@/components/layout';
 import NavbarMenu from '@/components/layout/Navbar/Desktop/NavbarMenu';
 import { HeaderContextProvider } from '@/components/layout/Header/Header.context';
 import { Menu, Search } from 'lucide-react';
-import styles from './Header.module.scss';
+import styles from '@/components/layout/Header/Header.module.scss';
 
 const mulish = Mulish({
   subsets: ['latin'],

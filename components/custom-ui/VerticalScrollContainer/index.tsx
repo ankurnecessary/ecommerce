@@ -6,6 +6,7 @@ import {
   ThumbMouseDownHandler,
 } from '@/components/custom-ui/VerticalScrollContainer/types';
 import { syncThumbPosition, updateThumbHeight } from './utils';
+import styles from '@/components/custom-ui/VerticalScrollContainer/VerticalScrollContainer.module.scss';
 
 type VerticalScrollContainerProps = {
   children: React.ReactNode;
@@ -161,16 +162,13 @@ const VerticalScrollContainer = ({
     <div
       role="group"
       aria-label="Vertical Scroll Container"
-      className={clsx(
-        'group relative h-full overflow-hidden',
-        containerClassName,
-      )}
+      className={clsx(styles.verticalScrollContainer, containerClassName)}
       ref={verticalScrollContainerRef}
     >
       {/* content */}
       <div
         className={clsx(
-          'h-full overflow-y-auto overflow-x-hidden scrollbar-none',
+          styles.verticalScrollContainer__content,
           contentClassName,
         )}
         ref={verticalScrollContentRef}
@@ -185,7 +183,7 @@ const VerticalScrollContainer = ({
         <div
           data-testid="scrollbar"
           className={clsx(
-            'absolute right-0 top-0 h-full w-2 bg-transparent',
+            styles.verticalScrollContainer__scrollbar,
             scrollbarClassName,
           )}
           onWheel={scrollWheelHandler}
@@ -193,7 +191,7 @@ const VerticalScrollContainer = ({
           {/* thumb */}
           <div
             className={clsx(
-              'absolute top-0 min-h-5 w-full rounded-md bg-transparent group-hover:bg-gray-400 group-active:bg-gray-400',
+              styles.verticalScrollContainer__thumb,
               thumbClassName,
             )}
             ref={scrollbarThumbRef}
