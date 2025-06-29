@@ -14,7 +14,7 @@ import { ChevronDown } from 'lucide-react';
 // [x] Check how horizontal menu nav items are getting highlighted on hover on shien.com.
 // [x]: test-case: Check how horizontal menu nav items are getting highlighted on hover on shien.com.
 // [x]: test-case: Add test cases for the navbar menu flap's category section.
-// [ ]: Integrate storybook for the Navbar component and its sub-components.
+// [x]: Integrate storybook for the Navbar component and its sub-components.
 // [x] Convert navbar links into an array of objects and map through them to create the links dynamically.
 // [x] Check why scrollbar is not working in firefox.
 // [x] Check backdrop of the menubar.

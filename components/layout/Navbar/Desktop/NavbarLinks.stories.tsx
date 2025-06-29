@@ -82,4 +82,4 @@ export const Loading: Story = {
   },
 };
 
-// [ ]: Add theming in the stories of storybook
+// [x]: Add dark and light mode in the stories of storybook.
