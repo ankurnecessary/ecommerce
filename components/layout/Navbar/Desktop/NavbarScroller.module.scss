@@ -1,0 +1,11 @@
+.navbarScroller {
+  @apply flex whitespace-nowrap dark:text-zinc-300;
+
+  &__button {
+    @apply inline-block cursor-pointer p-1 disabled:cursor-auto disabled:opacity-25;
+  }
+
+  &__cheveron {
+    @apply h-5 w-4
+  }
+}

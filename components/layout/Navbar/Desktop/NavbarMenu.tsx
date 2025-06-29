@@ -10,6 +10,7 @@ import VerticalScrollContainer from '@/components/custom-ui/VerticalScrollContai
 import clsx from 'clsx';
 import NavbarSubcategories from '@/components/layout/Navbar/Desktop/NavbarSubcategories';
 import { ChevronRight } from 'lucide-react';
+import styles from '@/components/layout/Navbar/Desktop/NavbarMenu.module.scss';
 
 const NavbarMenu = () => {
   const {
@@ -57,17 +58,14 @@ const NavbarMenu = () => {
   return (
     <div
       data-testid="navbar-menu"
-      className={clsx(
-        'absolute z-0 flex h-96 w-full overflow-hidden bg-white transition-transform duration-300 dark:bg-zinc-700',
-        {
-          '-translate-y-full': !isVisible,
-          'shadow-2xl dark:shadow-zinc-500': isVisible,
-        },
-      )}
+      className={clsx(styles.navbarMenu, {
+        [styles['navbarMenu--invisible']]: !isVisible,
+        [styles['navbarMenu--visible']]: isVisible,
+      })}
       onMouseOver={menuMouseOverHandler}
       onMouseLeave={menuMouseOutHandler}
     >
-      <div className="w-64 flex-shrink-0">
+      <div className={styles.navbarMenu__leftCol}>
         <VerticalScrollContainer
           contentClassName="p-5 pl-10"
           scrollToElementId={verticalNavScrollToElementId}
@@ -77,25 +75,22 @@ const NavbarMenu = () => {
             <span
               key={link.id}
               id={`vertical-${link.id}`}
-              className={clsx(
-                'flex w-full cursor-pointer justify-between px-2 py-3 text-xs',
-                {
-                  'bg-gray-100 dark:bg-zinc-800':
-                    selectedVerticalNavLink === link.label,
-                },
-              )}
+              className={clsx(styles.navbarMenu__categoryLink, {
+                [styles['navbarMenu__categoryLink--active']]:
+                  selectedVerticalNavLink === link.label,
+              })}
               onMouseOver={categoryMouseOverHandler(link)}
             >
               <span>{link.label}</span>
               <span>
-                <ChevronRight className="h-4 w-4 opacity-25" />
+                <ChevronRight className={styles.navbarMenu__categoryChevron} />
               </span>
             </span>
           ))}
         </VerticalScrollContainer>
       </div>
-      <div className="my-5 w-[1px] bg-gray-300 dark:bg-zinc-500"></div>
-      <div className="flex-grow px-5">
+      <div className={styles.navbarMenu__divider}></div>
+      <div className={styles.navbarMenu__rightCol}>
         <NavbarSubcategories category={category} />
       </div>
     </div>

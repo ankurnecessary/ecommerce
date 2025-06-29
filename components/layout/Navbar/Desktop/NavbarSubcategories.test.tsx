@@ -1,6 +1,7 @@
 import { render } from '@testing-library/react';
 import { describe, expect, it } from 'vitest';
 import NavbarSubcategories from '@/components/layout/Navbar/Desktop/NavbarSubcategories';
+import styles from '@/components/layout/Navbar/Desktop/NavbarSubcategories.module.scss';
 
 describe('NavbarSubcategories', () => {
   it('should render loader when there are no subcategories', () => {
@@ -114,7 +115,7 @@ describe('NavbarSubcategories', () => {
       />,
     );
     const subCategoryLink = getByText('Shirt').closest('a');
-    expect(subCategoryLink).toHaveClass('group/subcat');
+    expect(subCategoryLink).toHaveClass(styles.navbarSubcategories__link);
   });
 
   it('should render vertical scroll container', () => {

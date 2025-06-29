@@ -1,0 +1,29 @@
+.navbarlinks {
+  @apply flex-grow overflow-x-hidden whitespace-nowrap;
+
+  &__container {
+    @apply inline-flex transition-transform duration-300;
+  }
+
+  &__skeleton {
+    @apply h-4 w-[550px];
+  }
+
+  &__link {
+    @apply relative inline-block p-2 dark:text-zinc-300;
+
+    &::after {
+      content: '';
+      @apply absolute bottom-0 left-0 h-[2px] w-full origin-left scale-x-0 bg-black transition-transform
+    }
+
+    &--active {
+      @apply bg-gray-100 after:scale-x-100 dark:bg-zinc-800;
+
+      &::after {
+        @apply dark:bg-white;
+      }
+    }
+  }
+
+}

@@ -11,6 +11,7 @@ import NavbarLinks from '@/components/layout/Navbar/Desktop/NavbarLinks';
 import NavbarScroller from '@/components/layout/Navbar/Desktop/NavbarScroller';
 import clsx from 'clsx';
 import { ChevronDown } from 'lucide-react';
+import styles from '@/components/layout/Navbar/Desktop/NavbarDesktop.module.scss';
 // [x] Check how horizontal menu nav items are getting highlighted on hover on shien.com.
 // [x]: test-case: Check how horizontal menu nav items are getting highlighted on hover on shien.com.
 // [x]: test-case: Add test cases for the navbar menu flap's category section.
@@ -73,30 +74,24 @@ const NavbarDesktop = () => {
 
   return (
     <nav
-      className="container mx-auto hidden w-[calc(100%-4rem)] translate-y-[1px] px-6 text-sm text-black md:flex"
+      className={styles.navbar}
       onMouseOver={navbarMouseOverHandler}
       onMouseOut={navbarMouseOutHandler}
     >
       {/* Category button */}
       <div className="whitespace-nowrap">
         <span
-          className={clsx(
-            "relative inline-block p-2 pb-1 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-black after:transition-transform after:content-[''] dark:text-zinc-300 dark:after:bg-white",
-            {
-              'bg-gray-100 after:scale-x-100 dark:bg-zinc-800':
-                selectedHorizontalNavLink === 'Categories',
-            },
-          )}
+          className={clsx(styles.navbar__button, {
+            [styles['navbar__button--selected']]:
+              selectedHorizontalNavLink === 'Categories',
+          })}
           onMouseOver={categoryMouseOverHandler}
         >
           Categories
           <ChevronDown
-            className={clsx(
-              'mb-[1px] ml-1 inline-block w-4 text-xs transition-transform duration-300',
-              {
-                'rotate-180': selectedHorizontalNavLink === 'Categories',
-              },
-            )}
+            className={clsx(styles['navbar__button-chevron'], {
+              'rotate-180': selectedHorizontalNavLink === 'Categories',
+            })}
           />
         </span>
       </div>

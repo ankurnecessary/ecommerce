@@ -1,10 +1,11 @@
 'use client';
-import VerticalScrollContainer from '@/components/custom-ui/VerticalScrollContainer';
+import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
-import React from 'react';
 import { MenuCategory } from '@/components/layout/Header/types';
 import NavbarSubcategoriesLoader from '@/components/layout/Navbar/Desktop/NavbarSubcategoriesLoader';
+import VerticalScrollContainer from '@/components/custom-ui/VerticalScrollContainer';
+import styles from '@/components/layout/Navbar/Desktop/NavbarSubcategories.module.scss';
 
 type NavbarSubcategoriesProps = {
   category: MenuCategory;
@@ -21,7 +22,7 @@ const NavbarSubcategories = ({ category }: NavbarSubcategoriesProps) => {
   return (
     <VerticalScrollContainer>
       <div
-        className="flex flex-wrap gap-6 py-5"
+        className={styles.navbarSubcategories}
         data-testid="navbar-subcategories"
       >
         {subCategories.map((subCategory) => (
@@ -29,16 +30,16 @@ const NavbarSubcategories = ({ category }: NavbarSubcategoriesProps) => {
           <Link
             key={subCategory.id}
             href={`/${subCategory.name}`}
-            className="group/subcat flex w-20 flex-col"
+            className={styles.navbarSubcategories__link}
             prefetch={false}
           >
-            <span className="m-1 flex justify-center">
+            <span className={styles.navbarSubcategories__linkContainer}>
               <Image
                 src={subCategory.image}
                 alt={subCategory.name}
                 width={55}
                 height={55}
-                className="ease rounded-full object-cover transition-transform duration-200 group-hover/subcat:scale-110 group-hover/subcat:[box-shadow:0_0_7px_1px_rgba(0,0,0,0.20)] group-hover/subcat:dark:[box-shadow:0_0_7px_1px_rgba(255,255,255,0.20)]"
+                className={styles.navbarSubcategories__image}
               />
             </span>
             <span className="w-full text-center text-xs">
