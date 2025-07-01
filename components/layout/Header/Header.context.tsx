@@ -44,8 +44,10 @@ export const headerContext = createContext<HeaderContext>({
  */
 export const HeaderContextProvider = ({
   children,
+  categories,
 }: {
   children: React.ReactNode;
+  categories: MenuCategory[];
 }) => {
   const [header, dispatchHeaderActions] = useReducer(
     headerReducer,
@@ -146,7 +148,7 @@ export const HeaderContextProvider = ({
   };
 
   const contextValue: HeaderContext = {
-    navLinks: header.navLinks,
+    navLinks: categories || header.navLinks,
     setNavLinks,
     desktop: {
       isMenuVisible: header.isMenuVisibleDsktp,

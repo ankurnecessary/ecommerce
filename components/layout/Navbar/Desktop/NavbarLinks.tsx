@@ -6,7 +6,6 @@ import {
   CategoryMouseOverHandler,
   NavbarMouseEvent,
 } from '@/components/layout/Header/types';
-import { links } from '../XnavbarLinkObj';
 import clsx from 'clsx';
 import { Skeleton } from '@/components/ui/skeleton';
 
@@ -23,7 +22,6 @@ const NavbarLinks = ({
 
   const {
     navLinks,
-    setNavLinks,
     desktop: {
       selectedHorizontalNavLink,
       navbar: { setNavbarElementsDsktp, childOffset },
@@ -34,8 +32,6 @@ const NavbarLinks = ({
     if (parentNavbarRef.current && childNavbarRef.current) {
       setNavbarElementsDsktp(parentNavbarRef.current, childNavbarRef.current);
     }
-    // [ ]: Replace "setNavLinks(links)" call with an API call to fetch the links
-    setNavLinks(links);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
