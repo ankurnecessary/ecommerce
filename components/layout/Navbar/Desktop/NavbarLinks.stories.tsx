@@ -39,7 +39,7 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     mouseOverHandler: () => () => {},
-    mouseOutHandler: () => {},
+    mouseOutHandler: () => () => {},
   },
   parameters: {
     overrides: {
@@ -73,7 +73,7 @@ export const Default: Story = {
 export const Loading: Story = {
   args: {
     mouseOverHandler: () => () => {},
-    mouseOutHandler: () => {},
+    mouseOutHandler: () => () => {},
   },
   parameters: {
     overrides: {

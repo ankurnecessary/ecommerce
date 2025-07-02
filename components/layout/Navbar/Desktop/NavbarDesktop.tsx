@@ -2,7 +2,7 @@
 import React from 'react';
 import { useHeaderContext } from '@/components/layout/Header/Header.context';
 import {
-  CategoryMouseOverHandler,
+  CategoryMouseEventHandler,
   HeaderContext,
   MenuCategory,
   NavbarMouseEvent,
@@ -38,7 +38,7 @@ const NavbarDesktop = () => {
     },
   }: HeaderContext = useHeaderContext();
 
-  const mouseOverHandler: CategoryMouseOverHandler =
+  const mouseOverHandler: CategoryMouseEventHandler =
     (category: MenuCategory): NavbarMouseEvent =>
     (e) => {
       e.stopPropagation();
@@ -50,10 +50,11 @@ const NavbarDesktop = () => {
       );
     };
 
-  const mouseOutHandler: NavbarMouseEvent = () => {
-    toggleMenu(false, {} as MenuCategory);
-    setSelectedHorizontalNavLink('');
-  };
+  const mouseOutHandler: CategoryMouseEventHandler =
+    (category: MenuCategory) => () => {
+      toggleMenu(false, category);
+      setSelectedHorizontalNavLink('');
+    };
 
   const categoryMouseOverHandler: NavbarMouseEvent = (e) => {
     e.stopPropagation();
@@ -77,7 +78,7 @@ const NavbarDesktop = () => {
             },
           )}
           onMouseOver={categoryMouseOverHandler}
-          onMouseOut={mouseOutHandler}
+          onMouseOut={mouseOutHandler(navLinks[0])}
         >
           Categories
           <ChevronDown

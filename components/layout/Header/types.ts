@@ -238,7 +238,7 @@ export type NavbarMouseEvent = (
   e: React.MouseEvent<HTMLDivElement | HTMLAnchorElement, MouseEvent>,
 ) => void;
 
-export type CategoryMouseOverHandler = (
+export type CategoryMouseEventHandler = (
   category: MenuCategory,
 ) => NavbarMouseEvent;
 

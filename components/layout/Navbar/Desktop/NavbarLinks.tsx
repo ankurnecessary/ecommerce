@@ -2,16 +2,13 @@
 import Link from 'next/link';
 import React, { useEffect, useRef } from 'react';
 import { useHeaderContext } from '@/components/layout/Header/Header.context';
-import {
-  CategoryMouseOverHandler,
-  NavbarMouseEvent,
-} from '@/components/layout/Header/types';
+import { CategoryMouseEventHandler } from '@/components/layout/Header/types';
 import clsx from 'clsx';
 import { Skeleton } from '@/components/ui/skeleton';
 
 type NavbarLinksProps = {
-  mouseOverHandler: CategoryMouseOverHandler;
-  mouseOutHandler?: NavbarMouseEvent;
+  mouseOverHandler: CategoryMouseEventHandler;
+  mouseOutHandler: CategoryMouseEventHandler;
 };
 const NavbarLinks = ({
   mouseOverHandler,
@@ -61,7 +58,7 @@ const NavbarLinks = ({
                 },
               )}
               onMouseOver={mouseOverHandler(link)}
-              onMouseOut={mouseOutHandler}
+              onMouseOut={mouseOutHandler(link)}
             >
               {link.label}
             </span>

@@ -2,7 +2,7 @@
 import React from 'react';
 import { useHeaderContext } from '@/components/layout/Header/Header.context';
 import {
-  CategoryMouseOverHandler,
+  CategoryMouseEventHandler,
   HeaderContext,
   MenuCategory,
 } from '@/components/layout/Header/types';
@@ -41,7 +41,7 @@ const NavbarMenu = () => {
     setSelectedHorizontalNavLink('');
   };
 
-  const categoryMouseOverHandler: CategoryMouseOverHandler =
+  const categoryMouseOverHandler: CategoryMouseEventHandler =
     (category: MenuCategory) => (e) => {
       e.stopPropagation();
 
