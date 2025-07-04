@@ -30,7 +30,6 @@ const NavbarDesktop = () => {
   const {
     navLinks,
     desktop: {
-      isMenuVisible,
       toggleMenu,
       selectedHorizontalNavLink,
       setSelectedHorizontalNavLink,
@@ -51,13 +50,7 @@ const NavbarDesktop = () => {
       );
     };
 
-  const navbarMouseOverHandler: NavbarMouseEvent = () => {
-    if (isMenuVisible[1]) toggleMenu(true, isMenuVisible[1]);
-    if (selectedHorizontalNavLink)
-      setSelectedHorizontalNavLink(selectedHorizontalNavLink);
-  };
-
-  const navbarMouseOutHandler: NavbarMouseEvent = () => {
+  const mouseOutHandler: NavbarMouseEvent = () => {
     toggleMenu(false, {} as MenuCategory);
     setSelectedHorizontalNavLink('');
   };
@@ -72,11 +65,7 @@ const NavbarDesktop = () => {
   };
 
   return (
-    <nav
-      className="container mx-auto hidden w-[calc(100%-4rem)] translate-y-[1px] px-6 text-sm text-black md:flex"
-      onMouseOver={navbarMouseOverHandler}
-      onMouseOut={navbarMouseOutHandler}
-    >
+    <nav className="container mx-auto hidden w-[calc(100%-4rem)] translate-y-[1px] px-6 text-sm text-black md:flex">
       {/* Category button */}
       <div className="whitespace-nowrap">
         <span
@@ -88,6 +77,7 @@ const NavbarDesktop = () => {
             },
           )}
           onMouseOver={categoryMouseOverHandler}
+          onMouseOut={mouseOutHandler}
         >
           Categories
           <ChevronDown
@@ -102,7 +92,10 @@ const NavbarDesktop = () => {
       </div>
 
       {/* horizontal links scroller */}
-      <NavbarLinks mouseOverHandler={mouseOverHandler} />
+      <NavbarLinks
+        mouseOverHandler={mouseOverHandler}
+        mouseOutHandler={mouseOutHandler}
+      />
 
       {/* Buttons to scroll links horizontally */}
       <NavbarScroller />
