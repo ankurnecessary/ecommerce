@@ -4,7 +4,7 @@ import NavbarSubcategories from '@/components/layout/Navbar/Desktop/NavbarSubcat
 
 describe('NavbarSubcategories', () => {
   it('should render loader when there are no subcategories', () => {
-    const { getByTestId } = render(
+    const { getByText } = render(
       <NavbarSubcategories
         category={{
           id: 'testId',
@@ -14,11 +14,11 @@ describe('NavbarSubcategories', () => {
         }}
       />,
     );
-    expect(getByTestId('navbar-subcategories-loader')).toBeInTheDocument();
+    expect(getByText('Sub-categories not found!')).toBeInTheDocument();
   });
 
   it('should render loader when subcategories are undefined', () => {
-    const { getByTestId } = render(
+    const { getByText } = render(
       <NavbarSubcategories
         category={{
           id: 'testId',
@@ -27,7 +27,7 @@ describe('NavbarSubcategories', () => {
         }}
       />,
     );
-    expect(getByTestId('navbar-subcategories-loader')).toBeInTheDocument();
+    expect(getByText('Sub-categories not found!')).toBeInTheDocument();
   });
 
   it('should not render loader but sub-category link(s)', () => {
