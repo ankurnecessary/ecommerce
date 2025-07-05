@@ -6,12 +6,12 @@ import NavbarSubcategory from '@/components/layout/Navbar/Desktop/NavbarSubcateg
 import clsx from 'clsx';
 
 type NavbarSubcategoriesProps = {
-  category: MenuCategory;
+  category: MenuCategory | null;
 };
 
 const NavbarSubcategories = ({ category }: NavbarSubcategoriesProps) => {
   //[ ]: Later on we will extract sub-categories of a category via a separate HTTP request
-  const subCategories = category.subcategories || [];
+  const subCategories = category?.subcategories || [];
 
   return (
     <VerticalScrollContainer>

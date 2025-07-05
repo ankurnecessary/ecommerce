@@ -38,9 +38,12 @@ const NavbarLinks = ({
       ref={parentNavbarRef}
     >
       <div
-        className={clsx('inline-flex transition-transform duration-300', {
-          'pt-3': navLinks.length === 0,
-        })}
+        className={clsx(
+          'inline-flex translate-y-1 transition-transform duration-300',
+          {
+            'pt-3': navLinks.length === 0,
+          },
+        )}
         style={{ transform: `translateX(${childOffset || 0}px)` }}
         ref={childNavbarRef}
       >

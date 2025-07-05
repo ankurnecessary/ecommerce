@@ -8,8 +8,16 @@ import {
 } from '@/components/layout/Header/types';
 import VerticalScrollContainer from '@/components/custom-ui/VerticalScrollContainer';
 import clsx from 'clsx';
-import NavbarSubcategories from '@/components/layout/Navbar/Desktop/NavbarSubcategories';
 import { ChevronRight } from 'lucide-react';
+import dynamic from 'next/dynamic';
+
+const NavbarSubcategories = dynamic(
+  () => import('@/components/layout/Navbar/Desktop/NavbarSubcategories'),
+  {
+    ssr: false,
+    loading: () => <div>Loading...</div>,
+  },
+);
 
 const NavbarMenu = () => {
   const {
@@ -32,7 +40,7 @@ const NavbarMenu = () => {
     toggleMenu(true, category);
     if (selectedVerticalNavLink && !selectedHorizontalNavLink) return;
     setSelectedHorizontalNavLink(selectedHorizontalNavLink);
-    setSelectedVerticalNavLink(category.label);
+    setSelectedVerticalNavLink(category?.label || '');
   };
 
   // Can be done by FP
@@ -96,7 +104,7 @@ const NavbarMenu = () => {
       </div>
       <div className="my-5 w-[1px] bg-gray-300 dark:bg-zinc-500"></div>
       <div className="flex-grow px-5">
-        <NavbarSubcategories category={category} />
+        {!!category && <NavbarSubcategories category={category} />}
       </div>
     </div>
   );
