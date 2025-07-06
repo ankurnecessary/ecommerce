@@ -20,7 +20,10 @@ const NavbarSubcategory = ({
       prefetch={false}
     >
       {!imageLoaded && (
-        <span className="absolute m-1 flex justify-center">
+        <span
+          data-testid="skeleton"
+          className="absolute m-1 flex justify-center"
+        >
           <Skeleton className="mx-2 h-[57px] w-[57px] rounded-full" />
         </span>
       )}

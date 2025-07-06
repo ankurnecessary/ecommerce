@@ -3,7 +3,7 @@ import { describe, expect, it } from 'vitest';
 import NavbarSubcategories from '@/components/layout/Navbar/Desktop/NavbarSubcategories';
 
 describe('NavbarSubcategories', () => {
-  it('should render loader when there are no subcategories', () => {
+  it('should render the message when there are no subcategories', () => {
     const { getByText } = render(
       <NavbarSubcategories
         category={{
@@ -17,7 +17,7 @@ describe('NavbarSubcategories', () => {
     expect(getByText('Sub-categories not found!')).toBeInTheDocument();
   });
 
-  it('should render loader when subcategories are undefined', () => {
+  it('should render the message when subcategories are undefined', () => {
     const { getByText } = render(
       <NavbarSubcategories
         category={{
@@ -30,7 +30,7 @@ describe('NavbarSubcategories', () => {
     expect(getByText('Sub-categories not found!')).toBeInTheDocument();
   });
 
-  it('should not render loader but sub-category link(s)', () => {
+  it('should not render the message but sub-category link(s)', () => {
     const { queryByTestId } = render(
       <NavbarSubcategories
         category={{
