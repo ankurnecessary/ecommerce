@@ -1,5 +1,5 @@
 import { Meta, StoryObj } from '@storybook/nextjs-vite';
-import NavbarSubcategories from './NavbarSubcategories';
+import NavbarSubcategories from '@/components/layout/Navbar/Desktop/NavbarSubcategories';
 
 const meta = {
   title: 'components/layout/Navbar/Desktop/NavbarSubcategories',

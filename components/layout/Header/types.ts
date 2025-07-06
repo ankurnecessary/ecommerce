@@ -7,7 +7,7 @@ import { PartialDeep } from 'type-fest';
  */
 export type ToggleMenu = (
   isMenuVisible: boolean,
-  menuCategory: MenuCategory,
+  menuCategory: MenuCategory | null,
 ) => void;
 
 export type HeaderInitialState = {
@@ -23,7 +23,7 @@ export type HeaderInitialState = {
    * Indicates whether the desktop menu is visible and the current menu category.
    * The first element is a boolean for visibility, and the second is the menu category.
    */
-  isMenuVisibleDsktp: [boolean, MenuCategory];
+  isMenuVisibleDsktp: [boolean, MenuCategory | null];
   /**
    * The current menu category selected in the horizontal category navigation in header.
    */
@@ -152,7 +152,7 @@ export type HeaderContext = {
      * Indicates whether the desktop menu is visible and the current menu category.
      * The first element is a boolean for visibility, and the second is the menu category.
      */
-    isMenuVisible: [boolean, MenuCategory];
+    isMenuVisible: [boolean, MenuCategory | null];
     /**
      * The current menu category selected in the horizontal category navigation in header.
      */
@@ -238,7 +238,7 @@ export type NavbarMouseEvent = (
   e: React.MouseEvent<HTMLDivElement | HTMLAnchorElement, MouseEvent>,
 ) => void;
 
-export type CategoryMouseOverHandler = (
+export type CategoryMouseEventHandler = (
   category: MenuCategory,
 ) => NavbarMouseEvent;
 

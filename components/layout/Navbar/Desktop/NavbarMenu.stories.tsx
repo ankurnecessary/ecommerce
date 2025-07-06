@@ -1,7 +1,7 @@
 import NavbarMenu from '@/components/layout/Navbar/Desktop/NavbarMenu';
 import { Meta, StoryObj } from '@storybook/nextjs-vite';
 import MockHeaderContextProvider from '@/components/layout/Header/Header.context.stories.mock';
-import { links } from '../XnavbarLinkObj';
+import { links } from '@/components/layout/Navbar/XnavbarLinkObj';
 
 const meta = {
   title: 'components/layout/Navbar/Desktop/NavbarMenu',

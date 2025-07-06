@@ -2,7 +2,7 @@
 import React from 'react';
 import { useHeaderContext } from '@/components/layout/Header/Header.context';
 import {
-  CategoryMouseOverHandler,
+  CategoryMouseEventHandler,
   HeaderContext,
   MenuCategory,
   NavbarMouseEvent,
@@ -14,7 +14,7 @@ import { ChevronDown } from 'lucide-react';
 // [x] Check how horizontal menu nav items are getting highlighted on hover on shien.com.
 // [x]: test-case: Check how horizontal menu nav items are getting highlighted on hover on shien.com.
 // [x]: test-case: Add test cases for the navbar menu flap's category section.
-// [ ]: Integrate storybook for the Navbar component and its sub-components.
+// [x]: Integrate storybook for the Navbar component and its sub-components.
 // [x] Convert navbar links into an array of objects and map through them to create the links dynamically.
 // [x] Check why scrollbar is not working in firefox.
 // [x] Check backdrop of the menubar.
@@ -30,7 +30,6 @@ const NavbarDesktop = () => {
   const {
     navLinks,
     desktop: {
-      isMenuVisible,
       toggleMenu,
       selectedHorizontalNavLink,
       setSelectedHorizontalNavLink,
@@ -39,7 +38,7 @@ const NavbarDesktop = () => {
     },
   }: HeaderContext = useHeaderContext();
 
-  const mouseOverHandler: CategoryMouseOverHandler =
+  const mouseOverHandler: CategoryMouseEventHandler =
     (category: MenuCategory): NavbarMouseEvent =>
     (e) => {
       e.stopPropagation();
@@ -51,16 +50,11 @@ const NavbarDesktop = () => {
       );
     };
 
-  const navbarMouseOverHandler: NavbarMouseEvent = () => {
-    if (isMenuVisible[1]) toggleMenu(true, isMenuVisible[1]);
-    if (selectedHorizontalNavLink)
-      setSelectedHorizontalNavLink(selectedHorizontalNavLink);
-  };
-
-  const navbarMouseOutHandler: NavbarMouseEvent = () => {
-    toggleMenu(false, {} as MenuCategory);
-    setSelectedHorizontalNavLink('');
-  };
+  const mouseOutHandler: CategoryMouseEventHandler =
+    (category: MenuCategory) => () => {
+      toggleMenu(false, category);
+      setSelectedHorizontalNavLink('');
+    };
 
   const categoryMouseOverHandler: NavbarMouseEvent = (e) => {
     e.stopPropagation();
@@ -72,11 +66,7 @@ const NavbarDesktop = () => {
   };
 
   return (
-    <nav
-      className="container mx-auto hidden w-[calc(100%-4rem)] translate-y-[1px] px-6 text-sm text-black md:flex"
-      onMouseOver={navbarMouseOverHandler}
-      onMouseOut={navbarMouseOutHandler}
-    >
+    <nav className="container mx-auto hidden w-[calc(100%-4rem)] translate-y-[1px] px-6 text-sm text-black md:flex">
       {/* Category button */}
       <div className="whitespace-nowrap">
         <span
@@ -88,6 +78,7 @@ const NavbarDesktop = () => {
             },
           )}
           onMouseOver={categoryMouseOverHandler}
+          onMouseOut={mouseOutHandler(navLinks[0])}
         >
           Categories
           <ChevronDown
@@ -102,7 +93,10 @@ const NavbarDesktop = () => {
       </div>
 
       {/* horizontal links scroller */}
-      <NavbarLinks mouseOverHandler={mouseOverHandler} />
+      <NavbarLinks
+        mouseOverHandler={mouseOverHandler}
+        mouseOutHandler={mouseOutHandler}
+      />
 
       {/* Buttons to scroll links horizontally */}
       <NavbarScroller />

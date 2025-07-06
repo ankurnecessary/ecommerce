@@ -2,17 +2,13 @@
 import Link from 'next/link';
 import React, { useEffect, useRef } from 'react';
 import { useHeaderContext } from '@/components/layout/Header/Header.context';
-import {
-  CategoryMouseOverHandler,
-  NavbarMouseEvent,
-} from '@/components/layout/Header/types';
-import { links } from '../XnavbarLinkObj';
+import { CategoryMouseEventHandler } from '@/components/layout/Header/types';
 import clsx from 'clsx';
 import { Skeleton } from '@/components/ui/skeleton';
 
 type NavbarLinksProps = {
-  mouseOverHandler: CategoryMouseOverHandler;
-  mouseOutHandler?: NavbarMouseEvent;
+  mouseOverHandler: CategoryMouseEventHandler;
+  mouseOutHandler: CategoryMouseEventHandler;
 };
 const NavbarLinks = ({
   mouseOverHandler,
@@ -23,7 +19,6 @@ const NavbarLinks = ({
 
   const {
     navLinks,
-    setNavLinks,
     desktop: {
       selectedHorizontalNavLink,
       navbar: { setNavbarElementsDsktp, childOffset },
@@ -34,8 +29,6 @@ const NavbarLinks = ({
     if (parentNavbarRef.current && childNavbarRef.current) {
       setNavbarElementsDsktp(parentNavbarRef.current, childNavbarRef.current);
     }
-    // [ ]: Replace "setNavLinks(links)" call with an API call to fetch the links
-    setNavLinks(links);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -45,9 +38,12 @@ const NavbarLinks = ({
       ref={parentNavbarRef}
     >
       <div
-        className={clsx('inline-flex transition-transform duration-300', {
-          'pt-3': navLinks.length === 0,
-        })}
+        className={clsx(
+          'inline-flex translate-y-1 transition-transform duration-300',
+          {
+            'pt-3': navLinks.length === 0,
+          },
+        )}
         style={{ transform: `translateX(${childOffset || 0}px)` }}
         ref={childNavbarRef}
       >
@@ -65,7 +61,7 @@ const NavbarLinks = ({
                 },
               )}
               onMouseOver={mouseOverHandler(link)}
-              onMouseOut={mouseOutHandler}
+              onMouseOut={mouseOutHandler(link)}
             >
               {link.label}
             </span>

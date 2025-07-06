@@ -1,3 +1,4 @@
+'use client';
 import React, { useEffect, useState } from 'react';
 import { useHeaderContext } from '@/components/layout/Header/Header.context';
 import { CalculateOffset } from '@/components/layout/Header/types';

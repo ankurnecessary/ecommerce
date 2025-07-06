@@ -5,14 +5,17 @@ import { Navbar } from '@/components/layout';
 import NavbarMenu from '@/components/layout/Navbar/Desktop/NavbarMenu';
 import { HeaderContextProvider } from '@/components/layout/Header/Header.context';
 import { Menu, Search } from 'lucide-react';
-
+import { links } from '@/components/layout/Navbar/XnavbarLinkObj';
 const mulish = Mulish({
   subsets: ['latin'],
 });
 
 const Header = () => {
+  // [ ]: Replace "links" with an API call to fetch the links
+  // const links = await fetchLinksFromAPI();
+  // [ ]: [navlinks] [categories] [sub-categories] Use No-SQL DB to store the links data. This will increase the fetching speed. Whenever we update categories or thier subcategories in SQL DB, a new object will be created in No-SQL DB with the updated data. This will help us to fetch the data faster.
   return (
-    <HeaderContextProvider>
+    <HeaderContextProvider categories={links}>
       <header className="relative z-[1] border-b border-black bg-white md:border-gray-300 dark:border-zinc-800 dark:bg-zinc-700">
         <div className="relative flex items-center justify-between md:container md:mx-auto md:py-5">
           {/* Logo container */}
