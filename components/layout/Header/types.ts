@@ -45,6 +45,10 @@ export type HeaderInitialState = {
    * The ID of the element to scroll to in the vertical navbar menu navigation.
    */
   verticalNavScrollToElementId: string;
+  /**
+   * Indicates whether the mobile menu is visible.
+   */
+  isMenuVisibleMobile: boolean;
 };
 
 /**
@@ -79,7 +83,8 @@ export type HeaderReducer = (
       | `SET_NAV_LINKS`
       | 'SET_SELECTED_HORIZONTAL_NAV_LINK'
       | 'SET_SELECTED_VERTICAL_NAV_LINK'
-      | 'SET_VERTICAL_NAV_SCROLL_TO_ELEMENT_ID';
+      | 'SET_VERTICAL_NAV_SCROLL_TO_ELEMENT_ID'
+      | 'TOGGLE_MOBILE_MENU';
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     [key: string]: any;
   },
@@ -218,8 +223,25 @@ export type HeaderContext = {
   /**
    * Mobile-specific properties and methods (if any).
    */
-  mobile: null;
+  mobile: {
+    /**
+     * Indicates whether the mobile menu is visible.
+     */
+    isMenuVisible: boolean;
+    /**
+     * Toggles the visibility of the desktop navbar menu.
+     * @param isMenuVisible - Whether the menu should be visible.
+     * @param menuCategory - The category of the menu being toggled.
+     */
+    toggleMenu: ToggleMobileMenu;
+  };
 };
+
+/**
+ * A function that toggles the visibility of the mobile menu.
+ * @param isMenuVisible - Whether the menu should be visible.
+ */
+export type ToggleMobileMenu = (isMenuVisible: boolean) => void;
 
 /**
  * A function that calculates the offset for the navbar based on the direction.

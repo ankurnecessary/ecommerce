@@ -33,7 +33,10 @@ export const headerContext = createContext<HeaderContext>({
       setNavbarOffsetDsktp() {},
     },
   },
-  mobile: null,
+  mobile: {
+    isMenuVisible: false,
+    toggleMenu() {},
+  },
 });
 
 /**
@@ -147,6 +150,13 @@ export const HeaderContextProvider = ({
     });
   };
 
+  const toggleMobileMenu = (isMenuVisible: boolean) => {
+    dispatchHeaderActions({
+      type: 'TOGGLE_MOBILE_MENU',
+      isMenuVisible,
+    });
+  };
+
   const contextValue: HeaderContext = {
     navLinks: categories || header.navLinks,
     setNavLinks,
@@ -167,7 +177,10 @@ export const HeaderContextProvider = ({
         setNavbarOffsetDsktp,
       },
     },
-    mobile: null,
+    mobile: {
+      isMenuVisible: header.isMenuVisibleMobile,
+      toggleMenu: toggleMobileMenu,
+    },
   };
 
   return (
