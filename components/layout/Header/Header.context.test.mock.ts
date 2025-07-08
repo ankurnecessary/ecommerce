@@ -29,7 +29,10 @@ export const mockUseHeaderContext = (
         setNavbarOffsetDsktp: vi.fn(),
       },
     },
-    mobile: null,
+    mobile: {
+      isMenuVisible: false,
+      toggleMenu: vi.fn(),
+    },
   };
   return merge({}, defaultContext, overrides);
 };
