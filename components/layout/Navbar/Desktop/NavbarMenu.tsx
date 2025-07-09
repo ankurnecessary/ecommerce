@@ -10,6 +10,7 @@ import VerticalScrollContainer from '@/components/custom-ui/VerticalScrollContai
 import clsx from 'clsx';
 import { ChevronRight } from 'lucide-react';
 import dynamic from 'next/dynamic';
+import { useMediaQuery } from '@/lib/hooks/useMediaQuery';
 
 const NavbarSubcategories = dynamic(
   () => import('@/components/layout/Navbar/Desktop/NavbarSubcategories'),
@@ -33,6 +34,10 @@ const NavbarMenu = () => {
       setVerticalNavScrollToElementId,
     },
   }: HeaderContext = useHeaderContext();
+
+  // Rendering this component only on desktop devices
+  const isDesktop = useMediaQuery('(min-width: 768px)');
+  if (!isDesktop) return null;
 
   const [isVisible, category] = isMenuVisible;
 
