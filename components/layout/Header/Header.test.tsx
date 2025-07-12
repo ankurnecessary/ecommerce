@@ -25,6 +25,7 @@ describe('Header', () => {
   });
 
   it('has a "Categories" link. On it\'s "mouseOver" and "mouseOut" events "<NavbarMenu />" will toggle', async () => {
+    globalThis.matchMediaMock.useMediaQuery('(min-width: 768px)');
     const { getByText, getByTestId } = render(<Header />);
     const categoriesLink = getByText('Categories');
     expect(categoriesLink).toBeInTheDocument();
@@ -54,6 +55,7 @@ describe('Header', () => {
   });
 
   it('has category links. On it\'s "mouseOver" and "mouseOut" events "<NavbarMenu />" will toggle', async () => {
+    globalThis.matchMediaMock.useMediaQuery('(min-width: 768px)');
     const { getByTestId, getAllByRole } = render(<Header />);
     const categoryLinks = getAllByRole('link');
     expect(categoryLinks.length).toBeGreaterThan(0);
