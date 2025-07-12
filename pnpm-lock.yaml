@@ -168,6 +168,9 @@ importers:
       vitest:
         specifier: ^3.2.3
         version: 3.2.4(@types/node@20.19.1)(@vitest/browser@3.2.4)(jiti@1.21.7)(jsdom@26.1.0)(yaml@2.8.0)
+      vitest-matchmedia-mock:
+        specifier: ^2.0.3
+        version: 2.0.3(@types/node@20.19.1)(@vitest/browser@3.2.4)(jiti@1.21.7)(jsdom@26.1.0)(yaml@2.8.0)
       wait-on:
         specifier: ^8.0.3
         version: 8.0.3
@@ -4410,6 +4413,9 @@ packages:
         optional: true
       yaml:
         optional: true
+
+  vitest-matchmedia-mock@2.0.3:
+    resolution: {integrity: sha512-Oa2fI+dfaqcs67D08PqBL0D+Ymm4MYGZn1WimUgfZGDxp9/eb8gl6xqPmhjyrV3p9KdhKj2tp6E1b4YWiSg1lw==}
 
   vitest@3.2.4:
     resolution: {integrity: sha512-LUCP5ev3GURDysTWiP47wRRUpLKMOfPh+yKTx3kVIEiu5KOMeqzpnYNsKyOoVrULivR8tLcks4+lga33Whn90A==}
@@ -9188,6 +9194,30 @@ snapshots:
       fsevents: 2.3.3
       jiti: 1.21.7
       yaml: 2.8.0
+
+  vitest-matchmedia-mock@2.0.3(@types/node@20.19.1)(@vitest/browser@3.2.4)(jiti@1.21.7)(jsdom@26.1.0)(yaml@2.8.0):
+    dependencies:
+      vitest: 3.2.4(@types/node@20.19.1)(@vitest/browser@3.2.4)(jiti@1.21.7)(jsdom@26.1.0)(yaml@2.8.0)
+    transitivePeerDependencies:
+      - '@edge-runtime/vm'
+      - '@types/debug'
+      - '@types/node'
+      - '@vitest/browser'
+      - '@vitest/ui'
+      - happy-dom
+      - jiti
+      - jsdom
+      - less
+      - lightningcss
+      - msw
+      - sass
+      - sass-embedded
+      - stylus
+      - sugarss
+      - supports-color
+      - terser
+      - tsx
+      - yaml
 
   vitest@3.2.4(@types/node@20.19.1)(@vitest/browser@3.2.4)(jiti@1.21.7)(jsdom@26.1.0)(yaml@2.8.0):
     dependencies:
