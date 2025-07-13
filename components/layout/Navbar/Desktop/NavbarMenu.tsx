@@ -45,7 +45,7 @@ const NavbarMenu = () => {
     toggleMenu(true, category);
     if (selectedVerticalNavLink && !selectedHorizontalNavLink) return;
     setSelectedHorizontalNavLink(selectedHorizontalNavLink);
-    setSelectedVerticalNavLink(category?.label || '');
+    setSelectedVerticalNavLink(category?.name || '');
   };
 
   // Can be done by FP
@@ -94,12 +94,12 @@ const NavbarMenu = () => {
                 'flex w-full cursor-pointer justify-between px-2 py-3 text-xs',
                 {
                   'bg-gray-100 dark:bg-zinc-800':
-                    selectedVerticalNavLink === link.label,
+                    selectedVerticalNavLink === link.name,
                 },
               )}
               onMouseOver={categoryMouseOverHandler(link)}
             >
-              <span>{link.label}</span>
+              <span>{link.name}</span>
               <span>
                 <ChevronRight className="h-4 w-4 opacity-25" />
               </span>

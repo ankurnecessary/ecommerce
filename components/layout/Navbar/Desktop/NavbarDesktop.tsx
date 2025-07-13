@@ -48,8 +48,8 @@ const NavbarDesktop = () => {
     (e) => {
       e.stopPropagation();
       toggleMenu(true, category);
-      setSelectedHorizontalNavLink(category.label || '');
-      setSelectedVerticalNavLink(category.label || '');
+      setSelectedHorizontalNavLink(category.name || '');
+      setSelectedVerticalNavLink(category.name || '');
       setVerticalNavScrollToElementId(
         category.id ? `vertical-${category.id}` : '',
       );
@@ -66,7 +66,7 @@ const NavbarDesktop = () => {
     const link = e.target as HTMLAnchorElement;
     toggleMenu(true, navLinks[0]);
     setSelectedHorizontalNavLink(link.textContent || '');
-    setSelectedVerticalNavLink(navLinks[0].label || '');
+    setSelectedVerticalNavLink(navLinks[0].name || '');
     setVerticalNavScrollToElementId(`vertical-${navLinks[0].id}` || '');
   };
 

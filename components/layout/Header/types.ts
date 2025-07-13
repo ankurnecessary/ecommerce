@@ -105,7 +105,11 @@ export type MenuSubCategory = {
   /**
    * URL of the image that will be used for the sub-category in menu
    */
-  image: string;
+  imagePath: string;
+  /**
+   * link to navigate to the sub-category page
+   */
+  url: string;
 };
 
 /**
@@ -119,11 +123,11 @@ export type MenuCategory = {
   /**
    * URL of the category page
    */
-  href: string;
+  url: string;
   /**
    * Label of the category
    */
-  label: string;
+  name: string;
   /**
    * Collection of sub-categories in a category
    */

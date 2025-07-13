@@ -34,7 +34,7 @@ describe('HeaderContext', () => {
 
     expect(result.current.navLinks.length).toEqual(1);
     expect(result.current.navLinks).toEqual([
-      { id: 'fkjffh1', href: '/newIn', label: 'New In' },
+      { id: 'fkjffh1', url: '/newIn', name: 'New In' },
     ]);
     expect(typeof result.current.setNavLinks).toBe('function');
     expect(result.current.desktop.isMenuVisible).toEqual([false, {}]);
@@ -70,8 +70,8 @@ describe('HeaderContext', () => {
     });
 
     const newLinks: MenuCategory[] = [
-      { id: 'abc', href: '/abc', label: 'ABC' },
-      { id: 'xyz', href: '/xyz', label: 'XYZ' },
+      { id: 'abc', url: '/abc', name: 'ABC' },
+      { id: 'xyz', url: '/xyz', name: 'XYZ' },
     ];
 
     // Update navLinks

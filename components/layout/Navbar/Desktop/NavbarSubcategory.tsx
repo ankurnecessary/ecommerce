@@ -15,7 +15,7 @@ const NavbarSubcategory = ({
     // [ ] We will eventually remove prefetch={false} when we make respective sub-category page
     <Link
       key={subCategory.id}
-      href={`/${subCategory.name}`}
+      href={subCategory.url}
       className="group/subcat relative flex w-20 flex-col"
       prefetch={false}
     >
@@ -29,7 +29,7 @@ const NavbarSubcategory = ({
       )}
       <span className="m-1 flex justify-center">
         <Image
-          src={subCategory.image}
+          src={subCategory.imagePath}
           alt={subCategory.name}
           width={55}
           height={55}

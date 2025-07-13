@@ -9,8 +9,8 @@ describe('NavbarLinks', () => {
     (HeaderContextModule.useHeaderContext as Mock).mockReturnValue(
       mockUseHeaderContext({
         navLinks: [
-          { id: 'fkjffh1', href: '/newIn', label: 'New In' },
-          { id: 'fkjffh2', href: '/sale', label: 'Sale' },
+          { id: 'fkjffh1', url: '/newIn', name: 'New In' },
+          { id: 'fkjffh2', url: '/sale', name: 'Sale' },
         ],
       }),
     );
@@ -26,8 +26,8 @@ describe('NavbarLinks', () => {
     (HeaderContextModule.useHeaderContext as Mock).mockReturnValue(
       mockUseHeaderContext({
         navLinks: [
-          { id: 'fkjffh1', href: '/newIn', label: 'New In' },
-          { id: 'fkjffh2', href: '/sale', label: 'Sale' },
+          { id: 'fkjffh1', url: '/newIn', name: 'New In' },
+          { id: 'fkjffh2', url: '/sale', name: 'Sale' },
         ],
       }),
     );
@@ -43,7 +43,7 @@ describe('NavbarLinks', () => {
     const mouseOverHandler = vi.fn();
     (HeaderContextModule.useHeaderContext as Mock).mockReturnValue(
       mockUseHeaderContext({
-        navLinks: [{ id: 'fkjffh1', href: '/newIn', label: 'New In' }],
+        navLinks: [{ id: 'fkjffh1', url: '/newIn', name: 'New In' }],
       }),
     );
 
@@ -63,7 +63,7 @@ describe('NavbarLinks', () => {
     const mouseOutHandler = vi.fn();
     (HeaderContextModule.useHeaderContext as Mock).mockReturnValue(
       mockUseHeaderContext({
-        navLinks: [{ id: 'fkjffh1', href: '/newIn', label: 'New In' }],
+        navLinks: [{ id: 'fkjffh1', url: '/newIn', name: 'New In' }],
       }),
     );
 

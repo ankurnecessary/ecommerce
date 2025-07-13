@@ -25,7 +25,7 @@ describe('NavbarMenu', () => {
         desktop: {
           isMenuVisible: [
             true,
-            { id: '1', label: 'Category1', href: '/category1' },
+            { id: '1', name: 'Category1', url: '/category1' },
           ],
         },
       }),
@@ -69,12 +69,12 @@ describe('NavbarMenu', () => {
 
     (HeaderContextModule.useHeaderContext as Mock).mockReturnValue(
       mockUseHeaderContext({
-        navLinks: [{ id: '1', label: 'Category', href: '/category' }],
+        navLinks: [{ id: '1', name: 'Category', url: '/category' }],
         desktop: {
           setSelectedHorizontalNavLink: setSelectedHorizontalNavLinkMock,
           isMenuVisible: [
             true,
-            { id: '1', label: 'Category', href: '/category' },
+            { id: '1', name: 'Category', url: '/category' },
           ],
           toggleMenu: toggleMenuMock,
           setSelectedVerticalNavLink: setSelectedVerticalNavLinkMock,
@@ -93,8 +93,8 @@ describe('NavbarMenu', () => {
 
     expect(toggleMenuMock).toHaveBeenCalledWith(true, {
       id: '1',
-      label: 'Category',
-      href: '/category',
+      name: 'Category',
+      url: '/category',
     });
     expect(setSelectedVerticalNavLinkMock).toHaveBeenCalledWith('Category');
     expect(setVerticalNavScrollToElementIdMock).toHaveBeenCalledWith('');
@@ -104,11 +104,11 @@ describe('NavbarMenu', () => {
     globalThis.matchMediaMock.useMediaQuery('(min-width: 768px)');
     (HeaderContextModule.useHeaderContext as Mock).mockReturnValue(
       mockUseHeaderContext({
-        navLinks: [{ id: '1', label: 'Category', href: '/category' }],
+        navLinks: [{ id: '1', name: 'Category', url: '/category' }],
         desktop: {
           isMenuVisible: [
             true,
-            { id: '1', label: 'Category', href: '/category' },
+            { id: '1', name: 'Category', url: '/category' },
           ],
           verticalNavScrollToElementId: '1',
         },
@@ -132,13 +132,13 @@ describe('NavbarMenu', () => {
     (HeaderContextModule.useHeaderContext as Mock).mockReturnValue(
       mockUseHeaderContext({
         navLinks: [
-          { id: '1', label: 'Category1', href: '/category1' },
-          { id: '2', label: 'Category2', href: '/category2' },
+          { id: '1', name: 'Category1', url: '/category1' },
+          { id: '2', name: 'Category2', url: '/category2' },
         ],
         desktop: {
           isMenuVisible: [
             true,
-            { id: '1', label: 'Category1', href: '/category1' },
+            { id: '1', name: 'Category1', url: '/category1' },
           ],
           selectedVerticalNavLink: 'Category1', // Initially set to 'Category1'
           setSelectedVerticalNavLink: setSelectedVerticalNavLinkMock,
@@ -163,13 +163,13 @@ describe('NavbarMenu', () => {
     (HeaderContextModule.useHeaderContext as Mock).mockReturnValue(
       mockUseHeaderContext({
         navLinks: [
-          { id: '1', label: 'Category1', href: '/category1' },
-          { id: '2', label: 'Category2', href: '/category2' },
+          { id: '1', name: 'Category1', url: '/category1' },
+          { id: '2', name: 'Category2', url: '/category2' },
         ],
         desktop: {
           isMenuVisible: [
             true,
-            { id: '2', label: 'Category2', href: '/category2' },
+            { id: '2', name: 'Category2', url: '/category2' },
           ], // Update to 'Category2'
           selectedVerticalNavLink: 'Category2', // Update to 'Category2'
           setSelectedVerticalNavLink: setSelectedVerticalNavLinkMock,

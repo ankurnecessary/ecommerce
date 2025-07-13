@@ -18,7 +18,8 @@ export const Default: Story = {
     subCategory: {
       name: 'Shirt',
       id: '1jljlk',
-      image: 'https://picsum.photos/id/1/55/55',
+      url: '/Shirt',
+      imagePath: 'https://picsum.photos/id/1/55/55',
     },
   },
 };
