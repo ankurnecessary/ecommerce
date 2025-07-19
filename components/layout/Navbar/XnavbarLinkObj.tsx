@@ -55,14 +55,14 @@ export const links = [
     name: 'Sale',
     subcategories: [
       {
-        name: 'Shirt',
+        name: 'Shirt on sale',
         id: '1jljlk',
         url: '/Shirt',
         imagePath: 'https://picsum.photos/id/1/55/55',
       },
       {
         id: '2sdhfskdhfs',
-        name: 'T-Shirt',
+        name: 'T-Shirt on sale',
         url: '/2sdhfskdhfs',
         imagePath: 'https://picsum.photos/id/2/55/55',
       },
@@ -294,50 +294,50 @@ export const links = [
     id: 'fkjffh3',
     url: '/womenClothing',
     name: 'Women Clothing',
-    subcategories: [
-      {
-        name: 'Shirt',
-        id: '1jljlk',
-        url: '/Shirt',
-        imagePath: 'https://picsum.photos/id/1/55/55',
-      },
-      {
-        id: '2sdhfskdhfs',
-        name: 'T-Shirt',
-        url: '/2sdhfskdhfs',
-        imagePath: 'https://picsum.photos/id/2/55/55',
-      },
-      {
-        name: 'Pullovers',
-        id: '3ljfdsjfpoit',
-        url: '/Pullovers',
-        imagePath: 'https://picsum.photos/id/3/55/55',
-      },
-      {
-        name: 'Hoodies',
-        id: '4jldsjxmv',
-        url: '/Hoodies',
-        imagePath: 'https://picsum.photos/id/4/55/55',
-      },
-      {
-        name: 'Pants',
-        id: '5mxcnvlsd',
-        url: '/Pants',
-        imagePath: 'https://picsum.photos/id/5/55/55',
-      },
-      {
-        name: 'Socks',
-        id: '6sflskfj',
-        url: '/Socks',
-        imagePath: 'https://picsum.photos/id/6/55/55',
-      },
-      {
-        name: 'Watches',
-        id: '7lsjflsj',
-        url: '/Watches',
-        imagePath: 'https://picsum.photos/id/7/55/55',
-      },
-    ],
+    // subcategories: [
+    //   {
+    //     name: 'Shirt',
+    //     id: '1jljlk',
+    //     url: '/Shirt',
+    //     imagePath: 'https://picsum.photos/id/1/55/55',
+    //   },
+    //   {
+    //     id: '2sdhfskdhfs',
+    //     name: 'T-Shirt',
+    //     url: '/2sdhfskdhfs',
+    //     imagePath: 'https://picsum.photos/id/2/55/55',
+    //   },
+    //   {
+    //     name: 'Pullovers',
+    //     id: '3ljfdsjfpoit',
+    //     url: '/Pullovers',
+    //     imagePath: 'https://picsum.photos/id/3/55/55',
+    //   },
+    //   {
+    //     name: 'Hoodies',
+    //     id: '4jldsjxmv',
+    //     url: '/Hoodies',
+    //     imagePath: 'https://picsum.photos/id/4/55/55',
+    //   },
+    //   {
+    //     name: 'Pants',
+    //     id: '5mxcnvlsd',
+    //     url: '/Pants',
+    //     imagePath: 'https://picsum.photos/id/5/55/55',
+    //   },
+    //   {
+    //     name: 'Socks',
+    //     id: '6sflskfj',
+    //     url: '/Socks',
+    //     imagePath: 'https://picsum.photos/id/6/55/55',
+    //   },
+    //   {
+    //     name: 'Watches',
+    //     id: '7lsjflsj',
+    //     url: '/Watches',
+    //     imagePath: 'https://picsum.photos/id/7/55/55',
+    //   },
+    // ],
   },
   {
     id: 'fkjffh4',
