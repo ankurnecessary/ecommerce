@@ -8,8 +8,23 @@ import {
 import { ChevronLeft, X } from 'lucide-react';
 import { links } from '@/components/layout/Navbar/XnavbarLinkObj';
 import clsx from 'clsx';
-import NavbarMobileMenu from './NavbarMobileMenu';
-import NavbarMobileSubmenu from './NavbarMobileSubmenu';
+import dynamic from 'next/dynamic';
+
+const NavbarMobileMenu = dynamic(
+  () => import('@/components/layout/Navbar/Mobile/NavbarMobileMenu'),
+  {
+    ssr: false,
+    loading: () => <div className="p-2">Loading...</div>,
+  },
+);
+
+const NavbarMobileSubmenu = dynamic(
+  () => import('@/components/layout/Navbar/Mobile/NavbarMobileSubmenu'),
+  {
+    ssr: false,
+    loading: () => <div className="p-2">Loading...</div>,
+  },
+);
 
 const NavbarMobile = () => {
   const [isSubMenuVisible, setIsSubMenuVisible] = useState<boolean>(false);
@@ -52,11 +67,13 @@ const NavbarMobile = () => {
 
         {/* START: Main menu links */}
         <div className="mt-9 h-full overflow-auto">
-          <NavbarMobileMenu
-            links={links}
-            setIsSubMenuVisible={setIsSubMenuVisible}
-            setSubCategories={setSubCategories}
-          />
+          {isMenuVisible && (
+            <NavbarMobileMenu
+              links={links}
+              setIsSubMenuVisible={setIsSubMenuVisible}
+              setSubCategories={setSubCategories}
+            />
+          )}
         </div>
         {/* END: Main menu links */}
 
@@ -67,7 +84,9 @@ const NavbarMobile = () => {
             { '-translate-x-full': !isSubMenuVisible },
           )}
         >
-          <NavbarMobileSubmenu subcategories={subcategories} />
+          {isSubMenuVisible && (
+            <NavbarMobileSubmenu subcategories={subcategories} />
+          )}
         </div>
         {/* END: Sub-menu links */}
       </div>
