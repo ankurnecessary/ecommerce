@@ -5,10 +5,11 @@ import {
   HeaderContext,
   MenuSubCategory,
 } from '@/components/layout/Header/types';
-import { ChevronLeft, ChevronRight, X } from 'lucide-react';
+import { ChevronLeft, X } from 'lucide-react';
 import { links } from '@/components/layout/Navbar/XnavbarLinkObj';
 import clsx from 'clsx';
-import NavbarMobileLink from './NavbarMobileLink';
+import NavbarMobileMenu from './NavbarMobileMenu';
+import NavbarMobileSubmenu from './NavbarMobileSubmenu';
 
 const NavbarMobile = () => {
   const [isSubMenuVisible, setIsSubMenuVisible] = useState<boolean>(false);
@@ -21,12 +22,6 @@ const NavbarMobile = () => {
     toggleMenu(false);
     setSubCategories([]);
     setIsSubMenuVisible(false);
-  };
-
-  // Handling click of category with some sub-categories
-  const categoryClickHandler = (subcategories: MenuSubCategory[]) => {
-    setSubCategories(subcategories);
-    setIsSubMenuVisible(true);
   };
 
   return (
@@ -57,34 +52,11 @@ const NavbarMobile = () => {
 
         {/* START: Main menu links */}
         <div className="mt-9 h-full overflow-auto">
-          <ul className="px-2">
-            {links.map((link) => (
-              <li
-                key={link.id}
-                className="border-b border-dotted border-slate-400"
-              >
-                {/* START: When we have {subcategories: [...]} */}
-                {link.subcategories?.length && (
-                  <span
-                    className="flex justify-between p-2 hover:bg-slate-100"
-                    onClick={() => categoryClickHandler(link.subcategories)}
-                  >
-                    <span>{link.name}</span>
-                    <button className="bg-slate-200 p-1">
-                      <ChevronRight className="h-5 w-5" />
-                    </button>
-                  </span>
-                )}
-                {/* END: When we have {subcategories: [...]} */}
-
-                {/* START: When we don't have {subcategories: [...]} */}
-                {!link.subcategories?.length && (
-                  <NavbarMobileLink link={link} />
-                )}
-                {/* END: When we don't have {subcategories: [...]} */}
-              </li>
-            ))}
-          </ul>
+          <NavbarMobileMenu
+            links={links}
+            setIsSubMenuVisible={setIsSubMenuVisible}
+            setSubCategories={setSubCategories}
+          />
         </div>
         {/* END: Main menu links */}
 
@@ -95,16 +67,7 @@ const NavbarMobile = () => {
             { '-translate-x-full': !isSubMenuVisible },
           )}
         >
-          <ul className="px-2">
-            {subcategories.map((link) => (
-              <li
-                key={link.id}
-                className="border-b border-dotted border-slate-400"
-              >
-                <NavbarMobileLink link={link} />
-              </li>
-            ))}
-          </ul>
+          <NavbarMobileSubmenu subcategories={subcategories} />
         </div>
         {/* END: Sub-menu links */}
       </div>
