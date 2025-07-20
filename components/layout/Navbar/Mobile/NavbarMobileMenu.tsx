@@ -24,29 +24,37 @@ const NavbarMobileMenu = ({
   };
 
   return (
-    <ul className="px-2">
-      {links.map((link) => (
-        <li key={link.id} className="border-b border-dotted border-slate-400">
-          {/* START: When we have {subcategories: [...]} */}
-          {!!link.subcategories?.length && (
-            <span
-              className="flex justify-between p-2 hover:bg-slate-100"
-              onClick={() => categoryClickHandler(link.subcategories || [])}
+    <>
+      {links.length === 0 && <div className='pl-2'>No links found!!</div>}
+      {links.length > 0 && (
+        <ul className="px-2">
+          {links.map((link) => (
+            <li
+              key={link.id}
+              className="border-b border-dotted border-slate-400"
             >
-              <span>{link.name}</span>
-              <button className="bg-slate-200 p-1">
-                <ChevronRight className="h-5 w-5" />
-              </button>
-            </span>
-          )}
-          {/* END: When we have {subcategories: [...]} */}
+              {/* START: When we have {subcategories: [...]} */}
+              {!!link.subcategories?.length && (
+                <span
+                  className="flex justify-between p-2 hover:bg-slate-100"
+                  onClick={() => categoryClickHandler(link.subcategories || [])}
+                >
+                  <span>{link.name}</span>
+                  <button className="bg-slate-200 p-1">
+                    <ChevronRight className="h-5 w-5" />
+                  </button>
+                </span>
+              )}
+              {/* END: When we have {subcategories: [...]} */}
 
-          {/* START: When we don't have {subcategories: [...]} */}
-          {!link.subcategories?.length && <NavbarMobileLink link={link} />}
-          {/* END: When we don't have {subcategories: [...]} */}
-        </li>
-      ))}
-    </ul>
+              {/* START: When we don't have {subcategories: [...]} */}
+              {!link.subcategories?.length && <NavbarMobileLink link={link} />}
+              {/* END: When we don't have {subcategories: [...]} */}
+            </li>
+          ))}
+        </ul>
+      )}
+    </>
   );
 };
 
