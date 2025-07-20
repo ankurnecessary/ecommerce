@@ -6,7 +6,6 @@ import {
   MenuSubCategory,
 } from '@/components/layout/Header/types';
 import { ChevronLeft, X } from 'lucide-react';
-import { links } from '@/components/layout/Navbar/XnavbarLinkObj';
 import clsx from 'clsx';
 import dynamic from 'next/dynamic';
 
@@ -30,6 +29,7 @@ const NavbarMobile = () => {
   const [isSubMenuVisible, setIsSubMenuVisible] = useState<boolean>(false);
   const [subcategories, setSubCategories] = useState<MenuSubCategory[]>([]);
   const {
+    navLinks,
     mobile: { isMenuVisible, toggleMenu },
   }: HeaderContext = useHeaderContext();
 
@@ -43,12 +43,14 @@ const NavbarMobile = () => {
     <>
       {/* Mobile Navbar */}
       <div
+        data-testid="mobile-menu"
         className={`fixed left-0 top-0 z-[1] h-full w-[300px] border-r border-gray-300 bg-white transition-transform duration-300 ${isMenuVisible ? 'translate-x-0' : '-translate-x-full'}`}
       >
         {/* START: Button to collapse main mobile menu */}
         <button
           className="absolute right-0 top-0 z-10 bg-slate-200 p-1"
           onClick={mainMenuHandler}
+          aria-label="Close Menu"
         >
           <X />
         </button>
@@ -69,7 +71,7 @@ const NavbarMobile = () => {
         <div className="mt-9 h-full overflow-auto">
           {isMenuVisible && (
             <NavbarMobileMenu
-              links={links}
+              links={navLinks}
               setIsSubMenuVisible={setIsSubMenuVisible}
               setSubCategories={setSubCategories}
             />
@@ -79,6 +81,7 @@ const NavbarMobile = () => {
 
         {/* START: Sub-menu links */}
         <div
+          data-testid="mobile-submenu"
           className={clsx(
             'absolute left-0 top-0 z-[2] mt-9 h-full w-full overflow-auto bg-white transition-transform duration-300',
             { '-translate-x-full': !isSubMenuVisible },
@@ -96,6 +99,7 @@ const NavbarMobile = () => {
         <div
           className="fixed inset-0 z-0 bg-black bg-opacity-50"
           onClick={mainMenuHandler}
+          data-testid="backdrop"
         ></div>
       )}
       {/* END: Translucent Backdrop */}
