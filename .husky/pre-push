@@ -42,8 +42,5 @@ pnpm start & pnpm exec wait-on http://localhost:3000
 echo -e "\n"
 echo -e "\033[44m\033[37m 🚧  Validating HTML 🚧 \033[0m"
 pnpm run validate-html
-echo -e "\n"
-echo -e "\033[44m\033[37m 🏗️   Building lighthouse report 🏗️  \033[0m"
-pnpm run lighthouse
 
 # [x]: When push stops in between before freeing up port 3000 in the end, it should free up the port. We need to write code to ensure that the port is always freed up.
