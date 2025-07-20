@@ -3,7 +3,6 @@ export const links = [
     id: 'fkjffh1',
     url: '/newIn',
     name: 'New In',
-    // [ ] We kept subcategories here but they are actually going to fetch by a separate HTTP request.
     subcategories: [
       {
         name: 'Shirt',
