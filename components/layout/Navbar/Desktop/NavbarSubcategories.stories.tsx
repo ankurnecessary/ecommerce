@@ -259,7 +259,7 @@ export const Default: Story = {
   },
 };
 
-export const Loading: Story = {
+export const NotFound: Story = {
   args: {
     category: {
       id: 'fkjffh2',
