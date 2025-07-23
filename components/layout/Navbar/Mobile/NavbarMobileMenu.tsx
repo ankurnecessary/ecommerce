@@ -25,22 +25,22 @@ const NavbarMobileMenu = ({
 
   return (
     <>
-      {links.length === 0 && <div className='pl-2'>No links found!!</div>}
+      {links.length === 0 && <div className="pl-2">No links found!!</div>}
       {links.length > 0 && (
         <ul className="px-2">
           {links.map((link) => (
             <li
               key={link.id}
-              className="border-b border-dotted border-slate-400"
+              className="border-b border-dotted border-slate-400 dark:border-gray-500"
             >
               {/* START: When we have {subcategories: [...]} */}
               {!!link.subcategories?.length && (
                 <span
-                  className="flex justify-between p-2 hover:bg-slate-100"
+                  className="flex justify-between p-2 hover:bg-slate-100 dark:hover:bg-slate-500"
                   onClick={() => categoryClickHandler(link.subcategories || [])}
                 >
                   <span>{link.name}</span>
-                  <button className="bg-slate-200 p-1">
+                  <button className="bg-slate-200 p-1 dark:bg-slate-600">
                     <ChevronRight className="h-5 w-5" />
                   </button>
                 </span>

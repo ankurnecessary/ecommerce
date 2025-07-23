@@ -44,11 +44,11 @@ const NavbarMobile = () => {
       {/* Mobile Navbar */}
       <div
         data-testid="mobile-menu"
-        className={`fixed left-0 top-0 z-[1] h-full w-[300px] border-r border-gray-300 bg-white transition-transform duration-300 ${isMenuVisible ? 'translate-x-0' : '-translate-x-full'}`}
+        className={`fixed left-0 top-0 z-[1] h-full w-[300px] border-r border-gray-300 bg-white transition-transform duration-300 dark:border-gray-500 dark:bg-zinc-700 ${isMenuVisible ? 'translate-x-0' : '-translate-x-full'}`}
       >
         {/* START: Button to collapse main mobile menu */}
         <button
-          className="absolute right-0 top-0 z-10 bg-slate-200 p-1"
+          className="absolute right-0 top-0 z-10 bg-slate-200 p-1 dark:bg-slate-600"
           onClick={mainMenuHandler}
           aria-label="Close Menu"
         >
@@ -59,7 +59,7 @@ const NavbarMobile = () => {
         {/* START: Button to collapse sub-menu */}
         {isSubMenuVisible && (
           <button
-            className="absolute left-0 top-0 z-10 bg-slate-200 p-1"
+            className="absolute left-0 top-0 z-10 bg-slate-200 p-1 dark:bg-slate-600"
             onClick={() => setIsSubMenuVisible(false)}
           >
             <ChevronLeft />
@@ -68,7 +68,7 @@ const NavbarMobile = () => {
         {/* END: Button to collapse sub-menu */}
 
         {/* START: Main menu links */}
-        <div className="mt-9 h-full overflow-auto">
+        <div className="mt-9 h-full overflow-auto dark:bg-zinc-700">
           {isMenuVisible && (
             <NavbarMobileMenu
               links={navLinks}
@@ -83,7 +83,7 @@ const NavbarMobile = () => {
         <div
           data-testid="mobile-submenu"
           className={clsx(
-            'absolute left-0 top-0 z-[2] mt-9 h-full w-full overflow-auto bg-white transition-transform duration-300',
+            'absolute left-0 top-0 z-[2] mt-9 h-full w-full overflow-auto bg-white transition-transform duration-300 dark:bg-zinc-700',
             { '-translate-x-full': !isSubMenuVisible },
           )}
         >

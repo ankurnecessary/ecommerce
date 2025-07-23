@@ -8,7 +8,7 @@ const NavbarMobileLink = ({ link }: navbarMobileLink) => {
     // [ ]: Remove prefetch false when the related page is added.
     <Link
       href={link.url}
-      className="inline-block w-full px-2 py-[10px] hover:bg-slate-100"
+      className="inline-block w-full px-2 py-[10px] hover:bg-slate-100 dark:hover:bg-slate-500"
       prefetch={false}
     >
       <span>{link.name}</span>
