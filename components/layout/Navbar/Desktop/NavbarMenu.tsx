@@ -10,6 +10,7 @@ import VerticalScrollContainer from '@/components/custom-ui/VerticalScrollContai
 import clsx from 'clsx';
 import { ChevronRight } from 'lucide-react';
 import dynamic from 'next/dynamic';
+import { useMediaQuery } from '@/lib/hooks/useMediaQuery';
 
 const NavbarSubcategories = dynamic(
   () => import('@/components/layout/Navbar/Desktop/NavbarSubcategories'),
@@ -34,13 +35,17 @@ const NavbarMenu = () => {
     },
   }: HeaderContext = useHeaderContext();
 
+  // Rendering this component only on desktop devices
+  const isDesktop = useMediaQuery('(min-width: 768px)');
+  if (!isDesktop) return null;
+
   const [isVisible, category] = isMenuVisible;
 
   const menuMouseOverHandler = () => {
     toggleMenu(true, category);
     if (selectedVerticalNavLink && !selectedHorizontalNavLink) return;
     setSelectedHorizontalNavLink(selectedHorizontalNavLink);
-    setSelectedVerticalNavLink(category?.label || '');
+    setSelectedVerticalNavLink(category?.name || '');
   };
 
   // Can be done by FP
@@ -89,12 +94,12 @@ const NavbarMenu = () => {
                 'flex w-full cursor-pointer justify-between px-2 py-3 text-xs',
                 {
                   'bg-gray-100 dark:bg-zinc-800':
-                    selectedVerticalNavLink === link.label,
+                    selectedVerticalNavLink === link.name,
                 },
               )}
               onMouseOver={categoryMouseOverHandler(link)}
             >
-              <span>{link.label}</span>
+              <span>{link.name}</span>
               <span>
                 <ChevronRight className="h-4 w-4 opacity-25" />
               </span>

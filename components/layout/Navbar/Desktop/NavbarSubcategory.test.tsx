@@ -5,7 +5,8 @@ import { fireEvent, render } from '@testing-library/react';
 const subCategory = {
   id: '1',
   name: 'electronics',
-  image: '/electronics.jpg',
+  url: '/electronics',
+  imagePath: '/electronics.jpg',
 };
 
 describe('NavbarSubcategory', () => {

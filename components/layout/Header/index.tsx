@@ -4,19 +4,21 @@ import Link from 'next/link';
 import { Navbar } from '@/components/layout';
 import NavbarMenu from '@/components/layout/Navbar/Desktop/NavbarMenu';
 import { HeaderContextProvider } from '@/components/layout/Header/Header.context';
-import { Menu, Search } from 'lucide-react';
+import { Search } from 'lucide-react';
 import { links } from '@/components/layout/Navbar/XnavbarLinkObj';
+import MobileHamburgerButton from '@/components/layout/Header/MobileHamburgerButton';
 const mulish = Mulish({
   subsets: ['latin'],
 });
 
 const Header = () => {
-  // [ ]: Replace "links" with an API call to fetch the links
+  // [ ]: Replace "links" with <HeaderContextProvider/> with an API call to fetch the links
   // const links = await fetchLinksFromAPI();
   // [ ]: [navlinks] [categories] [sub-categories] Use No-SQL DB to store the links data. This will increase the fetching speed. Whenever we update categories or thier subcategories in SQL DB, a new object will be created in No-SQL DB with the updated data. This will help us to fetch the data faster.
+
   return (
     <HeaderContextProvider categories={links}>
-      <header className="relative z-[1] border-b border-black bg-white md:border-gray-300 dark:border-zinc-800 dark:bg-zinc-700">
+      <header className="relative z-[1] border-b border-black bg-white md:border-gray-300 dark:border-gray-500 dark:bg-zinc-700">
         <div className="relative flex items-center justify-between md:container md:mx-auto md:py-5">
           {/* Logo container */}
           <div className="absolute left-1/2 -translate-x-1/2 md:left-28">
@@ -28,14 +30,9 @@ const Header = () => {
           </div>
 
           {/* [Moblie only]: For left side of the header  */}
-          <div className="border-r border-black md:grow">
+          <div className="border-r border-black md:grow dark:border-gray-500">
             {/* For hamburger menu button */}
-            <button
-              className="px-4 py-3 md:hidden"
-              aria-label="Open navigation menu"
-            >
-              <Menu />
-            </button>
+            <MobileHamburgerButton />
           </div>
 
           {/* For the center of the header */}
@@ -68,7 +65,7 @@ const Header = () => {
             <div className="md:hidden">
               {/* [Mobile only]: Search button */}
               <button
-                className="border-l border-black px-4 py-3"
+                className="border-l border-black px-4 py-3 dark:border-gray-500"
                 aria-label="Open search bar"
               >
                 <Search />

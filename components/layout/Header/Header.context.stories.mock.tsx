@@ -26,7 +26,10 @@ const defaultContext: HeaderContext = {
       setNavbarOffsetDsktp: () => {},
     },
   },
-  mobile: null,
+  mobile: {
+    isMenuVisible: false,
+    toggleMenu: () => {},
+  },
 };
 
 const MockHeaderContextProvider = ({

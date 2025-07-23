@@ -1,7 +1,13 @@
-import { afterEach, beforeAll, vi } from 'vitest';
+import { afterAll, afterEach, beforeAll, vi } from 'vitest';
 import React from 'react';
 import { mockUseHeaderContext } from '@/components/layout/Header/Header.context.test.mock';
 import { cleanup } from '@testing-library/react';
+import MatchMediaMock from 'vitest-matchmedia-mock';
+
+declare global {
+  // eslint-disable-next-line no-var
+  var matchMediaMock: MatchMediaMock;
+}
 
 beforeAll(() => {
   globalThis.ResizeObserver = vi.fn(() => ({
@@ -9,6 +15,8 @@ beforeAll(() => {
     unobserve: vi.fn(),
     disconnect: vi.fn(),
   }));
+
+  globalThis.matchMediaMock = new MatchMediaMock();
 });
 
 vi.mock('next/font/google', () => ({
@@ -23,7 +31,11 @@ vi.mock('next/link', () => {
     __esModule: true,
     default: (props: React.AnchorHTMLAttributes<HTMLAnchorElement>) => {
       const { href, children, ...rest } = props;
-      return <a href={href} {...rest}>{children}</a>;
+      return (
+        <a href={href} {...rest}>
+          {children}
+        </a>
+      );
     },
   };
 });
@@ -31,7 +43,9 @@ vi.mock('next/link', () => {
 vi.mock('@/components/layout/Header/Header.context', () => ({
   __esModule: true,
   useHeaderContext: vi.fn(() => mockUseHeaderContext({})),
-  HeaderContextProvider: ({ children }: { children: React.ReactNode }) => <>{children}</>,
+  HeaderContextProvider: ({ children }: { children: React.ReactNode }) => (
+    <>{children}</>
+  ),
 }));
 
 vi.mock('next/image', () => ({
@@ -46,4 +60,9 @@ vi.mock('next/image', () => ({
 afterEach(() => {
   cleanup();
   vi.resetAllMocks();
+  globalThis.matchMediaMock.clear();
+});
+
+afterAll(() => {
+  globalThis.matchMediaMock.destroy();
 });

@@ -13,6 +13,7 @@ const headerInitialState: HeaderInitialState = {
   navbarChildOffsetDsktp: 0,
   navLinks: [],
   verticalNavScrollToElementId: '',
+  isMenuVisibleMobile: false,
 };
 
 /**
@@ -58,6 +59,11 @@ const headerReducer: HeaderReducer = (state, action) => {
       return {
         ...state,
         verticalNavScrollToElementId: action.elementId,
+      };
+    case 'TOGGLE_MOBILE_MENU':
+      return {
+        ...state,
+        isMenuVisibleMobile: action.isMenuVisible,
       };
     default:
       throw new Error(`Unknown action: ${action.type}`);

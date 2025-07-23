@@ -8,8 +8,8 @@ describe('NavbarSubcategories', () => {
       <NavbarSubcategories
         category={{
           id: 'testId',
-          href: '/Test',
-          label: '/Test',
+          url: '/Test',
+          name: '/Test',
           subcategories: [],
         }}
       />,
@@ -22,8 +22,8 @@ describe('NavbarSubcategories', () => {
       <NavbarSubcategories
         category={{
           id: 'testId',
-          href: '/Test',
-          label: '/Test',
+          url: '/Test',
+          name: '/Test',
         }}
       />,
     );
@@ -35,13 +35,14 @@ describe('NavbarSubcategories', () => {
       <NavbarSubcategories
         category={{
           id: 'testId',
-          href: '/Test',
-          label: '/Test',
+          url: '/Test',
+          name: '/Test',
           subcategories: [
             {
               name: 'Shirt',
               id: '1jljlk',
-              image: 'https://picsum.photos/id/1/55/55',
+              url: '/Shirt',
+              imagePath: 'https://picsum.photos/id/1/55/55',
             },
           ],
         }}
@@ -58,13 +59,14 @@ describe('NavbarSubcategories', () => {
       <NavbarSubcategories
         category={{
           id: 'testId',
-          href: '/Test',
-          label: '/Test',
+          url: '/Test',
+          name: '/Test',
           subcategories: [
             {
               name: 'Shirt',
               id: '1jljlk',
-              image: 'https://picsum.photos/id/1/55/55',
+              url: '/Shirt',
+              imagePath: 'https://picsum.photos/id/1/55/55',
             },
           ],
         }}
@@ -78,13 +80,14 @@ describe('NavbarSubcategories', () => {
       <NavbarSubcategories
         category={{
           id: 'testId',
-          href: '/Test',
-          label: '/Test',
+          url: '/Test',
+          name: '/Test',
           subcategories: [
             {
               name: 'Shirt',
               id: '1jljlk',
-              image: 'https://picsum.photos/id/1/55/55',
+              url: '/Shirt',
+              imagePath: 'https://picsum.photos/id/1/55/55',
             },
           ],
         }}
@@ -101,13 +104,14 @@ describe('NavbarSubcategories', () => {
       <NavbarSubcategories
         category={{
           id: 'testId',
-          href: '/Test',
-          label: '/Test',
+          url: '/Test',
+          name: '/Test',
           subcategories: [
             {
               name: 'Shirt',
               id: '1jljlk',
-              image: 'https://picsum.photos/id/1/55/55',
+              url: '/Shirt',
+              imagePath: 'https://picsum.photos/id/1/55/55',
             },
           ],
         }}
@@ -122,13 +126,14 @@ describe('NavbarSubcategories', () => {
       <NavbarSubcategories
         category={{
           id: 'testId',
-          href: '/Test',
-          label: '/Test',
+          url: '/Test',
+          name: 'Test',
           subcategories: [
             {
               name: 'Shirt',
               id: '1jljlk',
-              image: 'https://picsum.photos/id/1/55/55',
+              url: '/Shirt',
+              imagePath: 'https://picsum.photos/id/1/55/55',
             },
           ],
         }}

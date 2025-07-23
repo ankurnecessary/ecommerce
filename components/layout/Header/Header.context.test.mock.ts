@@ -10,7 +10,7 @@ export const mockUseHeaderContext = (
   overrides: HeaderContextOverrides = {},
 ): HeaderContext => {
   const defaultContext: HeaderContext = {
-    navLinks: [{ id: 'fkjffh1', href: '/newIn', label: 'New In' }],
+    navLinks: [{ id: 'fkjffh1', url: '/newIn', name: 'New In' }],
     setNavLinks: vi.fn(),
     desktop: {
       isMenuVisible: [false, {} as MenuCategory],
@@ -29,7 +29,10 @@ export const mockUseHeaderContext = (
         setNavbarOffsetDsktp: vi.fn(),
       },
     },
-    mobile: null,
+    mobile: {
+      isMenuVisible: false,
+      toggleMenu: vi.fn(),
+    },
   };
   return merge({}, defaultContext, overrides);
 };

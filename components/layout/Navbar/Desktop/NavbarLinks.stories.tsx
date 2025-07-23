@@ -46,20 +46,20 @@ export const Default: Story = {
       navLinks: [
         {
           id: 'fkjffh1',
-          href: '/newIn',
-          label: 'New In',
+          url: '/newIn',
+          name: 'New In',
           subcategories: [],
         },
         {
           id: 'fkjffh2',
-          href: '/sale',
-          label: 'Sale',
+          url: '/sale',
+          name: 'Sale',
           subcategories: [],
         },
         {
           id: 'fkjffh3',
-          href: '/womenClothing',
-          label: 'Women Clothing',
+          url: '/womenClothing',
+          name: 'Women Clothing',
           subcategories: [],
         },
       ],
