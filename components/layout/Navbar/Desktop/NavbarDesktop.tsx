@@ -71,7 +71,7 @@ const NavbarDesktop = () => {
   };
 
   return (
-    <nav className="container mx-auto hidden w-[calc(100%-4rem)] translate-y-[1px] px-6 text-sm text-black md:flex">
+    <nav className="container mx-auto hidden w-[calc(100%-4rem)] translate-y-[1px] px-6 text-sm text-black lg:flex">
       {/* Category button */}
       <div className="whitespace-nowrap">
         <span

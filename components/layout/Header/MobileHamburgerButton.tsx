@@ -15,7 +15,7 @@ const MobileHamburgerButton = () => {
 
   return (
     <button
-      className="px-4 py-3 md:hidden"
+      className="px-4 py-3 lg:hidden"
       aria-label="Open navigation menu"
       onClick={mobileMenuHandler}
     >
