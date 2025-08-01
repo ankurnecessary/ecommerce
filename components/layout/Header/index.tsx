@@ -7,6 +7,8 @@ import { HeaderContextProvider } from '@/components/layout/Header/Header.context
 import { Search } from 'lucide-react';
 import { links } from '@/components/layout/Navbar/XnavbarLinkObj';
 import MobileHamburgerButton from '@/components/layout/Header/MobileHamburgerButton';
+import styles from '@/components/layout/Header/Header.module.scss';
+import clsx from 'clsx';
 const mulish = Mulish({
   subsets: ['latin'],
 });
@@ -18,41 +20,36 @@ const Header = () => {
 
   return (
     <HeaderContextProvider categories={links}>
-      <header className="relative z-[1] border-b border-black bg-white lg:border-gray-300 dark:border-gray-500 dark:bg-zinc-700">
-        <div className="relative flex items-center justify-between lg:container lg:mx-auto lg:py-5">
+      <header className={styles.header}>
+        <div className={styles.header__container}>
           {/* Logo container */}
-          <div className="absolute left-1/2 -translate-x-1/2 lg:left-28">
-            <h1
-              className={`${mulish.className} relative p-1 text-3xl font-bold uppercase`}
-            >
+          <div className={styles.logo}>
+            <h1 className={clsx(mulish.className, styles.logo__text)}>
               <Link href={'/'}>Celeb</Link>
             </h1>
           </div>
 
           {/* [Moblie only]: For left side of the header  */}
-          <div className="border-r border-black lg:grow dark:border-gray-500">
+          <div className={styles.header__mobileNav}>
             {/* For hamburger menu button */}
             <MobileHamburgerButton />
           </div>
 
           {/* For the center of the header */}
-          <div className="lg:grow">
+          <div className={styles.header__left}>
             {/* [Mobile only]: Center space for logo which is absolutely positioned */}
-            <div
-              role="search"
-              className="mx-auto my-1 hidden w-1/2 border border-black lg:invisible lg:flex"
-            >
+            <div role="search" className={styles.header__search}>
               {/* lg:invisible - Just remove this class from the <div> above to see the search text box */}
               <input
                 type="search"
                 placeholder="Search..."
-                className="min-w-0 flex-grow border-r border-black px-2 text-sm placeholder-black outline-none"
+                className={styles.header__searchInput}
               />
               <button
                 id="header-search-button"
                 type="button"
                 aria-label="search"
-                className="bg-black px-3 py-1.5 text-white"
+                className={styles.header__searchButton}
               >
                 <Search />
               </button>
@@ -60,12 +57,12 @@ const Header = () => {
           </div>
 
           {/* For the right side of the header */}
-          <div className="flex lg:grow lg:justify-end">
+          <div className={styles.header__right}>
             {/* Start: [Mobile only]: <div> */}
-            <div className="lg:hidden">
+            <div className={styles.header__mobileSearch}>
               {/* [Mobile only]: Search button */}
               <button
-                className="border-l border-black px-4 py-3 dark:border-gray-500"
+                className={styles.header__mobileSearchBtn}
                 aria-label="Open search bar"
               >
                 <Search />
@@ -74,7 +71,7 @@ const Header = () => {
             {/* End: [Mobile only]: <div> */}
 
             {/* Start: [Desktop only]: <div> */}
-            <div className="hidden pr-16 lg:block">
+            <div className={styles.header__buttons}>
               {/* You can add those items which are only visible on desktop version */}
             </div>
             {/* End: [Desktop only]: <div> */}

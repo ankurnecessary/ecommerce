@@ -1,0 +1,53 @@
+.header {
+  @apply relative z-[1] border-b border-black bg-white lg:border-gray-300 dark:border-gray-500 dark:bg-zinc-700;
+
+  &__container {
+    @apply relative flex items-center justify-between lg:container lg:mx-auto lg:py-5;
+  }
+
+  &__mobileNav {
+    @apply border-r border-black lg:grow dark:border-gray-500;
+  }
+
+  &__left {
+    @apply lg:grow;
+  }
+
+  &__search {
+    /* lg:invisible - Just remove this class from the <div> above to see the search text box */
+    @apply mx-auto my-1 hidden w-1/2 border border-black lg:invisible lg:flex;
+  }
+
+  &__searchInput {
+    @apply min-w-0 flex-grow border-r border-black px-2 text-sm placeholder-black outline-none;
+  }
+
+  &__searchButton {
+    @apply bg-black px-3 py-1.5 text-white;
+  }
+
+  &__right {
+    @apply flex lg:grow lg:justify-end;
+  }
+
+  &__mobileSearch {
+    @apply lg:hidden;
+  }
+
+  &__mobileSearchBtn {
+    @apply border-l border-black px-4 py-3 dark:border-gray-500;
+  }
+
+  &__buttons {
+    @apply hidden pr-16 lg:block;
+  }
+
+}
+
+.logo {
+  @apply absolute left-1/2 -translate-x-1/2 lg:left-28;
+
+  &__text {
+    @apply relative p-1 text-3xl font-bold uppercase;
+  }
+}
