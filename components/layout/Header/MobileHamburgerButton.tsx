@@ -3,6 +3,7 @@ import React from 'react';
 import { Menu } from 'lucide-react';
 import { useHeaderContext } from '@/components/layout/Header/Header.context';
 import { HeaderContext } from '@/components/layout/Header/types';
+import styles from '@/components/layout/Header/MobileHamburgerButton.module.scss';
 
 const MobileHamburgerButton = () => {
   const {
@@ -15,7 +16,7 @@ const MobileHamburgerButton = () => {
 
   return (
     <button
-      className="px-4 py-3 lg:hidden"
+      className={styles.mobileHamburgerButton}
       aria-label="Open navigation menu"
       onClick={mobileMenuHandler}
     >
