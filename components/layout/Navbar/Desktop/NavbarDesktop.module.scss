@@ -1,0 +1,19 @@
+.navbar {
+  @apply container mx-auto hidden w-[calc(100%-4rem)] translate-y-[1px] px-6 text-sm text-black lg:flex;
+
+  &__button {
+    @apply relative inline-block p-2 pb-1 dark:text-zinc-300;
+
+    &:after {
+      @apply absolute bottom-0 left-0 h-[2px] w-full origin-left scale-x-0 bg-black transition-transform content-[''] dark:bg-white;
+    }
+
+    &--selected {
+      @apply bg-gray-100 dark:bg-zinc-800;
+
+      &:after {
+        @apply scale-x-100;
+      }
+    }
+  }
+}
