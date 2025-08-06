@@ -4,6 +4,7 @@ import { fireEvent, render } from '@testing-library/react';
 import * as HeaderContextModule from '@/components/layout/Header/Header.context';
 import { mockUseHeaderContext } from '@/components/layout/Header/Header.context.test.mock';
 import { MenuCategory } from '@/components/layout/Header/types';
+import styles from '@/components/layout/Navbar/Desktop/NavbarMenu.module.scss';
 
 describe('NavbarMenu', () => {
   it('renders in the DOM.', () => {
@@ -18,7 +19,7 @@ describe('NavbarMenu', () => {
     const menu = getByTestId('navbar-menu');
 
     // Mock `isMenuVisible` as false
-    expect(menu).toHaveClass('-translate-y-full');
+    expect(menu).toHaveClass(styles['navbarMenu--invisible']);
 
     (HeaderContextModule.useHeaderContext as Mock).mockReturnValue(
       mockUseHeaderContext({
@@ -186,6 +187,6 @@ describe('NavbarMenu', () => {
     expect(setSelectedVerticalNavLinkMock).toHaveBeenCalledWith('Category2');
 
     // Assert that the hovered category has the 'bg-gray-100' class
-    expect(category).toHaveClass('bg-gray-100');
+    expect(category).toHaveClass(styles['navbarMenu__categoryLink--active']);
   });
 });
