@@ -34,6 +34,29 @@ export default defineConfig({
       {
         plugins: [react()],
         test: {
+          name: 'integration-only',
+          include: ['__integration__/**/*.{test,spec}.{js,ts,jsx,tsx}'],
+          browser: {
+            enabled: true,
+            provider: 'playwright',
+            instances: [{ browser: 'chromium' }],
+          },
+          exclude: [
+            ...configDefaults.exclude,
+            '**/**.config.{?(c|m)js,ts}',
+            'setupTests.ts',
+          ],
+          setupFiles: ['./vitestSetup-integration.tsx'],
+        },
+        resolve: {
+          alias: {
+            '@': path.resolve(__dirname, './'),
+          },
+        },
+      },
+      {
+        plugins: [react()],
+        test: {
           name: 'main',
           browser: {
             enabled: true,
@@ -42,6 +65,7 @@ export default defineConfig({
           },
           exclude: [
             ...configDefaults.exclude,
+            '__integration__/**/*.{test,spec}.{js,ts,jsx,tsx}',
             '**/**.config.{?(c|m)js,ts}',
             'setupTests.ts',
           ],
