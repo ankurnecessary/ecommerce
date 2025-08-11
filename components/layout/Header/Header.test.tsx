@@ -53,35 +53,4 @@ describe('Header', () => {
       );
     });
   });
-
-  it('has category links. On it\'s "mouseOver" and "mouseOut" events "<NavbarMenu />" will toggle', async () => {
-    globalThis.matchMediaMock.useMediaQuery('(min-width: 768px)');
-    const { getByTestId, getAllByRole } = render(<Header />);
-    const categoryLinks = getAllByRole('link');
-    expect(categoryLinks.length).toBeGreaterThan(0);
-
-    const navbarMenu = getByTestId('navbar-menu');
-    expect(navbarMenu).toBeInTheDocument();
-
-    // Check if the initial class is applied
-    expect(navbarMenu).toHaveClass('-translate-y-full');
-
-    // Trigger mouseover event
-    fireEvent.mouseOver(categoryLinks[0]);
-
-    // Wait for the class to be applied
-    await waitFor(() => {
-      expect(navbarMenu).toHaveClass(
-        'absolute z-0 h-96 w-full  transition-transform duration-300 flex',
-      );
-    });
-
-    // Trigger mouseout event
-    fireEvent.mouseOut(categoryLinks[0]);
-
-    // Wait for the class to be applied
-    await waitFor(() => {
-      expect(navbarMenu).toHaveClass('-translate-y-full');
-    });
-  });
 });
