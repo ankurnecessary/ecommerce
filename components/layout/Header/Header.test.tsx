@@ -1,6 +1,7 @@
 import { describe, expect, it } from 'vitest';
 import { render, fireEvent, waitFor } from '@testing-library/react';
 import Header from '@/components/layout/Header';
+import { MEDIA_QUERIES } from '@/constants';
 
 describe('Header', () => {
   it('renders the component with text', () => {
@@ -25,7 +26,7 @@ describe('Header', () => {
   });
 
   it('has a "Categories" link. On it\'s "mouseOver" and "mouseOut" events "<NavbarMenu />" will toggle', async () => {
-    globalThis.matchMediaMock.useMediaQuery('(min-width: 768px)');
+    globalThis.matchMediaMock.useMediaQuery(MEDIA_QUERIES.DESKTOP_MIN_WIDTH);
     const { getByText, getByTestId } = render(<Header />);
     const categoriesLink = getByText('Categories');
     expect(categoriesLink).toBeInTheDocument();

@@ -12,6 +12,7 @@ import NavbarScroller from '@/components/layout/Navbar/Desktop/NavbarScroller';
 import clsx from 'clsx';
 import { ChevronDown } from 'lucide-react';
 import { useMediaQuery } from '@/lib/hooks/useMediaQuery';
+import { MEDIA_QUERIES } from '@/constants';
 // [x] Check how horizontal menu nav items are getting highlighted on hover on shien.com.
 // [x]: test-case: Check how horizontal menu nav items are getting highlighted on hover on shien.com.
 // [x]: test-case: Add test cases for the navbar menu flap's category section.
@@ -40,7 +41,7 @@ const NavbarDesktop = () => {
   }: HeaderContext = useHeaderContext();
 
   // Rendering this component only on desktop devices
-  const isDesktop = useMediaQuery('(min-width: 768px)');
+  const isDesktop = useMediaQuery(MEDIA_QUERIES.DESKTOP_MIN_WIDTH);
   if (!isDesktop) return null;
 
   const mouseOverHandler: CategoryMouseEventHandler =
