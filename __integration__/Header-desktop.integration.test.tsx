@@ -2,8 +2,9 @@ import { render, fireEvent, screen, waitFor } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
 import Header from '@/components/layout/Header';
 
+// [ ]: We will eventually add an HTTP call for the links and mock it here.Probably using MSW.
 describe('<Header />', () => {
-  it('has category links. On it\'s "mouseOver" and "mouseOut" events "<NavbarMenu />" will toggle', async () => {
+  it('has category links. On their "mouseOver" and "mouseOut" events "<NavbarMenu />" will toggle', async () => {
     globalThis.matchMediaMock.useMediaQuery('(min-width: 768px)');
     render(<Header />);
     const categoryLinks = screen.getAllByRole('link', { hidden: true });
@@ -16,6 +17,26 @@ describe('<Header />', () => {
     fireEvent.mouseOut(categoryLinks[1]);
     waitFor(() => {
       expect(navbarMenu).toHaveClass('-translate-y-full');
+    });
+  });
+
+  it('has category links. On their "mouseover" and "mouseout" same link in vertical navbar should be highlighted', () => {
+    globalThis.matchMediaMock.useMediaQuery('(min-width: 768px)');
+    render(<Header />);
+    const categoryLink = screen.getByRole('link', {
+      hidden: true,
+      name: /curve/i,
+    });
+    fireEvent.mouseOver(categoryLink);
+    const verticalCategoryLinks = screen.getAllByText(/curve/i, {
+      selector: 'span',
+    });
+    const verticalCategoryLink = verticalCategoryLinks[1].parentElement;
+
+    waitFor(() => {
+      expect(verticalCategoryLink).toBeInTheDocument();
+      expect(verticalCategoryLink).toHaveClass('bg-gray-100');
+      expect(verticalCategoryLink).toHaveClass('dark:bg-zinc-800');
     });
   });
 });

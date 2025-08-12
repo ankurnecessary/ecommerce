@@ -23,7 +23,6 @@ const NavbarSubcategories = ({ category }: NavbarSubcategoriesProps) => {
       >
         {subCategories.length === 0 && <div>Sub-categories not found!</div>}
         {subCategories.map((subCategory) => (
-          // [ ] We will eventually remove prefetch={false} when we make respective sub-category page
           <NavbarSubcategory key={subCategory.id} subCategory={subCategory} />
         ))}
       </div>

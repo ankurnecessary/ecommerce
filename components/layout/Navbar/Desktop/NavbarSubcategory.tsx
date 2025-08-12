@@ -17,7 +17,7 @@ const NavbarSubcategory = ({
       key={subCategory.id}
       href={subCategory.url}
       className="group/subcat relative flex w-20 flex-col"
-      prefetch={false}
+      prefetch={undefined}
     >
       {!imageLoaded && (
         <span

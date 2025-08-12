@@ -9,7 +9,7 @@ const NavbarMobileLink = ({ link }: navbarMobileLink) => {
     <Link
       href={link.url}
       className="inline-block w-full px-2 py-[10px] hover:bg-slate-100 dark:hover:bg-slate-500"
-      prefetch={false}
+      prefetch={undefined}
     >
       <span>{link.name}</span>
     </Link>
