@@ -11,6 +11,7 @@ import clsx from 'clsx';
 import { ChevronRight } from 'lucide-react';
 import dynamic from 'next/dynamic';
 import { useMediaQuery } from '@/lib/hooks/useMediaQuery';
+import { MEDIA_QUERIES } from '@/constants';
 
 const NavbarSubcategories = dynamic(
   () => import('@/components/layout/Navbar/Desktop/NavbarSubcategories'),
@@ -36,7 +37,7 @@ const NavbarMenu = () => {
   }: HeaderContext = useHeaderContext();
 
   // Rendering this component only on desktop devices
-  const isDesktop = useMediaQuery('(min-width: 768px)');
+  const isDesktop = useMediaQuery(MEDIA_QUERIES.DESKTOP_MIN_WIDTH);
   if (!isDesktop) return null;
 
   const [isVisible, category] = isMenuVisible;
