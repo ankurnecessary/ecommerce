@@ -12,6 +12,6 @@ describe('NavbarMobileLink', () => {
     const { getByRole } = render(<NavbarMobileLink link={ALink} />);
     const link = getByRole('link', { name: /new in/i });
     expect(link).toBeInTheDocument();
-    expect(link).toHaveAttribute('href', '/newIn');
+    expect(link).toHaveAttribute('href', '/category/newIn');
   });
 });

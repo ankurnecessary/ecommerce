@@ -94,6 +94,6 @@ describe('NavbarMobileMenu', () => {
 
     const link = getByRole('link', { name: /No Subcategories/i });
     expect(link).toBeInTheDocument();
-    expect(link).toHaveAttribute('href', '/category-2');
+    expect(link).toHaveAttribute('href', '/category/category-2');
   });
 });
