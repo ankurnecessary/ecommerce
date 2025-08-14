@@ -52,6 +52,6 @@ describe('NavbarSubcategory', () => {
       <NavbarSubcategory subCategory={subCategory} />,
     );
     const link = getByRole('link');
-    expect(link).toHaveAttribute('href', '/electronics');
+    expect(link).toHaveAttribute('href', '/category/electronics');
   });
 });

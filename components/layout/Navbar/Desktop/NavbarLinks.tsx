@@ -50,11 +50,11 @@ const NavbarLinks = ({
         {/* [ ]: Change this condition when API call is implemented */}
         {navLinks.length === 0 && <Skeleton className="h-4 w-[550px]" />}
         {navLinks.map((link) => (
-          <Link key={link.id} prefetch={undefined} href={link.url}>
+          <Link key={link.id} href={`/category${link.url}`}>
             <span
               id={link.id}
               className={clsx(
-                "relative inline-block p-2 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-black after:transition-transform after:content-[''] dark:text-zinc-300 dark:after:bg-white",
+                "relative top-[1px] inline-block p-2 after:absolute after:bottom-0 after:left-0 after:h-[2px] after:w-full after:origin-left after:scale-x-0 after:bg-black after:transition-transform after:content-[''] dark:text-zinc-300 dark:after:bg-white",
                 {
                   'bg-gray-100 after:scale-x-100 dark:bg-zinc-800':
                     selectedHorizontalNavLink === link.name,

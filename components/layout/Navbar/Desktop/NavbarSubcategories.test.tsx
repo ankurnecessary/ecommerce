@@ -72,7 +72,10 @@ describe('NavbarSubcategories', () => {
         }}
       />,
     );
-    expect(getByText('Shirt').closest('a')).toHaveAttribute('href', '/Shirt');
+    expect(getByText('Shirt').closest('a')).toHaveAttribute(
+      'href',
+      '/category/Shirt',
+    );
   });
 
   it('should render right image against sub-category', () => {

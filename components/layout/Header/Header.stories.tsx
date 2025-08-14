@@ -11,4 +11,10 @@ const meta = {
 export default meta;
 type story = StoryObj<typeof Header>;
 
-export const Default: story = {};
+export const OnDesktop: story = {};
+
+export const OnMobile: story = {
+  globals: {
+    viewport: { value: 'mobile1', isRotated: false },
+  },
+};
