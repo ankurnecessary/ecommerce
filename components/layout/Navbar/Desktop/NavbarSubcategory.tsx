@@ -12,12 +12,10 @@ const NavbarSubcategory = ({
 }) => {
   const [imageLoaded, setImageLoaded] = useState(false);
   return (
-    // [ ] We will eventually remove prefetch={false} when we make respective sub-category page
     <Link
       key={subCategory.id}
-      href={subCategory.url}
+      href={`/category${subCategory.url}`}
       className="group/subcat relative flex w-20 flex-col"
-      prefetch={undefined}
     >
       {!imageLoaded && (
         <span

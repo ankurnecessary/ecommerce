@@ -50,7 +50,7 @@ const NavbarLinks = ({
         {/* [ ]: Change this condition when API call is implemented */}
         {navLinks.length === 0 && <Skeleton className="h-4 w-[550px]" />}
         {navLinks.map((link) => (
-          <Link key={link.id} prefetch={undefined} href={link.url}>
+          <Link key={link.id} href={`/category${link.url}`}>
             <span
               id={link.id}
               className={clsx(
