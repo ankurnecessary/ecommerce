@@ -8,8 +8,9 @@ describe('<Header />', () => {
     const button = screen.getByRole('button', { name: 'Open navigation menu' });
     expect(button).toBeInTheDocument();
     const navbar = screen.getByTestId('mobile-menu');
+    expect(navbar).toHaveClass('-translate-x-full');
     expect(navbar).toBeInTheDocument();
     fireEvent.click(button);
-    expect(navbar).toHaveClass('translate-x-0');
+    expect(navbar).not.toHaveClass('-translate-x-full');
   });
 });
