@@ -7,7 +7,10 @@ module.exports = {
       settings: {
         throttlingMethod: 'devtools', // Use real-world throttling like DevTools
         // preset: 'desktop',
-        emulatedFormFactor: 'mobile' // Aligns screen size and interaction model
+        emulatedFormFactor: 'mobile', // Aligns screen size and interaction model
+        "chromeFlags": "--headless --disable-gpu --no-sandbox",
+        "port": 9222,
+        "disableStorageReset": true
       },
     },
     upload: {
