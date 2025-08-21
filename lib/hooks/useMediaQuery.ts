@@ -5,11 +5,11 @@ export const useMediaQuery = (query: string) => {
 
   useEffect(() => {
     // if (typeof window !== 'undefined') {
-      const media = window.matchMedia(query);
-      setMatches(media.matches);
-      const listener = () => setMatches(media.matches);
-      media.addEventListener('change', listener);
-      return () => media.removeEventListener('change', listener);
+    const media = window.matchMedia(query);
+    setMatches(media.matches);
+    const listener = () => setMatches(media.matches);
+    media.addEventListener('change', listener);
+    return () => media.removeEventListener('change', listener);
     // }
   }, [query]);
 
