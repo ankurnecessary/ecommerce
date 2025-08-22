@@ -1,5 +1,6 @@
 import { Meta, StoryObj } from '@storybook/nextjs-vite';
 import NavbarSubcategories from '@/components/layout/Navbar/Desktop/NavbarSubcategories';
+import { expect } from 'storybook/test';
 
 const meta = {
   title: 'components/layout/Navbar/Desktop/NavbarSubcategories',
@@ -257,6 +258,12 @@ export const Default: Story = {
       ],
     },
   },
+  play: async ({ canvas, args }) => {
+    const linksContainer = await canvas.findByTestId('navbar-subcategories');
+    expect(linksContainer).toBeInTheDocument();
+    const subcategoryLinks = await canvas.findAllByRole('link');
+    expect(subcategoryLinks.length).toBe(args.category?.subcategories?.length);
+  },
 };
 
 export const NotFound: Story = {
@@ -267,5 +274,11 @@ export const NotFound: Story = {
       name: 'Sale',
       subcategories: [],
     },
+  },
+  play: async ({ canvas, args }) => {
+    const subcategoryLinks = canvas.queryAllByRole('link');
+    expect(subcategoryLinks.length).toBe(args.category?.subcategories?.length);
+    const messageElement = await canvas.findByText('Sub-categories not found!');
+    expect(messageElement).toBeInTheDocument();
   },
 };
