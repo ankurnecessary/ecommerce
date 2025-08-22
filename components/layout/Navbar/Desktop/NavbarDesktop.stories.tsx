@@ -300,7 +300,7 @@ export const Default: story = {
     },
   },
   play: async ({ canvas }) => {
-    const link = canvas.getByText(links[0].name);
+    const link = await canvas.findByText(links[0].name);
     await expect(link).toBeInTheDocument();
   },
 };
@@ -579,7 +579,7 @@ export const CategoriesHighlighted: story = {
     },
   },
   play: async ({ canvas }) => {
-    const link = canvas.getByText(/categories/i);
+    const link = await canvas.findByText(/categories/i);
     await expect(link).toBeInTheDocument();
     await expect(link).toHaveClass('bg-gray-100');
   },
@@ -859,7 +859,7 @@ export const ALinkHighlighted: story = {
     },
   },
   play: async ({ canvas }) => {
-    const link = canvas.getByText(links[1].name);
+    const link = await canvas.findByText(links[1].name);
     await expect(link).toBeInTheDocument();
     await expect(link).toHaveClass('bg-gray-100');
   },

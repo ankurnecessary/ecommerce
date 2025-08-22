@@ -286,7 +286,7 @@ export const Default: Story = {
     },
   },
   play: async ({ canvas }) => {
-    const navbarMenu = canvas.getByTestId('navbar-menu');
+    const navbarMenu = await canvas.findByTestId('navbar-menu');
     await expect(navbarMenu).toBeInTheDocument();
     const verticalLinksContainer = canvas.getAllByTestId(
       'vertical-scrollable-content',

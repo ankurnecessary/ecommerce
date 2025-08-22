@@ -14,7 +14,7 @@ type story = StoryObj<typeof Header>;
 
 export const OnDesktop: story = {
   play: async ({ canvas }) => {
-    const navbarMenu = canvas.getByTestId('navbar-menu');
+    const navbarMenu = await canvas.findByTestId('navbar-menu');
     await expect(navbarMenu).toHaveClass('-translate-y-full');
     const link = canvas.getAllByText(/New In/i)[0];
     await userEvent.hover(link);
