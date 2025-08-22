@@ -3,6 +3,7 @@ import NavbarDesktop from '@/components/layout/Navbar/Desktop/NavbarDesktop';
 import MockHeaderContextProvider from '@/components/layout/Header/Header.context.stories.mock';
 import { links } from '@/components/layout/Navbar/XnavbarLinkObj';
 import { action } from 'storybook/actions';
+import { expect } from 'storybook/test';
 
 const meta = {
   title: 'Components/Layout/Navbar/Desktop/NavbarDesktop',
@@ -298,6 +299,10 @@ export const Default: story = {
       },
     },
   },
+  play: async ({ canvas }) => {
+    const link = await canvas.findByText(links[0].name);
+    await expect(link).toBeInTheDocument();
+  },
 };
 
 export const CategoriesHighlighted: story = {
@@ -572,6 +577,11 @@ export const CategoriesHighlighted: story = {
         },
       },
     },
+  },
+  play: async ({ canvas }) => {
+    const link = await canvas.findByText(/categories/i);
+    await expect(link).toBeInTheDocument();
+    await expect(link).toHaveClass('bg-gray-100');
   },
 };
 
@@ -848,6 +858,11 @@ export const ALinkHighlighted: story = {
       },
     },
   },
+  play: async ({ canvas }) => {
+    const link = await canvas.findByText(links[1].name);
+    await expect(link).toBeInTheDocument();
+    await expect(link).toHaveClass('bg-gray-100');
+  },
 };
 
 export const WithoutScroller: story = {
@@ -1122,5 +1137,9 @@ export const WithoutScroller: story = {
         },
       },
     },
+  },
+  play: async ({ canvas }) => {
+    const scrollerButtons = canvas.queryAllByRole('button');
+    await expect(scrollerButtons.length).toBe(0);
   },
 };

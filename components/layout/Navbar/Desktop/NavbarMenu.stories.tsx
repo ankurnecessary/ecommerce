@@ -2,6 +2,7 @@ import NavbarMenu from '@/components/layout/Navbar/Desktop/NavbarMenu';
 import { Meta, StoryObj } from '@storybook/nextjs-vite';
 import MockHeaderContextProvider from '@/components/layout/Header/Header.context.stories.mock';
 import { links } from '@/components/layout/Navbar/XnavbarLinkObj';
+import { expect } from 'storybook/test';
 
 const meta = {
   title: 'components/layout/Navbar/Desktop/NavbarMenu',
@@ -277,12 +278,24 @@ export const Default: Story = {
         toggleMenu: () => {},
         selectedHorizontalNavLink: 'Sale',
         setSelectedHorizontalNavLink: () => {},
-        selectedVerticalNavLink: 'Sale',
+        selectedVerticalNavLink: links[1].name,
         setSelectedVerticalNavLink: () => {},
         verticalNavScrollToElementId: '',
         setVerticalNavScrollToElementId: () => {},
       },
     },
+  },
+  play: async ({ canvas }) => {
+    const navbarMenu = await canvas.findByTestId('navbar-menu');
+    await expect(navbarMenu).toBeInTheDocument();
+    const verticalLinksContainer = canvas.getAllByTestId(
+      'vertical-scrollable-content',
+    )[0];
+    await expect(verticalLinksContainer).toBeInTheDocument();
+    await expect(verticalLinksContainer.childElementCount).toBe(links.length);
+    await expect(verticalLinksContainer.children.item(1)).toHaveClass(
+      'bg-gray-100',
+    );
   },
 };
 
@@ -309,5 +322,11 @@ export const NotFound: Story = {
         setVerticalNavScrollToElementId: () => {},
       },
     },
+  },
+  play: async ({ canvas }) => {
+    const notFoundMessage = await canvas.findByText(
+      /Sub-categories not found/i,
+    );
+    await expect(notFoundMessage).toBeInTheDocument();
   },
 };
