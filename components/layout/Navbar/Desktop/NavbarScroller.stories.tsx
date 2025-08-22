@@ -2,6 +2,7 @@ import { Meta, StoryObj } from '@storybook/nextjs-vite';
 import { action } from 'storybook/actions';
 import NavbarScroller from '@/components/layout/Navbar/Desktop/NavbarScroller';
 import MockHeaderContextProvider from '@/components/layout/Header/Header.context.stories.mock';
+import { expect, waitFor } from 'storybook/test';
 const meta = {
   title: 'components/layout/Navbar/Desktop/NavbarScroller',
   component: NavbarScroller,
@@ -20,8 +21,6 @@ const meta = {
     },
   ],
 } satisfies Meta<typeof NavbarScroller>;
-
-// BUG: When we hover over navbar scroller arrows, it opens the navbar menu. It should not open it.
 
 export default meta;
 type Story = StoryObj<typeof meta>;
@@ -48,6 +47,14 @@ export const Default: Story = {
       },
     },
   },
+  play: async ({ canvas }) => {
+    const leftButton = await canvas.findByLabelText('left scroller');
+    await expect(leftButton).toBeInTheDocument();
+    await expect(leftButton).toBeDisabled();
+    const rightButton = await canvas.findByLabelText('right scroller');
+    await expect(rightButton).toBeInTheDocument();
+    await waitFor(() => expect(rightButton).toBeEnabled(), { timeout: 1000 });
+  },
 };
 
 export const BothButtonsEnabled: Story = {
@@ -72,6 +79,14 @@ export const BothButtonsEnabled: Story = {
       },
     },
   },
+  play: async ({ canvas }) => {
+    const leftButton = await canvas.findByLabelText('left scroller');
+    await expect(leftButton).toBeInTheDocument();
+    await expect(leftButton).toBeEnabled();
+    const rightButton = await canvas.findByLabelText('right scroller');
+    await expect(rightButton).toBeInTheDocument();
+    await expect(rightButton).toBeEnabled();
+  },
 };
 
 export const OnlyLeftButtonEnabled: Story = {
@@ -95,5 +110,13 @@ export const OnlyLeftButtonEnabled: Story = {
         },
       },
     },
+  },
+  play: async ({ canvas }) => {
+    const leftButton = await canvas.findByLabelText('left scroller');
+    await expect(leftButton).toBeInTheDocument();
+    await expect(leftButton).toBeEnabled();
+    const rightButton = await canvas.findByLabelText('right scroller');
+    await expect(rightButton).toBeInTheDocument();
+    await waitFor(() => expect(rightButton).toBeDisabled(), { timeout: 1000 });
   },
 };
